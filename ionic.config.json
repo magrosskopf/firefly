@@ -1,5 +1,7 @@
 {
   "name": "unverpacktewahrheiten",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

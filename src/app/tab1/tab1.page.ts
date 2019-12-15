@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,15 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  items: Observable<any[]>;
+  names = [];
+  constructor(db: AngularFirestore) {
+    this.items = db.collection('items').valueChanges();
+    this.items.subscribe(data => {
+      data.forEach(el => {
+        this.names.push(el)
+      });
+    })
+  }
 
 }

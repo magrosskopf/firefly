@@ -12,12 +12,12 @@ export class Tab1Page {
   items: Observable<any[]>;
   names = [];
   constructor(db: AngularFirestore) {
-    this.items = db.collection('items').valueChanges();
+    /* this.items = db.collection('items').valueChanges();
     this.items.subscribe(data => {
       data.forEach(el => {
         this.names.push(el)
       });
-    })
+    }) */
   }
 
 }

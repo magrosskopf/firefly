@@ -5,7 +5,6 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-item routerLink="/test" routerDirection="forward"></ion-item>
 <ion-content>
   <div *ngIf="afAuth.user | async as user; else showLogin">
     <h1>Hello {{ user.displayName }}!</h1>
@@ -20,9 +19,10 @@
       </ion-item>
 
       <ion-item class="form-group">
-        <label for="pwd">Password</label>
+        <ion-label position="floating" for="pwd">Password</ion-label>
         <ion-input type="password" class="form-control" [(ngModel)]="pwd" name="pwd" id="password"></ion-input>
       </ion-item>
+
       <ion-button size=small class="ion-activatable" type="submit" (click)="login(email, pwd)">
         Login
         <ion-ripple-effect></ion-ripple-effect>

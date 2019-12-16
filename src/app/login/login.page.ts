@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class Tab2Page {
+export class LoginPage implements OnInit {
 
   email: string;
   pwd: string;
@@ -22,4 +23,7 @@ export class Tab2Page {
   logout() {
     this.afAuth.auth.signOut();
   }
+  ngOnInit() {
+  }
+
 }

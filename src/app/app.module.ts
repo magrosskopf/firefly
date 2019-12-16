@@ -14,6 +14,8 @@ import { environment } from '../environments/environment';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +27,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     AngularFirestore,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

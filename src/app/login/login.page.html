@@ -5,7 +5,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
+<ion-item routerLink="/test" routerDirection="forward"></ion-item>
 <ion-content>
   <div *ngIf="afAuth.user | async as user; else showLogin">
     <h1>Hello {{ user.displayName }}!</h1>

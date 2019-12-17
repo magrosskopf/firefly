@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Firefly</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="register(form)">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div class="ion-padding">
+            <h3>Registrierung</h3>
+            <ion-item>
+              <ion-label position="floating">Vorname</ion-label>
+              <ion-input  name="surname" type="text" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Nachname</ion-label>
+              <ion-input  name="name" type="text" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">E-Mail</ion-label>
+              <ion-input name="email" type="email" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Passwort</ion-label>
+              <ion-input name="password" type="password" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Passwort wiederholen</ion-label>
+              <ion-input name="confirm" type="password" ngModel required></ion-input>
+            </ion-item>
+          </div>
+          <div class="ion-padding">
+            <ion-button type="submit" [disabled]="form.invalid" expand="block">Registrieren</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+    
+  

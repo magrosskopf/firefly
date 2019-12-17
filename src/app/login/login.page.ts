@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -13,16 +14,11 @@ export class LoginPage implements OnInit {
   email: string;
   pwd: string;
 
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(public _autentication: AuthenticationService) {
     this.email = "";
     this.pwd = "";
   }
-  login(email,password) {
-    this.afAuth.auth.signInWithEmailAndPassword(email,password).catch(error => console.log(error));
-  }
-  logout() {
-    this.afAuth.auth.signOut();
-  }
+  
   ngOnInit() {
   }
 

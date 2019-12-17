@@ -11,12 +11,8 @@ import { AuthenticationService } from '../_services/authentication.service';
 })
 export class LoginPage implements OnInit {
 
-  email: string;
-  pwd: string;
-
   constructor(public _autentication: AuthenticationService) {
-    this.email = "";
-    this.pwd = "";
+    
   }
   
   ngOnInit() {

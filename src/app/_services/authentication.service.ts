@@ -31,7 +31,7 @@ export class AuthenticationService {
       header: 'Login fehlgeschlagen',
       subHeader: 'Bitte erneut versuchen',
       message: 'Entweder war deine E-Mail in Plastik verpackt oder dein Passwort nicht vegan.',
-      buttons: ['ERNEUT VERSUCHEN']
+      buttons: ['VEGAN ERNÄHREN']
     });
 
     await alert.present();

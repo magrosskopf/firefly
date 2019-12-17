@@ -14,6 +14,9 @@
           </ion-avatar>
           <ion-label> {{ displayName }}</ion-label>
         </ion-item>
+        <span *ngFor="let u of _userInfo.uList">
+          {{ u }}
+        </span>
       </ion-col>
     </ion-row>
   </ion-grid>

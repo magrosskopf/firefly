@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_services/authentication.service';
+import { UserInfoService } from '../_services/user-info.service';
 
 @Component({
   selector: 'app-account',
@@ -11,20 +12,10 @@ export class AccountPage implements OnInit {
   displayName: string;
   user = this._authentication.afAuth.auth.currentUser;
 
-  constructor(public _authentication: AuthenticationService) {
-    this._authentication.afAuth.user.subscribe(data => {
-      this.displayName = data.displayName;
-    });
+  constructor(public _authentication: AuthenticationService, public _userInfo: UserInfoService) {
+      this.displayName = this.user.displayName;
+      this._userInfo.getUserInfoFromFirestore();
 
-
-    this.user.updateProfile({
-      displayName: "Jane Q. User",
-      photoURL: "https://example.com/jane-q-user/profile.jpg"
-    }).then(function() {
-      console.log("Update Successful")
-    }).catch(function(error) {
-      console.log("Update failed")
-    });
   }
 
   ngOnInit() {

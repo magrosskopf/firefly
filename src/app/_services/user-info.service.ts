@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 export class UserInfoService {
 
   user = this._authentication.afAuth.auth.currentUser;
-  u: Observable<any>;
-  uList: Observable<any>[];
+  userInfo: Observable<any>;
+
   constructor(public _authentication: AuthenticationService, public db: AngularFirestore) { 
 
   }
@@ -27,13 +27,7 @@ export class UserInfoService {
     });
    }
 
-  getUserInfoFromFirestore(){
-    /* this.u = this.db.collection('customer').valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
-    this.u.subscribe(data => {
-      console.log(data);
-      data.forEach(el => {
-        this.uList.push(el)
-      });
-    })  */
+  getPersonalDataFromFirestore(uid: string){
+    this.userInfo = this.db.collection('customer/' + uid + '/personalData').valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
   }
 }

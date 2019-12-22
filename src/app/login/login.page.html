@@ -6,11 +6,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div *ngIf="_autentication.afAuth.user | async as user; else showLogin">
-    <h1>Hello {{ user.displayName }}!</h1>
-    <button (click)="_autentication.logout()">Logout</button>
-  </div>
-  <ng-template #showLogin>
+  
     <p>Please login.</p>
     <form>
       <ion-item class="form-group">
@@ -23,12 +19,16 @@
         <ion-input type="password" class="form-control" [(ngModel)]="pwd" name="pwd" id="password"></ion-input>
       </ion-item>
 
-      <ion-button size=small class="ion-activatable" type="submit" (click)="_autentication.login(email, pwd)">
+      <ion-button size=small href="/" class="ion-activatable" type="submit" (click)=" navigate()"  >
         Login
         <ion-ripple-effect></ion-ripple-effect>
       </ion-button>
 
     </form>
     <span (click)="_autentication.resetPassword()">Passwort zurücksetzen</span>
-  </ng-template>
+  
+ <!--  <div *ngIf="_autentication.afAuth.user | async as user; ">
+    <h1>Hello {{ user.displayName }}!</h1>
+    <button (click)="_autentication.logout()">Logout</button>
+  </div> -->
 </ion-content>

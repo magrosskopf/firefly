@@ -2,19 +2,20 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(public afAuth: AngularFireAuth, public toastController: ToastController) { 
+  constructor(public afAuth: AngularFireAuth, public router: Router, public toastController: ToastController) { 
 
    }
 
    login(email,password) {
     this.afAuth.auth.signInWithEmailAndPassword(email,password).catch(error => {
-      this.presentToast(error)
+      this.presentToast(error);
     });
   }
 

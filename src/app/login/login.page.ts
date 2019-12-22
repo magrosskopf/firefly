@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { AuthenticationService } from '../_services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,22 @@ import { AuthenticationService } from '../_services/authentication.service';
 })
 export class LoginPage implements OnInit {
 
-  constructor(public _autentication: AuthenticationService) {
-    
+  pwd: string;
+  email: string;
+
+  constructor(public _autentication: AuthenticationService, public router: Router) {
+    this.pwd = '123456';
+    this.email = 'magrosskopf@web.de';
   }
   
   ngOnInit() {
+  }
+
+  navigate() {
+    this._autentication.login(this.email, this.pwd);
+    setTimeout(() => {
+      this.router.navigateByUrl('/tabs/tab1');
+    }, 1000);
   }
 
 }

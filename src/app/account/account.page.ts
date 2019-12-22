@@ -47,6 +47,7 @@ export class AccountPage implements OnInit {
   saveNameAndPhoto() {
     if (this.displayName !== '') {
       this._userInfo.updateNameAndPhoto(this.displayName, this.user.photoURL);
+      this.displayName = '';
     }
   }
 

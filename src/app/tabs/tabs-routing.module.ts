@@ -36,11 +36,6 @@ const routes: Routes = [
               import('../account/account.module').then(m => m.AccountPageModule)
           }
         ]
-      },
-      {
-        path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full'
       }
     ]
   },

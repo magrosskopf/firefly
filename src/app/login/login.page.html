@@ -1,33 +1,36 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Login
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-  <div *ngIf="afAuth.user | async as user; else showLogin">
-    <h1>Hello {{ user.displayName }}!</h1>
-    <ion-button (click)="logout()">Logout</ion-button>
-  </div>
-  <ng-template #showLogin>
-    <p>Please login.</p>
-    <form>
-      <ion-item class="form-group">
-        <ion-label position="floating" for="email">Email</ion-label>
-        <ion-input type="text" class="form-control" id="email" [(ngModel)]="email" name="email" required></ion-input>
-      </ion-item>
+<ion-app>
+  <ion-header>
+    <p class="logo">firefly
+    </p>
+    <ion-toolbar>
+      <ion-title>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div *ngIf="afAuth.user | async as user; else showLogin">
+      <!-- ngIf Show Login or show register -->
+      <h1>Hi {{ user.displayName }}!</h1>
+      <ion-button (click)="logout()">Logout</ion-button>
+    </div>
+    <ng-template #showLogin>
+      <p>Willkommen zurück! Logge dich ein, um die umweltfreundlichsten Angebote zu erhalten</p>
+      <form>
+        <ion-item class="form-group">
+          <ion-label position="floating" for="email">Email</ion-label>
+          <ion-input type="text" class="form-control" id="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
 
-      <ion-item class="form-group">
-        <ion-label position="floating" for="pwd">Password</ion-label>
-        <ion-input type="password" class="form-control" [(ngModel)]="pwd" name="pwd" id="password"></ion-input>
-      </ion-item>
+        <ion-item class="form-group">
+          <ion-label position="floating" for="pwd">Password</ion-label>
+          <ion-input type="password" class="form-control" [(ngModel)]="pwd" name="pwd" id="password"></ion-input>
+        </ion-item>
 
-      <ion-button size=small class="ion-activatable" type="submit" (click)="login(email, pwd)">
-        Login
-        <ion-ripple-effect></ion-ripple-effect>
-      </ion-button>
-
-    </form>
-  </ng-template>
-</ion-content>
+        <ion-button size=small class="ion-activatable" type="submit" (click)="login(email, pwd)">
+          Login
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-button>
+      </form>
+    </ng-template>
+  </ion-content>
+</ion-app>

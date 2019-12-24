@@ -1,8 +1,37 @@
-.ion-activatable {
-    position: relative;
-    overflow: hidden;
+@import "../../global.scss";
+@import "../../theme/variables.scss";
+
+.ion-app {
+  background-color: blue !important;
+  width: 50%;
+  margin: auto;
+
+  .ion-header {
+    padding: auto;
   }
 
-.ion-button {
+}
 
+.ion-activatable {
+  position: relative;
+  overflow: hidden;
+}
+
+.ion-button {
+  --color: --ion-color-primary;
+
+  &:hover {
+    --ion-color-primary-hover: linear-gradient(to right, #EA7724 , #EA9736) !important;
+  }
+}
+
+.button-solid {
+  &:hover {
+    --ion-color-primary-hover: linear-gradient(to right, #EA7724 , #EA9736) !important;
+  }
+}
+
+.logo {
+  font-family: 'Pacifico', cursive;
+  color: $darkgrey;
 }

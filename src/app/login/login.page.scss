@@ -2,12 +2,21 @@
 @import "../../theme/variables.scss";
 
 ion-grid {
-  background-color: blue !important;
   width: 50%;
   margin: auto;
+  padding: 10%;
 
-  .ion-header {
-    padding: auto;
+  ion-header {
+    background-color: white;
+  }
+
+  ion-content {
+    --background: $background-gradient;
+    margin-top: 10px;
+  }
+
+  form {
+
   }
 
 }
@@ -31,7 +40,3 @@ ion-grid {
   }
 }
 
-.logo {
-  font-family: 'Pacifico', cursive;
-  color: $darkgrey;
-}

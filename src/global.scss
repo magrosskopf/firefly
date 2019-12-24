@@ -26,3 +26,18 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @import "theme/variables.scss";
+
+
+ion-app {
+  margin: auto;
+  padding: 10px 48%;
+  background-image: linear-gradient(to right, rgba(255, 183, 98, 0.18) , rgba(255, 164, 98, 0.33));
+
+}
+
+
+.logo {
+  font-family: 'Pacifico', cursive;
+  color: $darkgrey;
+  font-size: 20px;
+}

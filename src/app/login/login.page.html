@@ -1,11 +1,7 @@
 <ion-grid>
+  <ion-title>
+  </ion-title>
   <ion-header>
-    <p class="logo">firefly
-    </p>
-    <ion-toolbar>
-      <ion-title>
-      </ion-title>
-    </ion-toolbar>
   </ion-header>
   <ion-content>
     <div *ngIf="afAuth.user | async as user; else showLogin">
@@ -14,7 +10,8 @@
       <ion-button (click)="logout()">Logout</ion-button>
     </div>
     <ng-template #showLogin>
-      <p>Willkommen zurück! Logge dich ein, um die umweltfreundlichsten Angebote zu erhalten</p>
+      <h2>Willkommen zurück!</h2>
+      <p>Logge dich ein, um die umweltfreundlichsten Angebote zu erhalten</p>
       <form>
         <ion-item class="form-group">
           <ion-label position="floating" for="email">Email</ion-label>
@@ -33,4 +30,6 @@
       </form>
     </ng-template>
   </ion-content>
+  <ion-toolbar>
+  </ion-toolbar>
 </ion-grid>

@@ -48,13 +48,20 @@
   --ion-color-medium-contrast: #ffffff;
 
   /** light **/
-  --ion-color-light: #f4f5f8;
+  --ion-color-light: #F7F7F7;
   --ion-color-light-contrast: #000000;
 }
 
 
-/** fonts **/
+/** font colors **/
 $primary: #FFB762;
 $secondary:  #FFB762;
 $darkgrey: #484848;
 
+/** font-size **/
+$h1: 24px;
+$h2: 20px;
+$h3: 18px;
+$headline: 16px;
+$subheadline: 14px;
+$text: 12px;

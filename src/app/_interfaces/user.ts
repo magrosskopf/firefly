@@ -1,7 +1,12 @@
 export interface User {
-    uid: string;
-    email: string;
-    photoURL?: string;
+    uid?: string;
     displayName?: string;
-    myCustomData?: string;
-  }
+    email?: string;
+    password?: string;
+    confirm?: string;
+    photoURL?: string;
+    storeName?: string;
+    adress?: string;
+    zip?: string;
+    city?: string;
+}

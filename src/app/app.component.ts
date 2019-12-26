@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AuthService } from './_services/auth.service';
+import { AuthenticationService } from './_services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public auth: AuthService
+    public auth: AuthenticationService
   ) {
     this.initializeApp();
   }

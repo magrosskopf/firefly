@@ -5,7 +5,7 @@
   </ion-header>
   
   <ion-content>
-    <form #form="ngForm" (ngSubmit)="register(form)">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
       <ion-grid>
         <ion-row class="ion-justify-content-center">
           <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
@@ -13,23 +13,23 @@
               <h3>Gewerbliche Angaben</h3>
               <ion-item>
                 <ion-label position="floating">Firmenname</ion-label>
-                <ion-input  name="companyName" type="text" ngModel required></ion-input>
+                <ion-input name="storeName" type="text" ngModel required></ion-input>
               </ion-item>
               <ion-item>
                 <ion-label position="floating">Adresse</ion-label>
-                <ion-input  name="adress" type="text" ngModel required></ion-input>
+                <ion-input name="adress" type="text" ngModel required></ion-input>
               </ion-item>
               <ion-item>
                 <ion-label position="floating">PLZ</ion-label>
-                <ion-input name="plz" type="email" ngModel required></ion-input>
+                <ion-input name="zip" type="text" ngModel required></ion-input>
               </ion-item>
               <ion-item>
                 <ion-label position="floating">Stadt</ion-label>
-                <ion-input name="city" type="password" ngModel required></ion-input>
+                <ion-input name="city" type="text" ngModel required></ion-input>
               </ion-item>
               <ion-item>
                 <ion-label position="floating">Gewerbeschein</ion-label>
-                <ion-input name="companyConfirm" type="password" ngModel required></ion-input>
+                <ion-input name="companyConfirm" type="text" ngModel required></ion-input>
               </ion-item>
             </div>
             <div class="ion-padding">

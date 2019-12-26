@@ -23,6 +23,9 @@
 @import "~@ionic/angular/css/flex-utils.css";
 @import "theme/variables.scss";
 
+
+/*********************************/
+/* General styling */
 body {
   font-family: "Avenir Next";
 }
@@ -33,7 +36,6 @@ ion-app {
   background-image: linear-gradient(to right, rgba(255, 183, 98, 0.18), rgba(255, 164, 98, 0.33));
 
 }
-
 
 .logo {
   font-family: 'Pacifico', cursive;
@@ -57,4 +59,43 @@ ion-button {
   .activated {
     --color: green;
   }
+}
+
+
+/*********************************/
+/* font sizes */
+h1 {
+  font-size: $h1;
+}
+
+h2 {
+  font-size: $h2;
+}
+
+h3 {
+  font-size: $h3;
+}
+
+.headline {
+  font-size: $headline;
+}
+
+.subheadline {
+  font-size: $subheadline;
+}
+
+a {
+  font-size: $subheadline;
+  color: #EA7724;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/*********************************/
+/* app styling */
+
+
+hr {
+  margin: 20px 0;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
 }

@@ -13,11 +13,11 @@ export class Tab2Page {
   pwd: string;
 
   constructor(public afAuth: AngularFireAuth) {
-    this.email = "";
-    this.pwd = "";
+    this.email = '';
+    this.pwd = '';
   }
-  login(email,password) {
-    this.afAuth.auth.signInWithEmailAndPassword(email,password).catch(error => console.log(error));
+  login(email, password) {
+    this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(error => console.log(error));
   }
   logout() {
     this.afAuth.auth.signOut();

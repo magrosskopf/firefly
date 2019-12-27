@@ -11,6 +11,13 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: '**', redirectTo: 'login'
+  },
+  {
+    path: 'create-deal',
+    loadChildren: () => import('./tab2/create-deal/create-deal.module').then( m => m.CreateDealPageModule)
   }
 ];
 

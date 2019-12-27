@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { AuthenticationService } from '../_services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,20 +12,22 @@ import { auth } from 'firebase/app';
 })
 export class LoginPage implements OnInit {
 
-  email: string;
   pwd: string;
+  email: string;
 
-  constructor(public afAuth: AngularFireAuth) {
-    this.email = "";
-    this.pwd = "";
+  constructor(public _autentication: AuthenticationService, public router: Router) {
+    this.pwd = '123456';
+    this.email = 'magrosskopf@web.de';
   }
-  login(email,password) {
-    this.afAuth.auth.signInWithEmailAndPassword(email,password).catch(error => console.log(error));
-  }
-  logout() {
-    this.afAuth.auth.signOut();
-  }
+  
   ngOnInit() {
+  }
+
+  navigate() {
+    this._autentication.login(this.email, this.pwd);
+    setTimeout(() => {
+      this.router.navigateByUrl('/tabs/tab1');
+    }, 1000);
   }
 
 }

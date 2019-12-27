@@ -21,10 +21,10 @@
 
         <ion-item class="form-group">
           <ion-label position="floating" for="pwd">Passwort</ion-label>
-          <ion-input type="password" class="form-control" [(ngModel)]="pwd" name="pwd" id="password"></ion-input>
+          <ion-input type="password" class="form-control" [(ngModel)]="pwd" name="pwd" id="password" (keydown.enter)="navigate()"></ion-input>
         </ion-item>
 
-        <ion-button size=small class="ion-activatable" type="submit" (click)="login(email, pwd)">
+        <ion-button size=small class="ion-activatable" type="submit" (click)=" navigate()">
           ANMELDEN
           <ion-ripple-effect></ion-ripple-effect>
         </ion-button>
@@ -34,7 +34,12 @@
       <p class="subheadline">Neu hier?
         <a href="/">Registriere dich jetzt</a>
       </p>
-    </ng-template>
+    <span (click)="_autentication.resetPassword()">Passwort zurücksetzen</span>
+
+ <!--  <div *ngIf="_autentication.afAuth.user | async as user; ">
+    <h1>Hello {{ user.displayName }}!</h1>
+    <button (click)="_autentication.logout()">Logout</button>
+  </div> -->
   </ion-content>
 <!--  <ion-toolbar>
   </ion-toolbar>-->

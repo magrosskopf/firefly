@@ -78,4 +78,14 @@ export class DealService {
       console.log('Error getting documents: ', error);
     });
   }
+
+  getAllDeals(): Promise<any> {
+    return this.afDB.collection('deals').ref.get().then((querySnapshot) => {
+      const deals = [];
+      querySnapshot.forEach((doc) => {
+        deals.push(doc.data());
+      });
+      return deals;
+    });
+  }
 }

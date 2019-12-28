@@ -51,6 +51,10 @@ export class AuthenticationService {
     toast.present();
   }
 
+  getUserId() {
+    return this.afAuth.auth.currentUser.uid;
+  }
+
   // Registrierung
 
   register() {
@@ -132,4 +136,6 @@ export class AuthenticationService {
       }
     }
   }
+
+  
 }

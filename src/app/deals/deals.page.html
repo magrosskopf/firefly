@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <ion-title>Firefly</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ion-button routerLink="create-deal" expand="block">Angebot erstellen</ion-button>
+  </div>
+  <ion-card *ngFor="let deal of allDeals">
+    <ion-card-header>
+      <ion-card-title>{{ deal.title }}</ion-card-title>
+      <ion-card-subtitle>{{ deal.price }} €</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>{{ deal.description }}</ion-card-content>
+  </ion-card>
+</ion-content>

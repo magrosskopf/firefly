@@ -49,6 +49,20 @@
     </ion-row>
     <ion-row>
       <ion-col>
+        <ion-list>
+          <ion-list-header>
+            Aktive Angebote
+          </ion-list-header>
+          <ion-item *ngFor="let deal of activeDeals">
+            {{ deal.title }}
+            {{ deal.description }}
+            {{ deal.price }} €
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
         <ion-button size=small class="ion-activatable" type="submit" (click)="_authentication.logout()" routerLink="login">
           Logout
           <ion-ripple-effect></ion-ripple-effect>

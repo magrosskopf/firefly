@@ -1,7 +1,7 @@
 export interface Deal {
     userId: string;
     title: string;
-    discription: string;
+    description: string;
     active: boolean;
     picture?: string;
     location: string;

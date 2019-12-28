@@ -38,7 +38,10 @@ export class AccountPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.activeDeals = this.deals.getDeals();
+    this.deals.getDeals().then((deals) => {
+      this.activeDeals = deals;
+      console.log(this.activeDeals);
+    });
   }
 
   saveEmail(email) {

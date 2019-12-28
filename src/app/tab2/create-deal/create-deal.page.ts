@@ -14,7 +14,7 @@ export class CreateDealPage implements OnInit {
   deal: Deal = {
     userId: '',
     title: '',
-    discription: '',
+    description: '',
     active: true,
     location: '',
     price: 0
@@ -30,7 +30,7 @@ export class CreateDealPage implements OnInit {
 
     this.deal.userId = this.authentication.getUserId();
     this.deal.title = infos.title;
-    this.deal.discription = infos.discription;
+    this.deal.description = infos.description;
     this.deal.price = infos.price;
 
     this.dealService.addDeal(this.deal);

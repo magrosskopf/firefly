@@ -14,7 +14,7 @@ export class DealService {
     this.afDB.collection('deals').add({
       userId: deal.userId,
       title: deal.title,
-      discription: deal.discription,
+      description: deal.description,
       active: deal.active,
       location: deal.location,
       price: deal.price,
@@ -61,7 +61,7 @@ export class DealService {
     });
   }
 
-  getDeals() {
+  getDeals(): Promise<any> {
     const user = this.afAuth.auth.currentUser;
 
     return this.afDB.collection('deals').ref.where('userId', '==', user.uid)
@@ -72,7 +72,6 @@ export class DealService {
         console.log(doc.id, '=>' , doc.data());
         dealsUser.push(doc.data());
       });
-      console.log(dealsUser);
       return dealsUser;
     })
     .catch((error) => {

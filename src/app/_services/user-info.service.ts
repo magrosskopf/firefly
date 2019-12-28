@@ -53,7 +53,6 @@ export class UserInfoService {
   }
 
   getPersonalDataFromFirestore(uid: string) {
-    // tslint:disable-next-line:max-line-length
     this.userInfo = this.db.doc<PersonalInfo>('customer/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
   }
 

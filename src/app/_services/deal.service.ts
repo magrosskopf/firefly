@@ -21,7 +21,32 @@ export class DealService {
       date: new Date().getTime()
     })
     .then((docRef) => {
+
       console.log('Document written with ID: ', docRef.id);
+
+      const user = this.afAuth.auth.currentUser;
+      const userRef = this.afDB.collection('salesperson').doc(user.uid).ref;
+
+      userRef.get().then((userDoc) => {
+        if (userDoc.exists) {
+            console.log('Document data:', userDoc.data().adId);
+
+            this.afDB.collection('salesperson').doc(user.uid).update({
+              adId: [...userDoc.data().adId, docRef.id]
+            })
+            .then(() => {
+              console.log('Salesperson successfully updated!');
+            })
+            .catch((error) => {
+              console.error('Error writing salesperson document: ', error);
+            });
+        } else {
+            console.log('No such document!');
+        }
+      }).catch((error) => {
+          console.log('Error getting document:', error);
+      });
+
     })
     .catch((error) => {
         console.error('Error adding document: ', error);

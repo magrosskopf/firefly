@@ -33,10 +33,7 @@ export class CreateDealPage implements OnInit {
     this.deal.discription = infos.discription;
     this.deal.price = infos.price;
 
-    console.log(this.deal);
-
     this.dealService.addDeal(this.deal);
-
   }
 
 }

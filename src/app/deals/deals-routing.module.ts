@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'create-deal',
     loadChildren: () => import('./create-deal/create-deal.module').then( m => m.CreateDealPageModule)
+  },
+  {
+    path: 'detail-deal',
+    loadChildren: () => import('./detail-deal/detail-deal.module').then( m => m.DetailDealPageModule)
   }
 ];
 

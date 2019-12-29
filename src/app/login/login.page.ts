@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
   pwd: string;
   email: string;
 
-  constructor(public afAuth: AngularFireAuth, public autentication: AuthenticationService, public router: Router) {
+  constructor(public afAuth: AngularFireAuth, public authentication: AuthenticationService, public router: Router) {
     this.pwd = '123456';
     this.email = 'magrosskopf@web.de';
   }
@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
   }
 
   navigate() {
-    this.autentication.login(this.email, this.pwd);
+    this.authentication.login(this.email, this.pwd);
     setTimeout(() => {
       this.router.navigateByUrl('/tabs/tab1');
     }, 1000);

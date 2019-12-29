@@ -7,8 +7,9 @@
     <div *ngIf="afAuth.user | async as user; else showLogin">
       <!-- ngIf Show Login or show register -->
       <h1>Hi {{ user.displayName }}, willkommen zurück!</h1>
-      <ion-button (click)="logout()">Logout</ion-button>
+      <ion-button (click)="autentication.logout()">Logout</ion-button>
     </div>
+    
     <ng-template #showLogin>
       <h2>Willkommen zurück!</h2>
       <hr>
@@ -36,11 +37,11 @@
       </p>
     <span (click)="_autentication.resetPassword()">Passwort zurücksetzen</span>
 
- <!--  <div *ngIf="_autentication.afAuth.user | async as user; ">
-    <h1>Hello {{ user.displayName }}!</h1>
-    <button (click)="_autentication.logout()">Logout</button>
-  </div> -->
-  </ion-content>
+    <!-- <div *ngIf="autentication.afAuth.user | async as user; ">
+      <h1>Hello {{ user.displayName }}!</h1>
+      <button (click)="autentication.logout()">Logout</button>
+    </div> -->
+  <!-- </ion-content> -->
 <!--  <ion-toolbar>
   </ion-toolbar>-->
-</ion-grid>
+<!-- </ion-grid> -->

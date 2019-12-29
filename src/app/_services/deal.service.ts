@@ -24,6 +24,12 @@ export class DealService {
 
       console.log('Document written with ID: ', docRef.id);
 
+      this.afDB.collection('deals').doc(docRef.id).update({
+        id: docRef.id
+      }).then(() => {
+        console.log('ID successfully updated!');
+      });
+
       const user = this.afAuth.auth.currentUser;
       const kategory = 'salesperson';
 
@@ -86,6 +92,58 @@ export class DealService {
         deals.push(doc.data());
       });
       return deals;
+    });
+  }
+
+  deleteDeal(dealId) {
+    const userId = this.afAuth.auth.currentUser.uid;
+    const dealRef = this.afDB.collection('deals').doc(dealId).ref;
+
+    dealRef.get().then((doc) => {
+      if (doc.exists) {
+          console.log('Document data:', doc.data());
+          if (doc.data().userId === userId) {
+            dealRef.delete().then(() => {
+              console.log('Document successfully deleted!');
+            }).catch((error) => {
+                console.error('Error removing document: ', error);
+            });
+          }
+      } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!');
+      }
+    }).catch((error) => {
+        console.log('Error getting document:', error);
+    });
+  }
+
+  editDeal(dealId: string, deal: Deal) {
+    const userId = this.afAuth.auth.currentUser.uid;
+    const dealRef = this.afDB.collection('deals').doc(dealId).ref;
+
+    dealRef.get().then((doc) => {
+      if (doc.exists) {
+          console.log('Document data:', doc.data());
+          if (doc.data().userId === userId) {
+            dealRef.update({
+              title: deal.title,
+              description: deal.title,
+              price: deal.price
+            })
+            .then(() => {
+              console.log('Deal successfully updated!');
+            })
+            .catch((error) => {
+              console.error('Error writing deal document: ', error);
+            });
+          }
+      } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!');
+      }
+    }).catch((error) => {
+        console.log('Error getting document:', error);
     });
   }
 }

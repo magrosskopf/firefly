@@ -19,7 +19,7 @@ export class AccountPage implements OnInit {
   displayName: string;
   activeDeals = [];
 
-  constructor(public authentication: AuthenticationService, public userInfo: UserInfoService, public deals: DealService) {
+  constructor(public authentication: AuthenticationService, public userInfo: UserInfoService, public dealService: DealService) {
     this.personalInfo = {
       favStores: [''],
       discoveredStores: [''],
@@ -38,7 +38,7 @@ export class AccountPage implements OnInit {
   }
 
   ngOnInit() {
-    this.deals.getDeals().then((deals) => {
+    this.dealService.getDeals().then((deals) => {
       this.activeDeals = deals;
       console.log(this.activeDeals);
     });

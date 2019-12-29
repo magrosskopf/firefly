@@ -30,12 +30,11 @@
           <ion-ripple-effect></ion-ripple-effect>
         </ion-button>
       </form>
-      <a href="/">Passwort vergessen?</a>
+      <a href="/" (click)="authentication.resetPassword()">Passwort vergessen?</a>
       <hr>
       <p class="subheadline">Neu hier?
-        <a href="/">Registriere dich jetzt</a>
+        <a href="/register">Registriere dich jetzt</a>
       </p>
-    <span (click)="authentication.resetPassword()">Passwort zurücksetzen</span>
 
     <!-- <div *ngIf="authentication.afAuth.user | async as user; ">
       <h1>Hello {{ user.displayName }}!</h1>

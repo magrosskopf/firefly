@@ -49,6 +49,19 @@
     </ion-row>
     <ion-row>
       <ion-col>
+        <button (click)="requestPermission()">
+          Hey this is a chat app, you should let us send you notifications for these reasons!
+          <!--
+            TODO: This should be executed when a user create his homefence the first time.
+          -->
+        </button>
+        <button (click)="deleteMyToken()">
+          Delete my token plz
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
         <ion-button size=small class="ion-activatable" type="submit" (click)="_authentication.logout()" routerLink="login">
           Logout
           <ion-ripple-effect></ion-ripple-effect>

@@ -4,6 +4,8 @@ import { UserInfoService } from '../_services/user-info.service';
 import { Observable } from 'rxjs';
 import { PersonalInfo } from '../_interfaces/personal-info';
 import { ToastController } from '@ionic/angular';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { mergeMapTo } from 'rxjs/operators';
 
 @Component({
   selector: 'app-account',
@@ -17,7 +19,7 @@ export class AccountPage implements OnInit {
   email: string;
   displayName: string;
   
-  constructor(public _authentication: AuthenticationService, public _userInfo: UserInfoService) {
+  constructor(public _authentication: AuthenticationService, public _userInfo: UserInfoService, public afMessaging: AngularFireMessaging) {
       this.personalInfo = {
         favStores: [''],
         discoveredStores: [''],
@@ -51,5 +53,23 @@ export class AccountPage implements OnInit {
     }
   }
 
+  requestPermission() {
+    this.afMessaging.requestToken
+    .subscribe(
+      (token) => { console.log('Permission granted! Save to the server!', token); },
+      (error) => { console.error(error); },  
+    );
+  }
 
+  deleteMyToken() {
+    this.afMessaging.getToken
+      .pipe(mergeMapTo(token => this.afMessaging.deleteToken(token)))
+      .subscribe(
+        (token) => { console.log('Deleted!'); },
+      );
+  }
+
+  sendNotification(){
+    
+  }
 }

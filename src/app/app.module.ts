@@ -17,6 +17,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 
@@ -32,6 +34,7 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
     StatusBar,
     SplashScreen,
     Camera,
+    AngularFireMessaging,
     AngularFirestore,
     AngularFireAuth,
     AngularFireAuthGuard,

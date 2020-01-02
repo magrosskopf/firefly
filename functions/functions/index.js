@@ -9,7 +9,7 @@ admin.initializeApp();
 
  exports.enterFence = functions.https.onRequest((request, response) => {
      return cors(request, response, () => {
-        admin.messaging().sendToDevice(request.body.reqToken, { notification: { title: "Schwester Ewa", body: 'gang gang'}});
+        admin.messaging().sendToDevice(request.body.reqToken, { notification: { title: "Schwestasder Ewa", body: 'Lichtgang'}});
         response.send({message: "send"});
     });
 });

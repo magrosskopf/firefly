@@ -57,6 +57,24 @@ export class UserInfoService {
     this.userInfo = this.db.doc<PersonalInfo>('customer/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
   }
 
+  updatePermissonTokenFirestore(token: string) {
+    const itemRef = this.db.doc('customer/' + this.user.uid);
+    itemRef.update({ notificationsToken: token});
+  }
+
+  deletePermissonTokenFirestore() {
+    const itemRef = this.db.doc('customer/' + this.user.uid);
+    itemRef.update({ notificationsToken: null});
+  }
+  nfToken: string;
+
+  getPermissonTokenFirestore(): any {
+    const item = this.db.doc<any>('customer/' + this.user.uid);
+    item.valueChanges().subscribe(data => {
+       this.nfToken = data.notificationsToken;
+    });
+  }
+
   async presentToast(msg) {
     const toast = await this.toastController.create({
       message: msg,

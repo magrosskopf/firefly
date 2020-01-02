@@ -5,8 +5,12 @@ admin.initializeApp();
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
- exports.helloWorld = functions.https.onRequest((request, response) => {
-    cors(request, response, () => {
-        response.status(200).send({'test': 'Testing functions'});
+
+
+ exports.enterFence = functions.https.onRequest((request, response) => {
+     return cors(request, response, () => {
+        admin.messaging().sendToDevice(request.body.reqToken, { notification: { title: "Schwester Ewa", body: 'gang gang'}});
+        response.send({message: "send"});
     });
- });
+});
+

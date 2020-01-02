@@ -19,16 +19,18 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AngularFireFunctions } from '@angular/fire/functions';
+import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/functions';
 
-
-
+import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireFunctionsModule, HttpClientModule
   ],
   providers: [
     StatusBar,
@@ -37,8 +39,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AngularFireMessaging,
     AngularFirestore,
     AngularFireAuth,
+    AngularFireFunctions,
     AngularFireAuthGuard,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })

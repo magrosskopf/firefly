@@ -46,6 +46,19 @@ ion-app {
   font-size: $h2;
   margin: 0 auto;
   top: 0;
+  z-index: 99;
+}
+
+ion-header {
+  height: 100px;
+  background-color: white;
+  ion-toolbar {
+    height: 100%;
+  }
+}
+
+ion-footer {
+  height: 100px;
 }
 
 ion-button {
@@ -54,6 +67,8 @@ ion-button {
   width: 100%;
   color: white;
   font-size: $h2;
+  margin-top: 30px;
+  margin-bottom: 20px;
 
   &:hover {
     --color: --ion-color-primary-hover;

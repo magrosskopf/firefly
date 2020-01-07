@@ -9,7 +9,7 @@ const routes: Routes = [
     component: AccountPage
   },
   {
-    path: 'deals/:id',
+    path: 'deal/:id',
     loadChildren: () => import('./edit-deal/edit-deal.module').then( m => m.EditDealPageModule)
   }
 ];

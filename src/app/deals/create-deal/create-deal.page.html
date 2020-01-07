@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button text="Zurück" defaultHref="deals"></ion-back-button>
+      <ion-back-button text="Zurück" defaultHref="/tabs/deals"></ion-back-button>
     </ion-buttons>
     <ion-title>Firefly</ion-title>
   </ion-toolbar>
@@ -32,7 +32,7 @@
             </ion-item>
           </div>
           <div class="ion-padding">
-            <ion-button routerLink="deals" type="submit" [disabled]="form.invalid" expand="block">Erstellen</ion-button>
+            <ion-button routerLink="/tabs/deals" type="submit" [disabled]="form.invalid" expand="block">Erstellen</ion-button>
           </div>
         </ion-col>
       </ion-row>

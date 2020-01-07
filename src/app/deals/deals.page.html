@@ -14,7 +14,7 @@
     </ion-fab-button>
   </ion-fab>
   <ion-row>
-    <ion-col routerLink="show/{{ deal.id }}" size="6" *ngFor="let deal of allDeals">
+    <ion-col routerLink="{{ deal.id }}" size="6" *ngFor="let deal of allDeals">
       <ion-card>
         <ion-img src="../../assets/avocado.jpg"></ion-img>
         <ion-card-header>

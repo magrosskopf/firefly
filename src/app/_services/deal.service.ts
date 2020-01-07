@@ -85,22 +85,34 @@ export class DealService {
     });
   }
 
-  getUserDeals(): Promise<any> {
+  getUserDeals() {
     const user = this.afAuth.auth.currentUser;
+    const deals = [];
 
-    return this.afDB.collection('deals').ref.where('userId', '==', user.uid)
-    .get()
-    .then((querySnapshot) => {
-      const dealsUser = [];
+    this.afDB.collection('deals').ref.where('userId', '==', user.uid)
+    .onSnapshot((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        console.log(doc.id, '=>' , doc.data());
-        dealsUser.push(doc.data());
+          deals.push(doc.data());
       });
-      return dealsUser;
-    })
-    .catch((error) => {
-      console.log('Error getting documents: ', error);
+      console.log('UserDeals', deals);
+      return deals;
     });
+
+    return deals;
+
+    // return this.afDB.collection('deals').ref.where('userId', '==', user.uid)
+    // .get()
+    // .then((querySnapshot) => {
+    //   const dealsUser = [];
+    //   querySnapshot.forEach((doc) => {
+    //     console.log(doc.id, '=>' , doc.data());
+    //     dealsUser.push(doc.data());
+    //   });
+    //   return dealsUser;
+    // })
+    // .catch((error) => {
+    //   console.log('Error getting documents: ', error);
+    // });
   }
 
   getAllDeals(): Promise<any> {

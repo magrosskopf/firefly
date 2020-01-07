@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { PersonalInfo } from '../_interfaces/personal-info';
 import { ToastController } from '@ionic/angular';
 import { DealService } from '../_services/deal.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-account',
@@ -19,7 +21,13 @@ export class AccountPage implements OnInit {
   displayName: string;
   activeDeals = [];
 
-  constructor(public authentication: AuthenticationService, public userInfo: UserInfoService, public dealService: DealService) {
+  constructor(
+    public authentication: AuthenticationService,
+    public userInfo: UserInfoService,
+    public dealService: DealService,
+    public afAuth: AngularFireAuth,
+    public afDB: AngularFirestore
+  ) {
     this.personalInfo = {
       favStores: [''],
       discoveredStores: [''],
@@ -35,14 +43,11 @@ export class AccountPage implements OnInit {
       console.log(data);
     });
     }
+
+    this.getUserDeals();
   }
 
-  ngOnInit() {
-    this.dealService.getUserDeals().then((deals) => {
-      this.activeDeals = deals;
-      console.log(this.activeDeals);
-    });
-  }
+  ngOnInit() {}
 
   saveEmail(email) {
     if (this.email !== '') {
@@ -56,6 +61,18 @@ export class AccountPage implements OnInit {
       this.userInfo.updateNameAndPhoto(this.displayName, this.user.photoURL);
       this.displayName = '';
     }
+  }
+
+  getUserDeals() {
+    const user = this.afAuth.auth.currentUser;
+
+    this.afDB.collection('deals').ref.where('userId', '==', user.uid)
+    .onSnapshot((querySnapshot) => {
+      this.activeDeals = [];
+      querySnapshot.forEach((doc) => {
+        this.activeDeals.push(doc.data());
+      });
+    });
   }
 
 }

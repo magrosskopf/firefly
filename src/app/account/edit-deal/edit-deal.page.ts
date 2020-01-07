@@ -29,11 +29,8 @@ export class EditDealPage implements OnInit {
     const pathArray = this.router.url.split('/');
     this.pathId = pathArray[pathArray.length - 1];
 
-    console.log('pathId: ' + this.pathId);
-
     this.dealService.getDeal(this.pathId).then((data) => {
       this.deal = data;
-      console.log(this.deal);
     });
   }
 

@@ -3,6 +3,7 @@ import { Deal } from '../../_interfaces/deal';
 import { DealService } from '../../_services/deal.service';
 import { AuthenticationService } from '../../_services/authentication.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-deal',
@@ -20,9 +21,20 @@ export class EditDealPage implements OnInit {
     price: 0
   };
 
-  constructor(public dealService: DealService, public authentication: AuthenticationService) { }
+  pathId: string;
+
+  constructor(private router: Router, public dealService: DealService, public authentication: AuthenticationService) {}
 
   ngOnInit() {
+    const pathArray = this.router.url.split('/');
+    this.pathId = pathArray[pathArray.length - 1];
+
+    console.log('pathId: ' + this.pathId);
+
+    this.dealService.getDeal(this.pathId).then((data) => {
+      this.deal = data;
+      console.log(this.deal);
+    });
   }
 
   onSubmit(form: NgForm) {
@@ -33,7 +45,7 @@ export class EditDealPage implements OnInit {
     this.deal.description = infos.description;
     this.deal.price = infos.price;
 
-    this.dealService.addDeal(this.deal);
+    this.dealService.editDeal(this.pathId, this.deal);
   }
 
 }

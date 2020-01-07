@@ -12,15 +12,16 @@ import { switchMap } from 'rxjs/operators';
 })
 export class DetailDealPage implements OnInit {
 
-  deal;
+  deal: Deal = {
+    userId: '',
+    title: '',
+    description: '',
+    active: true,
+    location: '',
+    price: 0
+  };
 
-  constructor(private router: Router, public dealService: DealService) {
-    this.deal = {
-      title: '',
-      price: 0,
-      description: ''
-    };
-  }
+  constructor(private router: Router, public dealService: DealService) {}
 
   ngOnInit() {
     const pathArray = this.router.url.split('/');

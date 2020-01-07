@@ -53,7 +53,7 @@ export class DealService {
     });
   }
 
-  getDeal(dealId: string) {
+  getDeal(dealId: string): Promise<any> {
 
     const dealRef = this.afDB.collection('deals').doc(dealId).ref;
 
@@ -146,7 +146,7 @@ export class DealService {
           if (doc.data().userId === userId) {
             dealRef.update({
               title: deal.title,
-              description: deal.title,
+              description: deal.description,
               price: deal.price
             })
             .then(() => {

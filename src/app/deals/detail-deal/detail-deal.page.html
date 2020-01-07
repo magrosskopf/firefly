@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detailDeal</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="Zurück"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Firefly</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-
+  
+<ion-content ng-show="deal.title !== ''">
+  <ion-img src="../../assets/avocado.jpg"></ion-img>
+  <h2>{{ deal.title }}</h2>
+  <h3>{{ deal.price }} €</h3>
+  <p>{{ deal.description }}</p>
 </ion-content>
+  

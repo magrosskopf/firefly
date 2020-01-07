@@ -53,7 +53,7 @@
           <ion-list-header>
             Deine aktiven Angebote
           </ion-list-header>
-          <ion-item *ngFor="let deal of activeDeals">
+          <ion-item [routerLink]="['/deals/edit/', deal.id]" *ngFor="let deal of activeDeals">
             <ion-avatar slot="start">
               <img src="../../assets/avocado.jpg">
             </ion-avatar>

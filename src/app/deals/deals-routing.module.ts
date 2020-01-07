@@ -13,8 +13,12 @@ const routes: Routes = [
     loadChildren: () => import('./create-deal/create-deal.module').then( m => m.CreateDealPageModule)
   },
   {
-    path: 'detail-deal',
+    path: 'show/:id',
     loadChildren: () => import('./detail-deal/detail-deal.module').then( m => m.DetailDealPageModule)
+  },
+  {
+    path: 'edit/:id',
+    loadChildren: () => import('./edit-deal/edit-deal.module').then( m => m.EditDealPageModule)
   }
 ];
 

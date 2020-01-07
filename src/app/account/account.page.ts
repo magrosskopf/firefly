@@ -38,7 +38,7 @@ export class AccountPage implements OnInit {
   }
 
   ngOnInit() {
-    this.dealService.getDeals().then((deals) => {
+    this.dealService.getUserDeals().then((deals) => {
       this.activeDeals = deals;
       console.log(this.activeDeals);
     });
@@ -57,6 +57,5 @@ export class AccountPage implements OnInit {
       this.displayName = '';
     }
   }
-
 
 }

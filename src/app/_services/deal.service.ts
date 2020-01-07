@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Deal } from '../_interfaces/deal';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class DealService {
       const user = this.afAuth.auth.currentUser;
       const kategory = 'salesperson';
 
-      this.getUserDeals(kategory, user.uid)
+      this.getDealsFromKategory(kategory, user.uid)
       .then((userDeals) => {
         this.afDB.collection('salesperson').doc(user.uid).update({
         adId: [...userDeals, docRef.id]
@@ -52,7 +53,24 @@ export class DealService {
     });
   }
 
-  getUserDeals(kategory: string, userId: string) {
+  getDeal(dealId: string) {
+
+    const dealRef = this.afDB.collection('deals').doc(dealId).ref;
+
+    return dealRef.get().then((doc) => {
+      if (doc.exists) {
+          console.log('Document data:', doc.data());
+          return doc.data();
+      } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!');
+      }
+    }).catch((error) => {
+        console.log('Error getting document:', error);
+    });
+  }
+
+  getDealsFromKategory(kategory: string, userId: string) {
     const userRef = this.afDB.collection(kategory).doc(userId).ref;
 
     return userRef.get().then((userDoc) => {
@@ -67,7 +85,7 @@ export class DealService {
     });
   }
 
-  getDeals(): Promise<any> {
+  getUserDeals(): Promise<any> {
     const user = this.afAuth.auth.currentUser;
 
     return this.afDB.collection('deals').ref.where('userId', '==', user.uid)

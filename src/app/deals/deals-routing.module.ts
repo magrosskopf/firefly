@@ -9,16 +9,12 @@ const routes: Routes = [
     component: DealsPage
   },
   {
-    path: 'create-deal',
+    path: 'create',
     loadChildren: () => import('./create-deal/create-deal.module').then( m => m.CreateDealPageModule)
   },
   {
     path: 'show/:id',
     loadChildren: () => import('./detail-deal/detail-deal.module').then( m => m.DetailDealPageModule)
-  },
-  {
-    path: 'edit/:id',
-    loadChildren: () => import('./edit-deal/edit-deal.module').then( m => m.EditDealPageModule)
   }
 ];
 

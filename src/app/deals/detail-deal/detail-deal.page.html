@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button text="Zurück"></ion-back-button>
+      <ion-back-button text="Zurück" defaultHref="deals"></ion-back-button>
     </ion-buttons>
     <ion-title>Firefly</ion-title>
   </ion-toolbar>
 </ion-header>
   
-<ion-content ng-show="deal.title !== ''">
+<ion-content>
   <ion-img src="../../assets/avocado.jpg"></ion-img>
   <h2>{{ deal.title }}</h2>
   <h3>{{ deal.price }} €</h3>

@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: AccountPage
+  },
+  {
+    path: 'deals/:id',
+    loadChildren: () => import('./edit-deal/edit-deal.module').then( m => m.EditDealPageModule)
   }
 ];
 

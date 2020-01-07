@@ -17,10 +17,6 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'deals',
-    loadChildren: () => import('./deals/deals.module').then( m => m.DealsPageModule)
-  },
-  {
     path: '**', redirectTo: 'login'
   }
 ];

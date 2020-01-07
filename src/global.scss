@@ -35,7 +35,6 @@ body {
 
 ion-app {
   margin: auto;
-  padding-top: 40px;
   background-image: linear-gradient(to right, rgba(255, 183, 98, 0.18), rgba(255, 164, 98, 0.33));
 
 }
@@ -44,17 +43,32 @@ ion-app {
   font-family: 'Pacifico', cursive;
   color: $darkgrey;
   font-size: $h2;
-  margin: 0 auto;
-  top: 0;
-  z-index: 99;
+  text-align: center;
+  margin: 40px auto 0;
 }
 
 ion-header {
-  height: 100px;
-  background-color: white;
+  padding: 40px 0;
+  height: 160px;
   ion-toolbar {
     height: 100%;
+    //STYLE IONIC SHADOW DOM ELEMENTS
+    --background: transparent !important;
+    --ion-color-base: transparent !important;
+    &:last-child {
+      --border-width: 0 !important;
+    }
+    ion-buttons {
+      ion-back-button {
+        display: block !important;
+        position: fixed;
+      }
+    }
   }
+}
+
+ion-content {
+  --background: transparent !important;
 }
 
 ion-footer {

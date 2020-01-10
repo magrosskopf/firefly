@@ -8,19 +8,126 @@
  * For more information on global stylesheets, visit the documentation:
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
-
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
-
 /* Basic CSS for apps built with Ionic */
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
 @import '~@ionic/angular/css/display.css';
-
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
 @import "~@ionic/angular/css/float-elements.css";
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import "theme/variables.scss";
+
+body {
+  font-family: "Avenir Next";
+}
+
+/*********************************/
+/* General styling */
+body {
+  font-family: "Avenir Next";
+}
+
+ion-app {
+  margin: auto;
+  background-image: linear-gradient(to right, rgba(255, 183, 98, 0.18), rgba(255, 164, 98, 0.33));
+
+}
+
+.logo {
+  font-family: 'Pacifico', cursive;
+  color: $darkgrey;
+  font-size: $h2;
+  text-align: center;
+  margin: 40px auto 0;
+}
+
+ion-header {
+  padding: 40px 0;
+  height: 160px;
+  ion-toolbar {
+    height: 100%;
+    //STYLE IONIC SHADOW DOM ELEMENTS
+    --background: transparent !important;
+    --ion-color-base: transparent !important;
+    &:last-child {
+      --border-width: 0 !important;
+    }
+    ion-buttons {
+      ion-back-button {
+        display: block !important;
+        position: fixed;
+      }
+    }
+  }
+}
+
+ion-content {
+  --background: transparent !important;
+}
+
+ion-footer {
+  height: 100px;
+}
+
+ion-button {
+  height: 50px;
+  --color: --ion-color-primary;
+  width: 100%;
+  color: white;
+  font-size: $h2;
+  margin-top: 30px;
+  margin-bottom: 20px;
+
+  &:hover {
+    --color: --ion-color-primary-hover;
+  }
+
+  .activated {
+    --color: green;
+  }
+}
+
+
+/*********************************/
+/* font sizes */
+h1 {
+  font-size: $h1;
+}
+
+h2 {
+  font-size: $h2;
+}
+
+h3 {
+  font-size: $h3;
+}
+
+.headline {
+  font-size: $headline;
+}
+
+.subheadline {
+  font-size: $subheadline;
+}
+
+a {
+  font-size: $subheadline;
+  color: #EA7724;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/*********************************/
+/* app styling */
+
+
+hr {
+  margin: 20px 0;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+}

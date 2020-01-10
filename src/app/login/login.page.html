@@ -1,34 +1,36 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Login
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-  
-    <p>Please login.</p>
-    <form>
-      <ion-item class="form-group">
-        <ion-label position="floating" for="email">Email</ion-label>
-        <ion-input type="text" class="form-control" id="email" [(ngModel)]="email" name="email" required></ion-input>
-      </ion-item>
+<ion-grid>
+  <ion-content>
+    <div *ngIf="afAuth.user | async as user; else showLogin">
+      <!-- ngIf Show Login or show register -->
+      <h1>Hi {{ user.displayName }}, willkommen zurück!</h1>
+      <ion-button (click)="authentication.logout()">Logout</ion-button>
+    </div>
 
-      <ion-item class="form-group">
-        <ion-label position="floating" for="pwd">Password</ion-label>
-        <ion-input type="password" class="form-control" [(ngModel)]="pwd" name="pwd" id="password" (keydown.enter)="navigate()"></ion-input>
-      </ion-item>
+    <ng-template #showLogin>
+      <h2>Willkommen zurück!</h2>
+      <hr>
+      <p>Melde dich an für nachhhaltige Angebote.</p>
+      <form>
+        <ion-item class="form-group">
+          <ion-label position="floating" for="email">E-Mail</ion-label>
+          <ion-input type="text" class="form-control" id="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
 
-      <ion-button size=small class="ion-activatable" type="submit" (click)=" navigate()">
-        Login
-        <ion-ripple-effect></ion-ripple-effect>
-      </ion-button>
+        <ion-item class="form-group">
+          <ion-label position="floating" for="pwd">Passwort</ion-label>
+          <ion-input type="password" class="form-control" [(ngModel)]="pwd" name="pwd" id="password" (keydown.enter)="navigate()"></ion-input>
+        </ion-item>
 
-    </form>
-    <span (click)="authentication.resetPassword()">Passwort zurücksetzen</span>
-  
- <!--  <div *ngIf="_autentication.afAuth.user | async as user; ">
-    <h1>Hello {{ user.displayName }}!</h1>
-    <button (click)="_autentication.logout()">Logout</button>
-  </div> -->
-</ion-content>
+        <ion-button size=small class="ion-activatable" type="submit" (click)=" navigate()">
+          ANMELDEN
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-button>
+      </form>
+      <a href="/" (click)="authentication.resetPassword()">Passwort vergessen?</a>
+      <hr>
+      <p class="subheadline">Neu hier?
+        <a href="register">Registriere dich jetzt</a>
+      </p>
+    </ng-template>
+  </ion-content>
+</ion-grid>

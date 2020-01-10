@@ -1,4 +1,53 @@
-.ion-activatable {
-    position: relative;
-    overflow: hidden;
+@import "../../global.scss";
+@import "../../theme/variables.scss";
+
+ion-grid {
+  width: 100%;
+  margin: auto;
+  padding: 120px 8%;
+  text-align: center;
+
+  ion-header {
+    background-color: white;
+    ion-toolbar {
+      ion-buttons {
+        ion-back-button {
+          display: none !important;
+        }
+      }
+    }
   }
+
+  ion-content {
+    //STYLE IONIC SHADOW DOM ELEMENTS
+    --background: $background-gradient;
+    margin-top: 10px;
+  }
+
+  form {
+    margin-top: 50px;
+
+    ion-item {
+      --ion-item-background: transparent !important;
+      margin-bottom: 20px;
+
+      .form-group {
+        margin: 30px 0;
+        font-size: $headline;
+      }
+    }
+  }
+
+  .subheadline {
+    font-size: $subheadline;
+  }
+}
+
+.ion-activatable {
+  position: relative;
+  overflow: hidden;
+}
+
+ion-label {
+  margin-top: 0;
+}

@@ -1,0 +1,25 @@
+@import "../../global.scss";
+@import "../../theme/variables.scss";
+
+
+ion-header {
+    height: 100px;
+}
+
+ion-content {
+    ion-searchbar {
+        --background: white !important;        
+    }
+
+    ion-col{
+        .img_logo{        
+            width: 68%;
+            margin-top: 10px;
+        }
+    }
+}
+
+ion-card {
+    --background: white !important;
+    height: 70%;
+}

@@ -2,13 +2,19 @@
   <ion-toolbar>
     <ion-buttons slot="start">
     </ion-buttons>
-    <ion-title>Firefly</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar></ion-searchbar>
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  <ion-row>
+    <ion-col size="10">
+      <ion-searchbar></ion-searchbar>
+    </ion-col>
+    <ion-col size="2">
+      <ion-img routerLink="facts" class="img_logo" src="../../assets/icon/firefly_icon.png"></ion-img>
+    </ion-col>
+  </ion-row>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="create">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

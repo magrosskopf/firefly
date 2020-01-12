@@ -24,7 +24,7 @@ import { AngularFireFunctions } from '@angular/fire/functions';
 import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/functions';
 
 import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 // import { Firebase } from '@ionic-native/firebase';
 
 // import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -45,6 +45,7 @@ import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
     StatusBar,
     SplashScreen,
     Camera,
+    Geolocation,
     AngularFireMessaging,
     AngularFirestore,
     AngularFireAuth,

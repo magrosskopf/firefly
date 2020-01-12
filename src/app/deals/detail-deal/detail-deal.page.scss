@@ -1,0 +1,29 @@
+ion-header{
+    padding: 40px 0;
+    height: 15%;
+    background: white;
+}
+
+
+ion-content{
+    .angebot_beschreibung{
+        padding: 17px;
+        background: white;
+        height: 100%;
+        border-radius: 20px;
+        box-shadow: -1px 0px 16px -2px #989aa2;
+        position: relative;
+        top: -20px;
+    }
+
+    ion-row{
+        ion-col{
+            .price{
+                h2{
+                    text-align: end;
+                }
+            }
+        }
+    }
+}
+    

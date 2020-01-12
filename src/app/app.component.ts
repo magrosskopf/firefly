@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AngularFireMessaging } from '@angular/fire/messaging';
+import { NotificationService } from './_services/notification.service';
 
 
 @Component({
@@ -16,9 +17,11 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private afMessaging: AngularFireMessaging
+    private afMessaging: AngularFireMessaging,
+    private notification: NotificationService
   ) {
     this.initializeApp();
+    this.notification.listen();
     this.afMessaging.messages
     .subscribe((message) => { console.log(message); });
   }

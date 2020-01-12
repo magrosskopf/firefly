@@ -24,6 +24,10 @@ import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/func
 
 import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
 
+import { Firebase } from '@ionic-native/firebase';
+
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

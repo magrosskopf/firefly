@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>862054772046-vtvv1dogn77p1oma2ogh6h6cpomh7s1r.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.862054772046-vtvv1dogn77p1oma2ogh6h6cpomh7s1r</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB2KX0lioJhlSBLizvf-Tj2AkPdjNipMcU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>862054772046</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>firefly</string>
+	<key>PROJECT_ID</key>
+	<string>firefly-5af90</string>
+	<key>STORAGE_BUCKET</key>
+	<string>firefly-5af90.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:862054772046:ios:4a8f38993e3bdb751f421f</string>
+	<key>DATABASE_URL</key>
+	<string>https://firefly-5af90.firebaseio.com</string>
+</dict>
+</plist>

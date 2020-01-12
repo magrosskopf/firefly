@@ -15,6 +15,7 @@ import {
   UserInfoService
 } from './user-info.service';
 import { BehaviorSubject } from 'rxjs';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -27,16 +28,18 @@ export class NotificationService {
     })
   };
   currentMessage = new BehaviorSubject(null)
+  message;
   data$: any;
 
   constructor(
     public http: HttpClient,
     public afMessaging: AngularFireMessaging,
-    public userinfo: UserInfoService
+    public userinfo: UserInfoService,
+    public toastController: ToastController
   ) {
     // this.requestPermission();
     // this.userinfo.getPermissonTokenFirestore();
-    this.listen();
+    // this.listen();
   }
 
   enterFence() {
@@ -49,10 +52,19 @@ export class NotificationService {
       payload,
       this.httpOptions).subscribe(data => {
       console.log(data);
+
+        let message = data['message'].message.notification.title  + " - " + data['message'].message.notification.body;
+        this.presentToast(message);
       this.listen();
     });
-    
+  }
 
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
   }
 
 
@@ -68,7 +80,10 @@ export class NotificationService {
 
   listen() {
     this.afMessaging.messages
-      .subscribe((message) => { console.log(message); });
+      .subscribe((message) => { 
+        console.log(message);
+        this.message = message;
+      });
   }
 
   deleteMyToken() {

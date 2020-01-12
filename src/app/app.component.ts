@@ -4,6 +4,9 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from './_services/authentication.service';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { NotificationService } from './_services/notification.service';
+
 
 @Component({
   selector: 'app-root',
@@ -15,9 +18,14 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public auth: AuthenticationService
+    public auth: AuthenticationService,
+    private afMessaging: AngularFireMessaging,
+    private notification: NotificationService
   ) {
     this.initializeApp();
+    this.notification.listen();
+    this.afMessaging.messages
+    .subscribe((message) => { console.log(message); });
   }
 
   initializeApp() {

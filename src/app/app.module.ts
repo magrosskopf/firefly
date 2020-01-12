@@ -18,9 +18,16 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { AngularFireFunctions } from '@angular/fire/functions';
+import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/functions';
 
+import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
 
+import { Firebase } from '@ionic-native/firebase';
 
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,16 +37,20 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireFunctionsModule, 
+    HttpClientModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Camera,
+    AngularFireMessaging,
     AngularFirestore,
     AngularFireAuth,
+    AngularFireFunctions,
     AngularFireAuthGuard,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })

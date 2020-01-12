@@ -1,9 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../_services/authentication.service';
-import { UserInfoService } from '../_services/user-info.service';
-import { Observable } from 'rxjs';
-import { PersonalInfo } from '../_interfaces/personal-info';
-import { ToastController } from '@ionic/angular';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  AuthenticationService
+} from '../_services/authentication.service';
+import {
+  UserInfoService
+} from '../_services/user-info.service';
+import {
+  Observable
+} from 'rxjs';
+import {
+  PersonalInfo
+} from '../_interfaces/personal-info';
+import {
+  ToastController
+} from '@ionic/angular';
+import {
+  AngularFireMessaging
+} from '@angular/fire/messaging';
+import {
+  mergeMapTo
+} from 'rxjs/operators';
+import { NotificationService } from '../_services/notification.service';
 
 @Component({
   selector: 'app-account',
@@ -16,26 +36,32 @@ export class AccountPage implements OnInit {
   personalInfo: PersonalInfo;
   email: string;
   displayName: string;
-  
-  constructor(public _authentication: AuthenticationService, public _userInfo: UserInfoService) {
-      this.personalInfo = {
-        favStores: [''],
-        discoveredStores: [''],
-        history: ['']
-      }
-      this.email = '';
-      this.displayName = '';
-      if (false) { // TODO: Set to true when needed for testing
-        this._userInfo.getPersonalDataFromFirestore('XAbffjv83Qca96mro0RXRYSlnys1'); // TODO: durch User.Uid ersetzen
-        this._userInfo.userInfo.subscribe(data => {
+
+  constructor(
+    public _authentication: AuthenticationService,
+    public _userInfo: UserInfoService,
+    public afMessaging: AngularFireMessaging,
+    public notification: NotificationService
+  ) {
+
+    // this.notification.requestPermission();
+    this.personalInfo = {
+      favStores: [''],
+      discoveredStores: [''],
+      history: ['']
+    }
+    this.email = '';
+    this.displayName = '';
+    if (false) { // TODO: Set to true when needed for testing
+      this._userInfo.getPersonalDataFromFirestore('XAbffjv83Qca96mro0RXRYSlnys1'); // TODO: durch User.Uid ersetzen
+      this._userInfo.userInfo.subscribe(data => {
         this.personalInfo = data;
         console.log(data);
       });
-      }
+    }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   saveEmail(email) {
     if (this.email !== '') {
@@ -52,4 +78,8 @@ export class AccountPage implements OnInit {
   }
 
 
+
+  sendNotification() {
+    this.notification.enterFence();
+  }
 }

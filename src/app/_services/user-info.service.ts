@@ -12,14 +12,15 @@ import { ToastController } from '@ionic/angular';
 })
 export class UserInfoService {
 
-  user = this._authentication.afAuth.auth.currentUser;
-  userInfo: Observable<PersonalInfo>;
-  private itemDoc: AngularFirestoreDocument<any>;
-
 
   constructor(public _authentication: AuthenticationService, public db: AngularFirestore, public toastController: ToastController) { 
 
   }
+
+  user = this._authentication.afAuth.auth.currentUser;
+  userInfo: Observable<PersonalInfo>;
+  private itemDoc: AngularFirestoreDocument<any>;
+  nfToken: string;
 
   updateNameAndPhoto(name, url) {
     if(this.user) {
@@ -55,6 +56,23 @@ export class UserInfoService {
   getPersonalDataFromFirestore(uid: string){
     // tslint:disable-next-line:max-line-length
     this.userInfo = this.db.doc<PersonalInfo>('customer/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
+  }
+
+  updatePermissonTokenFirestore(token: string) {
+    const itemRef = this.db.doc('customer/' + this.user.uid);
+    itemRef.update({ notificationsToken: token});
+  }
+
+  deletePermissonTokenFirestore() {
+    const itemRef = this.db.doc('customer/' + this.user.uid);
+    itemRef.update({ notificationsToken: null});
+  }
+
+  getPermissonTokenFirestore(): any {
+    const item = this.db.doc<any>('customer/' + this.user.uid);
+    item.valueChanges().subscribe(data => {
+       this.nfToken = data.notificationsToken;
+    });
   }
 
   async presentToast(msg) {

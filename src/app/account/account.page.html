@@ -49,6 +49,16 @@
     </ion-row>
     <ion-row>
       <ion-col>
+      </ion-col>
+      <ion-col>
+        
+       <button (click)="sendNotification()">
+         Send sth.
+       </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
         <ion-button size=small class="ion-activatable" type="submit" (click)="_authentication.logout()" routerLink="login">
           Logout
           <ion-ripple-effect></ion-ripple-effect>

@@ -22,7 +22,7 @@ import { AngularFireMessaging } from '@angular/fire/messaging';
 // import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/functions';
-
+import { QRCodeModule } from 'angularx-qrcode';
 import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 // import { Firebase } from '@ionic-native/firebase';
@@ -38,7 +38,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFireFunctionsModule, 
+    QRCodeModule,
+    AngularFireFunctionsModule,
     HttpClientModule
   ],
   providers: [

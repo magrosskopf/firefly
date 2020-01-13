@@ -17,6 +17,12 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
+    path: 'qr-code',
+    loadChildren: () => import('./qr-code/qr-code.module').then( m => m.QrCodePageModule)
+  
+  }
+  ,
+  {
     path: '**', redirectTo: 'login'
   }
 ];

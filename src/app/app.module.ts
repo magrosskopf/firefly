@@ -19,15 +19,15 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { AngularFireMessaging } from '@angular/fire/messaging';
-import { ServiceWorkerModule } from '@angular/service-worker';
+ // import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/functions';
 
 import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
 
-import { Firebase } from '@ionic-native/firebase';
+// import { Firebase } from '@ionic-native/firebase';
 
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+// import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,7 +38,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFireFunctionsModule, 
+    AngularFireFunctionsModule,
     HttpClientModule
   ],
   providers: [

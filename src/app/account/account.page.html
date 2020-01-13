@@ -35,32 +35,37 @@
                </ion-item>-->
       </ion-col>
     </ion-row>
-    <div class="favourites">
-      <ion-row>
-        <ion-col>
-          <ion-list>
-            <ion-list-header>
-              Lieblingsläden
-            </ion-list-header>
-            <ion-item *ngFor="let favstore of personalInfo.favStores" lines="none">
-              {{ favstore }}
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-list>
-            <ion-list-header>
-              Entdeckte Läden
-            </ion-list-header>
-            <ion-item *ngFor="let favstore of personalInfo.favStores" lines="none">
-              {{ favstore }}
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-    </div>
+    <ion-footer>
+      <div class="favourites">
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-list-header>
+                Lieblingsläden
+              </ion-list-header>
+              <ion-item *ngFor="let favstore of personalInfo.favStores" lines="none">
+                {{ favstore }}
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col>
+            <ion-icon expand="block" name="create"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-list-header>
+                Entdeckte Läden
+              </ion-list-header>
+              <ion-item *ngFor="let favstore of personalInfo.favStores" lines="none">
+                {{ favstore }}
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-footer>
 
     <!-- SEND PUSH NOTIFICATION -->
     <!--    <ion-row>

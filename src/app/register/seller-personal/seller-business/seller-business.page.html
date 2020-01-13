@@ -3,10 +3,8 @@
     <ion-buttons slot="start">
       <ion-back-button text="Zurück"></ion-back-button>
     </ion-buttons>
-    <ion-title>Firefly</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
     <ion-grid>
@@ -16,7 +14,7 @@
             <h3>Gewerbliche Angaben</h3>
             <ion-item>
               <ion-label position="floating">Firmenname</ion-label>
-              <ion-input name="storeName" type="text" ngModel required></ion-input>
+              <ion-input name="company" type="text" ngModel required></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Adresse</ion-label>
@@ -31,8 +29,8 @@
               <ion-input name="city" type="text" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label position="floating">Gewerbeschein</ion-label>
-              <ion-input name="companyConfirm" type="text" ngModel required></ion-input>
+              <ion-label position="floating">Umsatzsteuer-ID</ion-label>
+              <ion-input name="taxId" type="text" ngModel required></ion-input>
             </ion-item>
           </div>
           <div class="ion-padding">

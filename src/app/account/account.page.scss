@@ -53,14 +53,35 @@ ion-col {
   }
 }
 
-.favourites {
+.stores {
   margin-top: 40px;
+  height: 50px;
+}
+
+.favourite-stores {
+  height: 100px;
+}
+
+.horizontal-scroll-wrapper {
+  transform: rotate(-90deg);
+  transform-origin: right top;
+  width: 150px;
+  height: 290px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-left: -150px;
+}
+
+
+.horizontal-scroll-wrapper > ion-card {
+  transform: rotate(90deg);
+  transform-origin: right top;
 }
 
 
 ion-footer {
   width: 100vw;
-  height: 355px;
+  height: 100%;
   background-color: white;
   position: absolute;
   margin-top: 50px;
@@ -72,5 +93,16 @@ ion-footer {
   }
   ion-card {
     background-color: white;
+    width: 150px;
+    height: 150px;
+    margin: 0 20px;
+    ion-img {
+      height: 70%;
+    }
+    ion-card-header {
+      padding: 5px;
+      text-align: center;
+      height: auto;
+    }
   }
 }

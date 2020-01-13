@@ -59,17 +59,17 @@ ion-col {
 }
 
 .favourite-stores {
-  height: 100px;
+  margin-bottom: -70px;
 }
 
+
 .horizontal-scroll-wrapper {
-  transform: rotate(-90deg);
+  transform:rotate(-90deg) translateY(-150px);
   transform-origin: right top;
   width: 150px;
   height: 290px;
   overflow-y: auto;
   overflow-x: hidden;
-  margin-left: -150px;
 }
 
 
@@ -95,10 +95,9 @@ ion-footer {
     background-color: white;
     width: 150px;
     height: 150px;
-    margin: 0 20px;
-    ion-img {
-      height: 70%;
-    }
+    margin: 0 0 10px 0;
+    top: 150px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px 0px;
     ion-card-header {
       padding: 5px;
       text-align: center;

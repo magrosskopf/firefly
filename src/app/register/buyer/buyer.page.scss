@@ -9,7 +9,10 @@ ion-item {
   --background: transparent !important;
 }
 
+ion-header {
+  background-image: linear-gradient(to right, rgb(255, 241, 226), rgb(255, 225, 204)) !important;
+}
 
-.ion-page {
-  background-image: linear-gradient(to right, rgba(255, 183, 98, 0.18), rgba(255, 164, 98, 0.33)) !important;
+ion-content {
+  background-image: linear-gradient(to right, rgb(255, 241, 226), rgb(255, 225, 204)) !important;
 }

@@ -15,7 +15,7 @@ ion-grid {
   }
 
   ion-content {
-    --background: $background-gradient;
+    --background: linear-gradient(to right, rgb(255, 241, 226), rgb(255, 225, 204));
     margin-top: 10px;
   }
 

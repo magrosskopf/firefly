@@ -5,64 +5,84 @@
 
 <ion-content>
   <ion-grid>
+    <ion-row justify-content-between align-items-center class="section-name">
+      <h3>Mein Account</h3>
+      <ion-icon routerLink="settings" expand="block" name="settings"></ion-icon>
+    </ion-row>
     <ion-row>
       <ion-col>
-        <ion-item>
-          <ion-avatar slot="start">
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-          </ion-avatar>
-          <ion-item>
-            <ion-label position="floating" for="name">{{ user.displayName }}</ion-label>
-            <ion-input type="text" class="form-control" id="name" [(ngModel)]="displayName" (keydown.enter)="saveNameAndPhoto()" (focusout)="saveNameAndPhoto()" name="name"></ion-input>
-          </ion-item>
+        <ion-avatar>
+          <img src="https://cdn.fupa.net/player/jpeg/256x320/j906LuLUh2NIYKj4b0sxIz3qO2qCBiJh1vUI8exD">
+        </ion-avatar>
+        <ion-item lines="none">
+          <ion-label position="floating" for="name"><b>{{ user.displayName }}</b></ion-label>
+
+          <!-- INPUT FIELD
+           <ion-input type="text" class="form-control" id="name" [(ngModel)]="displayName" (keydown.enter)="saveNameAndPhoto()"
+                      (focusout)="saveNameAndPhoto()"
+                      name="name">
+
+           </ion-input>-->
         </ion-item>
-        <ion-item>
-          <ion-label position="floating" for="email">{{ user.email }}</ion-label>
-          <ion-input type="text" class="form-control" id="email" [(ngModel)]="email" (keydown.enter)="saveEmail(email)" (focusout)="saveEmail(email)" name="email"></ion-input>
-        </ion-item>
+        <p>Mitglied seit September 2019</p>
+        <p>Punktestand: XX Punkte</p>
+
+        <!--  USER EMAIL ADDRESS
+                 <ion-item>
+                 <ion-label position="floating" for="email">{{ user.email }}</ion-label>
+                 <ion-input type="text" class="form-control" id="email" [(ngModel)]="email" (keydown.enter)="saveEmail(email)" (focusout)="saveEmail(email)"
+                            name="email"></ion-input>
+               </ion-item>-->
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-list>
-          <ion-list-header>
-            Lieblingsläden
-          </ion-list-header>
-          <ion-item *ngFor="let favstore of personalInfo.favStores">
-            {{ favstore }}
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-list>
-          <ion-list-header>
-            Entdeckte Läden
-          </ion-list-header>
-          <ion-item *ngFor="let favstore of personalInfo.favStores">
-            {{ favstore }}
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-      </ion-col>
-      <ion-col>
-        
-       <button (click)="sendNotification()">
-         Send sth.
-       </button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-button size=small class="ion-activatable" type="submit" (click)="_authentication.logout()" routerLink="login">
-          Logout
-          <ion-ripple-effect></ion-ripple-effect>
-        </ion-button>
-      </ion-col>
-    </ion-row>
+    <div class="favourites">
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-list-header>
+              Lieblingsläden
+            </ion-list-header>
+            <ion-item *ngFor="let favstore of personalInfo.favStores" lines="none">
+              {{ favstore }}
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-list-header>
+              Entdeckte Läden
+            </ion-list-header>
+            <ion-item *ngFor="let favstore of personalInfo.favStores" lines="none">
+              {{ favstore }}
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!-- SEND PUSH NOTIFICATION -->
+    <!--    <ion-row>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+
+            <button (click)="sendNotification()">
+              Send sth.
+            </button>
+          </ion-col>
+        </ion-row>-->
+
+    <!-- LOGOUT BUTTON -->
+    <!--  <ion-row>
+        <ion-col>
+          <ion-button size=small class="ion-activatable" type="submit" (click)="_authentication.logout()" routerLink="login">
+            Logout
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      -->
   </ion-grid>
 </ion-content>

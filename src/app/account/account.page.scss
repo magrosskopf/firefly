@@ -1,0 +1,59 @@
+@import "../../global.scss";
+@import "../../theme/variables.scss";
+
+ion-header {
+  padding: 20px 0 !important;
+  height: auto !important;
+}
+
+ion-icon {
+  font-size: 30px;
+  color: $primary;
+
+  &:hover {
+    color: $secondary;
+  }
+}
+
+ion-grid {
+  padding: 0 40px;
+
+  ion-avatar {
+    margin: auto;
+    height: 120px;
+    width: 120px;
+  }
+
+  ion-item {
+    --background: transparent;
+    height: 60px;
+    margin-top: -20px;
+
+    .item-inner {
+      border: none !important;
+    }
+
+    ion-label {
+      text-align: center;
+    }
+  }
+
+  ion-row.section-name {
+    margin-bottom: 30px !important;
+  }
+}
+
+ion-col {
+  padding: 0;
+
+  p {
+    text-align: center;
+    font-size: 11px;
+    margin: 0 0 5px;
+  }
+}
+
+.favourites {
+  margin-top: 40px;
+}
+

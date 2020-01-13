@@ -22,12 +22,18 @@ export class AuthenticationService {
     city: ''
   };
 
+  uid: string;
+
   constructor(
     public afAuth: AngularFireAuth,
     public afDB: AngularFirestore,
     public router: Router,
     public toastController: ToastController
-  ) {}
+  ) {
+    this.afAuth.user.subscribe(data => {
+      this.uid = data.uid;
+    })
+  }
 
    login(email, password) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(error => {

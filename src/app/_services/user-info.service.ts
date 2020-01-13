@@ -58,18 +58,18 @@ export class UserInfoService {
     this.userInfo = this.db.doc<PersonalInfo>('customer/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
   }
 
-  updatePermissonTokenFirestore(token: string) {
-    const itemRef = this.db.doc('customer/' + this.user.uid);
+  updatePermissonTokenFirestore(token: string, uid: string) {
+    const itemRef = this.db.doc('customer/' + uid);
     itemRef.update({ notificationsToken: token});
   }
 
-  deletePermissonTokenFirestore() {
-    const itemRef = this.db.doc('customer/' + this.user.uid);
+  deletePermissonTokenFirestore(uid: string) {
+    const itemRef = this.db.doc('customer/' + uid);
     itemRef.update({ notificationsToken: null});
   }
 
-  getPermissonTokenFirestore(): any {
-    const item = this.db.doc<any>('customer/' + this.user.uid);
+  getPermissonTokenFirestore(uid: string): any {
+    const item = this.db.doc<any>('customer/' + uid);
     item.valueChanges().subscribe(data => {
        this.nfToken = data.notificationsToken;
     });

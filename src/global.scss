@@ -48,6 +48,7 @@ ion-app {
 }
 
 ion-header {
+  z-index: 999;
   padding: 40px 0;
   height: 160px;
   ion-toolbar {

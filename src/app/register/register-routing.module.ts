@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'seller',
     loadChildren: () => import('./seller-personal/seller-personal.module').then( m => m.SellerPersonalPageModule)
+  },
+  {
+    path: 'homefence-register',
+    loadChildren: () => import('./homefence-register/homefence-register.module').then(m => m.HomefenceRegisterPageModule)
   }
 ];
 

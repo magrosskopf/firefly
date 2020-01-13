@@ -5,8 +5,11 @@ h3 {
   margin-left: 14px;
 }
 
-
 ion-item {
   --background: transparent !important;
 }
 
+
+.ion-page {
+  background-image: linear-gradient(to right, rgba(255, 183, 98, 0.18), rgba(255, 164, 98, 0.33)) !important;
+}

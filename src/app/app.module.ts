@@ -22,8 +22,8 @@ import { AngularFireMessaging } from '@angular/fire/messaging';
  // import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/functions';
-
 import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
+
 
 // import { Firebase } from '@ionic-native/firebase';
 

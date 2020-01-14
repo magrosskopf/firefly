@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: SettingsPage
+  },
+  {
+    path: 'settings-fence',
+    loadChildren: () => import('./settings-fence/settings-fence.module').then( m => m.SettingsFencePageModule)
   }
 ];
 

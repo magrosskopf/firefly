@@ -14,12 +14,15 @@
       <ion-img routerLink="facts" class="img_logo" src="../../assets/icon/firefly_icon.png"></ion-img>
     </ion-col>
   </ion-row>
+
   <h3>Angebote</h3>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="create">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  
   <ion-row>
     <ion-col routerLink="{{ deal.id }}" size="6" *ngFor="let deal of allDeals">
       <ion-card>

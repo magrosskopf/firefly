@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Zurück" defaultHref ="/tabs/account"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <h3>Einstellungen</h3>
+    </ion-row>
+    <ion-row>
+      <ion-list>
+        <ion-item button>
+          <ion-label>
+            Konto
+          </ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-label>
+            Homefence / Standort
+          </ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-label>
+            Benachrichtigungen
+          </ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-label>
+            Facts
+          </ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-label>
+            Favoriten
+          </ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-label>
+            Sicherheit
+          </ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-label>
+            Hilfe und Support
+          </ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-label>
+            Info
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-row>
+    <a href="/login" (click)=authentication.logout()>Abmelden</a>
+  </ion-grid>
+</ion-content>

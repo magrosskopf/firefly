@@ -66,7 +66,7 @@ export class Tab2Page {
     this.geodata.getGeolocation();
     this.latitude = this.geodata.lat;
     this.longitude = this.geodata.long;
-
+    this.getDiscoveredStores();
     /* this._userInfo.getPersonalDataFromFirestore(afAuth.auth.currentUser.uid)
     this._userInfo.userInfo.subscribe(data => {
       this.userInfo = data;

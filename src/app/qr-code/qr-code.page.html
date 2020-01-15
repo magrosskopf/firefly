@@ -1,9 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>qrCode</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button>Zurück</ion-back-button>
+      </ion-buttons>
+    <ion-title>QR-Code Scannen</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content style="background: none transparent;">
-  <ion-button full (click)="scanCode()"><ion-icon name="Scan"></ion-icon> Scan that f*cking QR Code</ion-button>
+  <ion-fab vertical="top" style="visibility: visible;" horizontal="end" slot="fixed">
+    <ion-fab-button>
+        <ion-icon name="close" routerLink="/tabs/tabs/tab1"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-row>
+    <ion-col>
+      
+    </ion-col>
+  </ion-row>
 </ion-content>

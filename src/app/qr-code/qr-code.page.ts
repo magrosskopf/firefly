@@ -12,7 +12,6 @@ export class QrCodePage implements OnInit {
   qrText;
   scanSub;
   constructor(private qrScanner: QRScanner,  public platform: Platform, public toastController: ToastController) { 
-   
   }
 
   ngOnInit() {
@@ -21,11 +20,12 @@ export class QrCodePage implements OnInit {
 
   ionViewWillEnter(){
     // this.showCamera();
+    this.scanCode();
 
   }
   
   ionViewWillLeave(){
-      // this.hideCamera(); 
+    this.setVisible();
   }
 
   scanCode() {
@@ -44,23 +44,11 @@ export class QrCodePage implements OnInit {
     });
     this.qrScanner.show();
     document.body.style.visibility = 'hidden';
-
-
-    // document.body.style.visibility = 'hidden';
-    /* setTimeout(() => {
-      
-    this.qrScanner.hide();
-  }, 2000) */
-
   }
 
-  /* showCamera() {
-    (window.document.querySelector('ion-app') as HTMLElement).classList.add('cameraView');
+  setVisible() {
+    document.body.style.visibility = 'visible';
   }
-  
-  hideCamera() {
-    (window.document.querySelector('ion-app') as HTMLElement).classList.remove('cameraView');
-  } */
 
   async presentToast(msg) {
     const toast = await this.toastController.create({

@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QrCodeGeneratorPage implements OnInit {
 
-  constructor() { }
+  public myAngularxQrCode: string = null;
+    
+  constructor() {
+   }
 
   ngOnInit() {
+  }
+
+  createQR() {
+    this.myAngularxQrCode = 'www.google.de';
   }
 
 }

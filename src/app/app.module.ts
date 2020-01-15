@@ -25,6 +25,8 @@ import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/func
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { QRCodeModule } from 'angularx-qrcode';
 // import { Firebase } from '@ionic-native/firebase';
 
 // import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -40,7 +42,9 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireFunctionsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxQRCodeModule,
+    QRCodeModule
   ],
   providers: [
     StatusBar,

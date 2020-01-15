@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { GeodataService } from '../_services/geodata.service';
+import { UserInfoService } from '../_services/user-info.service';
 
 @Component({
   selector: 'app-qr-code-generator',
@@ -12,7 +13,7 @@ export class QrCodeGeneratorPage implements OnInit {
   public myAngularxQrCode: string = null;
   user;
     
-  constructor( public afAuth: AngularFireAuth, private geodata: GeodataService ) {
+  constructor( public afAuth: AngularFireAuth, private geodata: GeodataService, public userinfo: UserInfoService ) {
     this.afAuth.user.subscribe(data => {
       this.user = data;
     })
@@ -23,8 +24,7 @@ export class QrCodeGeneratorPage implements OnInit {
   }
 
   createQR() {
-
-    this.myAngularxQrCode = 'www.google.de';
+    this.myAngularxQrCode = this.user.uid;
   }
 
 }

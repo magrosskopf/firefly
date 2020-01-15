@@ -30,6 +30,10 @@ export class AuthenticationService {
     public router: Router,
     public toastController: ToastController
   ) {
+    this.setUser();
+  }
+
+  setUser() {
     this.afAuth.user.subscribe(data => {
       this.uid = data.uid;
     })

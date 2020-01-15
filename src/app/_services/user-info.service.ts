@@ -19,6 +19,8 @@ export class UserInfoService {
 
   user = this._authentication.afAuth.auth.currentUser;
   userInfo: Observable<PersonalInfo>;
+  sellerInfo: any;
+
   private itemDoc: AngularFirestoreDocument<any>;
   nfToken: string;
 
@@ -53,9 +55,16 @@ export class UserInfoService {
     .catch(error => console.log(error))
   }
 
-  getPersonalDataFromFirestore(uid: string){
+  getPersonalDataFromFirestore(uid: string, type: string){
     // tslint:disable-next-line:max-line-length
-    this.userInfo = this.db.doc<PersonalInfo>('customer/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
+    this.userInfo = this.db.doc<PersonalInfo>(type + '/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
+  }
+
+  getSellerDataFromFirestore(uid: string){
+    // tslint:disable-next-line:max-line-length
+   this.db.doc<any>('salesperson/' + uid ).valueChanges().subscribe(data => {
+     this.sellerInfo = data;
+   });
   }
 
   updatePermissonTokenFirestore(token: string, uid: string) {

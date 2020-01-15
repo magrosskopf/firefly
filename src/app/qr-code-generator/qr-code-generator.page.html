@@ -5,6 +5,14 @@
 </ion-header>
 
 <ion-content>
-  <qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'L'"></qrcode>
-  <ion-button  (click)="createQR()"><ion-icon slot=startx name="qr-scanner"> </ion-icon> Generate this shit im out</ion-button>
+  <ion-row>
+    <ion-col class="d-flex flex-row justify-content-center">
+      <qrcode [qrdata]="myAngularxQrCode" [width]="500" [errorCorrectionLevel]="'L'"></qrcode>
+    </ion-col>
+  </ion-row>
+  <ion-fab vertical="bottom" id="setPsosition" horizontal="center" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="barcode" (click)="createQR()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

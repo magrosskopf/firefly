@@ -45,11 +45,7 @@ export class AccountPage implements OnInit {
   ) {
 
     // this.notification.requestPermission();
-    this.personalInfo = {
-      favStores: [''],
-      discoveredStores: [''],
-      history: ['']
-    }
+   
     this.email = '';
     this.displayName = '';
     if (false) { // TODO: Set to true when needed for testing

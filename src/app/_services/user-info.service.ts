@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { PersonalInfo } from '../_interfaces/personal-info';
 import { map } from 'rxjs/operators'; 
 import { ToastController } from '@ionic/angular';
+import { Seller } from '../_interfaces/seller';
 
 
 @Injectable({
@@ -55,16 +56,25 @@ export class UserInfoService {
     .catch(error => console.log(error))
   }
 
-  getPersonalDataFromFirestore(uid: string, type: string){
+  getPersonalDataFromFirestore(uid: string, type: string): Observable<PersonalInfo>{
     // tslint:disable-next-line:max-line-length
-    this.userInfo = this.db.doc<PersonalInfo>(type + '/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
+    console.log(uid, type);
+    
+    return this.db.doc<PersonalInfo>(type + '/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
   }
 
-  getSellerDataFromFirestore(uid: string){
+  updatePersonalDataFromFirestore(uid: string, item: PersonalInfo) {
+    this.db.doc<PersonalInfo>('customer/' + uid).update(item);
+  }
+
+  getSellerDataFromFirestore(uid: string): Observable<Seller>{
     // tslint:disable-next-line:max-line-length
-   this.db.doc<any>('salesperson/' + uid ).valueChanges().subscribe(data => {
-     this.sellerInfo = data;
-   });
+   return this.db.doc<any>('salesperson/' + uid ).valueChanges();
+  }
+
+  updateSellerDataFromFirestore(uid: string, seller: Seller){
+    // tslint:disable-next-line:max-line-length
+   this.db.doc<any>('salesperson/' + uid ).update(seller);
   }
 
   updatePermissonTokenFirestore(token: string, uid: string) {

@@ -13,7 +13,7 @@ export class GeodataService {
     lat: 54.0,
     long: 9.0,
     radius: 100,
-    shopId: '12345',
+    shopId: '0WfSKft5onQ44wlYWlBqAisk2KJ2',
     isInFence: false
   },{
     lat: 53.0,
@@ -36,12 +36,15 @@ export class GeodataService {
     this.lat = 0;
     this.long = 0;
     this.passedGeofence = false;
+    this.getGeolocation();
    }
 
   getGeolocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.lat = resp.coords.latitude;
       this.long = resp.coords.longitude;
+      this.compareCoords();
+
     console.log(resp.coords.latitude, resp.coords.longitude);
     }).catch((error) => {
       console.log('Error getting location', error);
@@ -61,6 +64,8 @@ export class GeodataService {
       if (num  < 0.001) {
         this.passedShop = el;
         this.passedGeofence = true;
+        console.log(this.passedGeofence);
+        
         // Todo: Check if User already passed this fence and if not, give him some points
       } else {
         this.passedShop = {};

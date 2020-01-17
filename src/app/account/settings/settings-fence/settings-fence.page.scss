@@ -36,6 +36,16 @@ ion-grid {
   padding: 0 40px;
   margin-top: 20px;
 
+  ion-range {
+    color: $primary;
+    padding: 0 !important;
+    width: auto;
+  }
+
+  span {
+    padding-left: 10px;
+  }
+
   .map-container {
     img {
       border-radius: 10px;
@@ -50,7 +60,7 @@ ion-grid {
 
   .slider {
     -webkit-appearance: none;
-    width: 100%;
+    width: auto;
     height: 5px;
     border-radius: 5px;
     background: $primary;

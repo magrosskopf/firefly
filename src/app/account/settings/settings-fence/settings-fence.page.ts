@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings-fence.page.scss'],
 })
 export class SettingsFencePage implements OnInit {
+  sliderrange: number;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

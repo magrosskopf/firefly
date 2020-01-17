@@ -12,14 +12,28 @@
       <h3>Mein Homefence / Standort</h3>
     </ion-row>
     <ion-row>
-      <ion-col>
+      <div class="map-container">
+          <ion-icon name="pin"></ion-icon>
+        <div class="map-frame">
+          <div id="map">
+            <img src="../../../../assets/img/map.png"/></div>
+        </div>
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-col size="5">
         <h4>Adresse</h4>
         <p>Gartenweg 2</p>
         <p>Mosbach</p>
       </ion-col>
-      <ion-col>
-        <h4>Umkreis festlegen</h4>
+      <ion-col size="7" class="set-radius">
+        <h4>Umkreis anpassen</h4>
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
       </ion-col>
     </ion-row>
+    <ion-button size=small class="ion-activatable" type="submit">
+      SPEICHERN
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-button>
   </ion-grid>
 </ion-content>

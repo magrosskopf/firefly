@@ -23,14 +23,17 @@
 @import "~@ionic/angular/css/flex-utils.css";
 @import "theme/variables.scss";
 
-body {
-  font-family: "Avenir Next";
-}
 
 /*********************************/
 /* General styling */
 body {
   font-family: "Avenir Next";
+}
+
+
+h4 {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 ion-app {

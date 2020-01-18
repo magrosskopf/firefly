@@ -13,11 +13,21 @@ import {
 import {
   UserInfoService
 } from '../_services/user-info.service';
-import { FirebaseAuth } from '@angular/fire';
-import { AuthenticationService } from '../_services/authentication.service';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { PersonalInfo } from '../_interfaces/personal-info';
-import { GeodataService } from '../_services/geodata.service';
+import {
+  FirebaseAuth
+} from '@angular/fire';
+import {
+  AuthenticationService
+} from '../_services/authentication.service';
+import {
+  AngularFireAuth
+} from '@angular/fire/auth';
+import {
+  PersonalInfo
+} from '../_interfaces/personal-info';
+import {
+  GeodataService
+} from '../_services/geodata.service';
 
 @Component({
   selector: 'app-qr-code',
@@ -42,7 +52,8 @@ export class QrCodePage implements OnInit {
     this.afAuth.user.subscribe(user => {
       this.cUser = user;
     })
-      
+    // this.geodata.getGeolocation();
+
   }
 
   ngOnInit() {
@@ -50,13 +61,13 @@ export class QrCodePage implements OnInit {
   }
 
   ionViewWillEnter() {
-    // this.showCamera();
-    // this.scanCode();
-    
+   
+    this.scanCode();
+
   }
 
   ionViewDidEnter() {
-    
+
   }
 
   ionViewWillLeave() {
@@ -70,7 +81,7 @@ export class QrCodePage implements OnInit {
       console.log(data);
 
       this.qrText = data;
-      if(data.length > 18){
+      if (data.length > 18) {
         this.checkQRCode(data);
       }
       setTimeout(() => {
@@ -80,6 +91,7 @@ export class QrCodePage implements OnInit {
 
     });
     this.qrScanner.show();
+    document.getElementById('bg-hidden').style.visibility = 'hidden';
     document.body.style.visibility = 'hidden';
   }
 
@@ -88,29 +100,31 @@ export class QrCodePage implements OnInit {
   }
 
   checkQRCode(code: string) {
-    console.log(this.geodata.passedGeofence, this.geodata.passedShop);
-    if (this.geodata.passedGeofence && this.geodata.passedShop['shopId']) {
+
+    if (this.geodata.passedGeofence && this.geodata.passedShop['shopId'].indexOf(code) === 0) {
       console.log('passed');
-      
-    }
-    let u: PersonalInfo;
-    this.userinfo.getPersonalDataFromFirestore(this.cUser.uid, 'customer').subscribe(user => {
-      u = user;
-    })
-    this.userinfo.getSellerDataFromFirestore(code).subscribe(seller => {
-      if (seller.buyingUsers24.indexOf(this.cUser.uid) < 0) {
-        console.log('nicht drin');
-        u.points += 5;
-        u.history.push(code);
-        if(u.discoveredStores.indexOf(code) < 0) {
-          u.discoveredStores.push(code);
+
+
+      let u: PersonalInfo;
+      this.userinfo.getPersonalDataFromFirestore(this.cUser.uid, 'customer').subscribe(user => {
+        u = user;
+      });
+      this.userinfo.getSellerDataFromFirestore(code).subscribe(seller => {
+        if (seller.buyingUsers24.indexOf(this.cUser.uid) < 0) {
+          console.log('nicht drin');
+          u.points += 5;
+          u.history.push(code);
+          if (u.discoveredStores.indexOf(code) < 0) {
+            u.discoveredStores.push(code);
+          }
+          this.userinfo.updatePersonalDataFromFirestore(this.cUser.uid, u);
+          seller.buyingUsers24.push(this.cUser.uid);
+          this.userinfo.updateSellerDataFromFirestore(code, seller);
+          this.presentToast('Du hast 5 Punkte bekommen!');
         }
-        this.userinfo.updatePersonalDataFromFirestore(this.cUser.uid, u);
-        seller.buyingUsers24.push(this.cUser.uid);
-        this.userinfo.updateSellerDataFromFirestore(code, seller);
-        this.presentToast('Du hast 5 Punkte bekommen!');
-      }
-    });
+      });
+    }
+
   }
 
   async presentToast(msg) {

@@ -15,7 +15,7 @@
       <ion-col>
         <ion-item>
           <ion-avatar slot="start">
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+          <img src="{{ user.photoURL }}">
           </ion-avatar>
           <ion-item>
             <ion-label position="floating" for="name">{{ user.displayName }}</ion-label>
@@ -34,9 +34,9 @@
           <ion-list-header>
             Lieblingsläden
           </ion-list-header>
-          <ion-item *ngFor="let favstore of personalInfo.favStores">
+          <!-- <ion-item *ngFor="let favstore of personalInfo.favStores">
             {{ favstore }}
-          </ion-item>
+          </ion-item> -->
         </ion-list>
       </ion-col>
     </ion-row>
@@ -46,9 +46,9 @@
           <ion-list-header>
             Entdeckte Läden
           </ion-list-header>
-          <ion-item *ngFor="let favstore of personalInfo.favStores">
+          <!-- <ion-item *ngFor="let favstore of personalInfo.favStores">
             {{ favstore }}
-          </ion-item>
+          </ion-item> -->
         </ion-list>
       </ion-col>
     </ion-row>

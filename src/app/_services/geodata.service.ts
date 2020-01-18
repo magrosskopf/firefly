@@ -30,13 +30,14 @@ export class GeodataService {
   },
 ]
   passedGeofence: boolean;
-  passedShop = {};
+  passedShop;
 
   constructor(private geolocation: Geolocation ) {
     this.lat = 0;
     this.long = 0;
     this.passedGeofence = false;
-    this.getGeolocation();
+    this.passedShop = {};
+
    }
 
   getGeolocation() {
@@ -53,24 +54,32 @@ export class GeodataService {
     watch.subscribe(data => {
       this.lat = data.coords.latitude;
       this.long = data.coords.longitude;
+      console.log("sub: " + data.coords.latitude, data.coords.longitude);
+      
       this.compareCoords();
     });
   }
 
+  getPassedGeofence(): boolean {
+    return this.passedGeofence;
+  }
+
   compareCoords() {
     let num: number;
+    let stop = true;
     this.geofence.forEach(el => {
       num = (Math.pow(Math.pow(this.lat - el.lat, 2), 0.5) + Math.pow(Math.pow(this.long - el.long, 2), 0.5));
-      if (num  < 0.001) {
+      if (num  < 0.001 && stop) {
         this.passedShop = el;
-        this.passedGeofence = true;
-        console.log(this.passedGeofence);
         
+        this.passedGeofence = true;
+        stop = false;
         // Todo: Check if User already passed this fence and if not, give him some points
-      } else {
+      } else if (num  > 0.001 && stop) {
         this.passedShop = {};
         this.passedGeofence = false;
       }
-    })
+    });    
+    this.passedGeofence = true;
   }
 }

@@ -19,7 +19,8 @@ export class AuthenticationService {
     storeName: '',
     adress: '',
     zip: '',
-    city: ''
+    city: '',
+    photoURL: ''
   };
 
   uid: string;
@@ -35,6 +36,7 @@ export class AuthenticationService {
 
   setUser() {
     this.afAuth.user.subscribe(data => {
+      this.user = data;
       this.uid = data.uid;
     })
   }

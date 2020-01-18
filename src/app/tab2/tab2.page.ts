@@ -84,7 +84,7 @@ export class Tab2Page {
   setPosition() {
     console.log(this.geodata.lat, this.geodata.long);
     
-    this.earth.setPosition(this.geodata.lat, this.geodata.long)
+    this.earth.setPosition(this.geodata.lat, this.geodata.long);
   }
 
   

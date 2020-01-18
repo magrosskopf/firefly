@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>qrCodeGenerator</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col class="d-flex flex-row justify-content-center">
+      <qrcode [qrdata]="myAngularxQrCode" [width]="500" [errorCorrectionLevel]="'L'"></qrcode>
+    </ion-col>
+  </ion-row>
+  <ion-fab vertical="bottom" id="setPsosition" horizontal="center" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="barcode" (click)="createQR()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

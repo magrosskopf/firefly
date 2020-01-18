@@ -23,12 +23,15 @@ import { AngularFireMessaging } from '@angular/fire/messaging';
  // import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/functions';
-
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { QRCodeModule } from 'angularx-qrcode';
 // import { Firebase } from '@ionic-native/firebase';
 
 // import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,12 +43,16 @@ import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireFunctionsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxQRCodeModule,
+    QRCodeModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Camera,
+    Geolocation,
+    QRScanner,
     AngularFireMessaging,
     AngularFirestore,
     AngularFireAuth,

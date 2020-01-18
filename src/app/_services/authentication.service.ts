@@ -19,15 +19,27 @@ export class AuthenticationService {
     storeName: '',
     adress: '',
     zip: '',
-    city: ''
+    city: '',
+    photoURL: ''
   };
+
+  uid: string;
 
   constructor(
     public afAuth: AngularFireAuth,
     public afDB: AngularFirestore,
     public router: Router,
     public toastController: ToastController
-  ) {}
+  ) {
+    this.setUser();
+  }
+
+  setUser() {
+    this.afAuth.user.subscribe(data => {
+      this.user = data;
+      this.uid = data.uid;
+    })
+  }
 
    login(email, password) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(error => {

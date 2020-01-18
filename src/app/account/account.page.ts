@@ -45,15 +45,11 @@ export class AccountPage implements OnInit {
   ) {
 
     // this.notification.requestPermission();
-    this.personalInfo = {
-      favStores: [''],
-      discoveredStores: [''],
-      history: ['']
-    }
+   
     this.email = '';
     this.displayName = '';
     if (false) { // TODO: Set to true when needed for testing
-      this._userInfo.getPersonalDataFromFirestore('XAbffjv83Qca96mro0RXRYSlnys1'); // TODO: durch User.Uid ersetzen
+      this._userInfo.getPersonalDataFromFirestore('XAbffjv83Qca96mro0RXRYSlnys1', 'customer'); // TODO: durch User.Uid ersetzen
       this._userInfo.userInfo.subscribe(data => {
         this.personalInfo = data;
         console.log(data);

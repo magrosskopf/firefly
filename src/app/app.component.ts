@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from './_services/authentication.service';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { NotificationService } from './_services/notification.service';
+import { GeodataService } from './_services/geodata.service';
 
 
 @Component({
@@ -20,10 +21,12 @@ export class AppComponent {
     private statusBar: StatusBar,
     public auth: AuthenticationService,
     private afMessaging: AngularFireMessaging,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private geodata: GeodataService
   ) {
     this.initializeApp();
     this.notification.listen();
+    this.geodata.getGeolocation();
     this.afMessaging.messages
     .subscribe((message) => { console.log(message); });
   }

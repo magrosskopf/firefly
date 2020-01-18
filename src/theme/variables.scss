@@ -65,3 +65,8 @@ $h3: 18px;
 $headline: 16px;
 $subheadline: 14px;
 $text: 12px;
+
+
+ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .nav-decor {
+  background: transparent none !important;
+}

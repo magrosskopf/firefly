@@ -55,7 +55,7 @@ export class EarthService {
               '</li>' +
             '</ul>' +
             '</br>' +
-          '<ion-button routerLink="/shop:id">' +
+          '<ion-button routerLink="/shop-detail/' + '0WfSKft5onQ44wlYWlBqAisk2KJ2' +'">' +
             'Zum Shop' +
           '</ion-button>'
 

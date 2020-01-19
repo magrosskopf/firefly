@@ -20,7 +20,7 @@ export class EarthService {
 
   constructor() { }
 
-  initMap(list: any[], lat, long): void {
+  initMap(list: any[], favs: any[], lat, long): void {
     this.map = L.map('map').setView([lat, long], 8);
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -33,7 +33,36 @@ export class EarthService {
   addMarker(markerList: any[]) {
     markerList.forEach(element => {
       let marker = new L.marker([element.lat, element.long], {icon: this.greenIcon}).addTo(this.map)
-      .bindPopup('Ionic 4 <br> Leaflet.' + element.long + element.lat)
+      .bindPopup(
+       
+        
+          '<img src="' + element.imgUrl + '" width="100%" />' +
+          
+            '<h2>' + 
+              element.storeName + 
+            '</h2>' +
+       
+      
+            '<ul>' +
+              '<li>' + 
+                element.adress +
+              '</li>' +
+              '<li>' + 
+                element.zip + element.city +
+              '</li>' +
+              '<li>' + 
+                'Inhaber. ' + element.owner +
+              '</li>' +
+            '</ul>' +
+            '</br>' +
+          '<ion-button routerLink="/shop:id">' +
+            'Zum Shop' +
+          '</ion-button>'
+
+         
+              
+          
+      )
     });
     
   }

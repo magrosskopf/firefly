@@ -72,6 +72,10 @@ export class UserInfoService {
    return this.db.doc<any>('salesperson/' + uid ).valueChanges();
   }
 
+  getAllSellerFromFirestore(): Observable<Seller[]>{
+    return this.db.collection<Seller>('salesperson/').valueChanges();
+  }
+
   updateSellerDataFromFirestore(uid: string, seller: Seller){
     // tslint:disable-next-line:max-line-length
    this.db.doc<any>('salesperson/' + uid ).update(seller);

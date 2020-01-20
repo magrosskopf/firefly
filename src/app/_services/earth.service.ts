@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as L from 'leaflet';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class EarthService {
 
   map: any;
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   initMap(list: any[], favs: any[], lat, long): void {
     this.map = L.map('map').setView([lat, long], 8);
@@ -55,7 +56,7 @@ export class EarthService {
               '</li>' +
             '</ul>' +
             '</br>' +
-          '<ion-button routerLink="/shop-detail/' + '0WfSKft5onQ44wlYWlBqAisk2KJ2' +'">' +
+          '<ion-button href="/shop-detail/0WfSKft5onQ44wlYWlBqAisk2KJ2">' +
             'Zum Shop' +
           '</ion-button>'
 
@@ -71,5 +72,9 @@ export class EarthService {
     
     this.map.panTo(new L.LatLng(lat, long));
   }
-
+  openShop(id) {
+    console.log(id);
+    
+    this.router.navigateByUrl('/shop-detail');
+  }
 }

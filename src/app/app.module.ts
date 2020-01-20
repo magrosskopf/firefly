@@ -27,14 +27,14 @@ import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { QRCodeModule } from 'angularx-qrcode';
-import { ShopDetailPipe } from './shop-detail.pipe';
+
 // import { Firebase } from '@ionic-native/firebase';
 
 // import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 
 @NgModule({
-  declarations: [AppComponent, ShopDetailPipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {featureGroup, latLng, tileLayer, polygon, Icon, LatLngBounds} from 'leaflet';
 import { EarthService } from '../_services/earth.service';
 import { element } from 'protractor';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -41,7 +42,7 @@ export class Tab2Page {
   uid;
   discoveredStoresApi = 'https://us-central1-firefly-5af90.cloudfunctions.net/getDiscoveredStores';
 
-  constructor(public afAuth: AngularFireAuth, private earth: EarthService, public http: HttpClient, public geodata: GeodataService, public _userInfo: UserInfoService) {
+  constructor(public afAuth: AngularFireAuth, public router: Router, private earth: EarthService, public http: HttpClient, public geodata: GeodataService, public _userInfo: UserInfoService) {
     
     this.geodata.getGeolocation();
     this.latitude = this.geodata.lat;
@@ -72,6 +73,12 @@ export class Tab2Page {
   setPosition() {
     
     this.earth.setPosition(this.geodata.lat, this.geodata.long);
+  }
+
+  openShop(id) {
+    console.log(id);
+    
+    this.router.navigateByUrl('/shop-detail');
   }
 
   

@@ -30,7 +30,7 @@ const routes: Routes = [
     loadChildren: () => import('./qr-code-generator/qr-code-generator.module').then( m => m.QrCodeGeneratorPageModule)
   },
   {
-    path: 'shop-detail:id',
+    path: 'shop-detail/:id',
     loadChildren: () => import('./shop-detail/shop-detail.module').then( m => m.ShopDetailPageModule)
   }
 ];

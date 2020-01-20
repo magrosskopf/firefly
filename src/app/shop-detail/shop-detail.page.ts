@@ -11,7 +11,7 @@ import { Store } from '../_interfaces/store';
 })
 export class ShopDetailPage implements OnInit {
 
-  seller;
+  shop;
 
   store: Store = {
     title: '',

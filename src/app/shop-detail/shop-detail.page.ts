@@ -11,8 +11,12 @@ export class ShopDetailPage implements OnInit {
   constructor(private route: ActivatedRouteSnapshot) { }
 
   ngOnInit() {
-    let id = this.route.paramMap.get('id');
-    console.log(id);
+    const pathArray = this.router.url.split('/');
+    const pathId = pathArray[pathArray.length - 1];
+
+    this.dealService.getDeal(pathId).then((data) => {
+      this.deal = data;
+    });
   }
 
 

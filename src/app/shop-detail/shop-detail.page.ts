@@ -9,11 +9,9 @@ import { UserInfoService } from '../_services/user-info.service';
 })
 export class ShopDetailPage implements OnInit {
 
-  seller;
+  seller = {};
 
-  constructor(private router: Router, private userinfo: UserInfoService) { }
-
-  ngOnInit() {
+  constructor(private router: Router, private userinfo: UserInfoService) {
     const pathArray = this.router.url.split('/');
     const pathId = pathArray[pathArray.length - 1];
     console.log(pathId);
@@ -22,6 +20,10 @@ export class ShopDetailPage implements OnInit {
       console.log(data);
       
     })
+   }
+
+  ngOnInit() {
+    
     
   }
 

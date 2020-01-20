@@ -33,6 +33,6 @@ export class ShopDetailPage implements OnInit {
       this.store = data;
       console.log(data);
     });
-    this.storeService.getStoreData(pathId);
+    // this.storeService.getStoreData(pathId);
   }
 }

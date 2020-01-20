@@ -14,10 +14,10 @@ export class StoreService {
   }
 
   getStoreData(pathId) {
-      const shopId = this.afAuth.auth.shopId;
-      this.afDB.collection('customer').doc(shopId).get({
-        // getStoreData
-      });
+      // const shopId = this.afAuth.auth.shopId;
+      // this.afDB.collection('customer').doc(shopId).get({
+      //   // getStoreData
+      // });
     }
 }
 

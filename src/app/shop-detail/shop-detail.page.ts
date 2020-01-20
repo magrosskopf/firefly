@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
+import { UserInfoService } from '../_services/user-info.service';
 
 @Component({
   selector: 'app-shop-detail',
@@ -8,15 +9,20 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 })
 export class ShopDetailPage implements OnInit {
 
-  constructor(private route: ActivatedRouteSnapshot) { }
+  seller;
+
+  constructor(private router: Router, private userinfo: UserInfoService) { }
 
   ngOnInit() {
     const pathArray = this.router.url.split('/');
     const pathId = pathArray[pathArray.length - 1];
-
-    this.dealService.getDeal(pathId).then((data) => {
-      this.deal = data;
-    });
+    console.log(pathId);
+    this.userinfo.getSellerDataFromFirestore(pathId).subscribe(data => {
+      this.seller = data;
+      console.log(data);
+      
+    })
+    
   }
 
 

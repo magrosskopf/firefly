@@ -11,8 +11,6 @@ import { Store } from '../_interfaces/store';
 })
 export class ShopDetailPage implements OnInit {
 
-  shop;
-
   store: Store = {
     title: '',
     description: '',
@@ -32,7 +30,7 @@ export class ShopDetailPage implements OnInit {
     console.log(pathId);
     this.userinfo.getSellerDataFromFirestore(pathId)
     .subscribe(data => {
-      this.seller = data;
+      this.store = data;
       console.log(data);
     });
     this.storeService.getStoreData(pathId);

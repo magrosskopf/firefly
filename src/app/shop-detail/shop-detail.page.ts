@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserInfoService } from '../_services/user-info.service';
 import { StoreService } from '../_services/store.service';
+import { Store } from '../_interfaces/store';
 
 @Component({
   selector: 'app-shop-detail',
@@ -15,8 +16,9 @@ export class ShopDetailPage implements OnInit {
   store: Store = {
     title: '',
     description: '',
-    active: true,
-    location: ''
+    address: '',
+    zip: '',
+    city: ''
   };
 
   constructor(private router: Router,
@@ -33,9 +35,6 @@ export class ShopDetailPage implements OnInit {
       this.seller = data;
       console.log(data);
     });
-    this.storeService.getStoreData(pathId)
-    .then((data) => {
-      this.store = data;
-    });
+    this.storeService.getStoreData(pathId);
   }
 }

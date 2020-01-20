@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserInfoService } from '../_services/user-info.service';
 import { StoreService } from '../_services/store.service';
 import { Store } from '../_interfaces/store';
+import { Seller } from '../_interfaces/seller';
 
 @Component({
   selector: 'app-shop-detail',
@@ -11,12 +12,16 @@ import { Store } from '../_interfaces/store';
 })
 export class ShopDetailPage implements OnInit {
 
-  store: Store = {
-    title: '',
-    description: '',
-    address: '',
-    zip: '',
-    city: ''
+  store: Seller = {
+    adId: '',
+    adress: '',
+    buyingUsers24: [],
+    categoryId: '',
+    city: 'string',
+    givenPoints: 0,
+    storeName: '',
+    owner: 'Hennings Löwenvater',
+    zip: ''
   };
 
   constructor(private router: Router,

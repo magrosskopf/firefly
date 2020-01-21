@@ -51,8 +51,7 @@ export class NotificationService {
         payload,
         this.httpOptions).subscribe(data => {
       console.log(data);
-      let message = data['message'].message.notification.title + ' - ' + data['message'].message.notification.body;
-      // TODO MSC 21.01.20 Hier const statt let?
+      const message = data['message'].message.notification.title + ' - ' + data['message'].message.notification.body;
       this.presentToast(message);
       this.listen();
     });

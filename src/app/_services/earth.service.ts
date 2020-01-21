@@ -32,7 +32,7 @@ export class EarthService {
 
   addMarker(markerList: any[]) {
     markerList.forEach(element => {
-      let marker = new L.marker([element.lat, element.long], {icon: this.greenIcon}).addTo(this.map)
+      const marker = new L.marker([element.lat, element.long], {icon: this.greenIcon}).addTo(this.map)
       // TODO MSC 21.01.20 hier const statt let?
       .bindPopup('Ionic 4 <br> Leaflet.' + element.long + element.lat);
     });

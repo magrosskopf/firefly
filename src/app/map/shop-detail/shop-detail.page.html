@@ -1,35 +1,39 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button text="Zurück" defaultHref="/tabs/shop"></ion-back-button>
+      <ion-back-button text="Zurück" defaultHref="maps"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content>
   <ion-img src="../../assets/img/annas.jpeg"></ion-img>
-  <div class="description-shop">
+  <div class="shop_beschreibung">
     <ion-row>
       <ion-col size="9"><h2><b>{{ store.storeName }}</b></h2></ion-col>
-      <p>{{ store.owner }}</p>
-      {{ store.adress }}, {{ store.zip}}, {{ store.city }}
+    </ion-row>
+    <p>
+      {{ store.description }}
+    </p>
+
+    <ion-row>
+      <ion-col size="2">
+        <ion-icon class="time_location" name="pin"></ion-icon>
+      </ion-col>
+      <ion-col size="8">{{ store.adress }}, {{ store.zip}},  {{ store.city }}</ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col size="2"><ion-icon name="time"></ion-icon></ion-col>
-      <ion-col size="8">Angebot gültig: 02.02 – 10.02</ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="2"><ion-icon name="pin"></ion-icon></ion-col>
-      <ion-col size="8">annas, Schwanengasse 2, 74821 Mosbach</ion-col>
+      <ion-col size="2">
+        <ion-icon class="time_location" name="time"></ion-icon>
+      </ion-col>
+      <ion-col size="8">Öffnungszeiten: Montag bis Freitag von 08:00 bis 17:30 Uhr</ion-col>
     </ion-row>
   </div>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="create">
-      <ion-icon name="add"></ion-icon>
+      <ion-icon id="fab-plus" name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>

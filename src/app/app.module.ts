@@ -15,23 +15,17 @@ import { environment } from '../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { AngularFireMessaging } from '@angular/fire/messaging';
-// import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireFunctions } from '@angular/fire/functions';
-import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/functions';
-import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
-import {HttpClientModule, HttpClient, HttpHandler} from '@angular/common/http';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
+import { QRScanner } from '@ionic-native/qr-scanner/ngx';
+import {HttpClientModule} from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { QRCodeModule } from 'angularx-qrcode';
-
-// import { Firebase } from '@ionic-native/firebase';
-
-// import { AngularFirestoreModule } from 'angularfire2/firestore';
-
 
 @NgModule({
   declarations: [AppComponent],

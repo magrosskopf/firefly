@@ -25,9 +25,6 @@
 @import "~@ionic/angular/css/flex-utils.css";
 @import "theme/variables.scss";
 
-body {
-  font-family: "Avenir Next";
-}
 
 /*********************************/
 /* General styling */
@@ -35,9 +32,15 @@ body {
   font-family: "Avenir Next";
 }
 
+
+h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
 ion-app {
   margin: auto;
-  background-image: linear-gradient(to right, rgba(255, 183, 98, 0.18), rgba(255, 164, 98, 0.33));
+  background-image: linear-gradient(to right, rgb(255, 241, 226), rgb(255, 225, 204));
 
 }
 
@@ -47,11 +50,16 @@ ion-app {
   font-size: $h2;
   text-align: center;
   margin: 40px auto 0;
+  z-index: 9999;
 }
 
 ion-header {
+  z-index: 999;
   padding: 40px 0;
   height: 160px;
+  ion-title {
+
+  }
   ion-toolbar {
     height: 100%;
     //STYLE IONIC SHADOW DOM ELEMENTS
@@ -108,6 +116,7 @@ h2 {
 
 h3 {
   font-size: $h3;
+  font-weight: 400;
 }
 
 .headline {

@@ -1,3 +1,11 @@
+@import "../../global.scss";
+@import "../../theme/variables.scss";
+
+ion-header {
+  background: white;
+  padding: 0;
+  height: 100px;
+}
 
 .ion-activatable {
   position: relative;

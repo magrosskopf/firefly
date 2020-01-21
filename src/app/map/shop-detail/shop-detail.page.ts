@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserInfoService } from '../../_services/user-info.service';
 import { StoreService } from '../../_services/store.service';
-import { Store } from '../../_interfaces/store';
 import { Seller } from '../../_interfaces/seller';
 
 @Component({
@@ -19,14 +18,14 @@ export class ShopDetailPage implements OnInit {
     categoryId: '',
     city: 'string',
     givenPoints: 0,
-    storeName: '',
-    owner: 'Hennings Löwenvater',
-    zip: ''
+    storeName: 'Annas Laden',
+    owner: 'Anna',
+    zip: '',
+    description: 'Unverpackt, regional und nachhaltig Das sind die Ziele von annas, einem kleinen Laden mit Café in der Mosbacher Altstadt.'
   };
 
   constructor(private router: Router,
-              private userinfo: UserInfoService,
-              private storeService: StoreService) {
+              private userinfo: UserInfoService) {
   }
 
   ngOnInit() {

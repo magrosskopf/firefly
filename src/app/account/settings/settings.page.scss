@@ -1,0 +1,40 @@
+@import "../../../global.scss";
+@import "../../../theme/variables.scss";
+
+h3 {
+  margin-left: 14px;
+}
+
+
+ion-item {
+  --background: transparent !important;
+}
+
+ion-header {
+  background: white;
+  height: 100px;
+  display: flex;
+  padding: 0;
+}
+
+ion-content {
+  background: white;
+}
+
+ion-toolbar {
+  height: 120px;
+  display: flex;
+  padding-top: 20px !important;
+}
+
+ion-list {
+  width: 100%;
+  margin-bottom: 20px !important;
+  font-weight: 100;
+}
+
+a {
+  font-size: 17px;
+  margin-left: 18px;
+  font-weight: 500;
+}

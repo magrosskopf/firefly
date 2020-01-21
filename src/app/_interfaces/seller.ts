@@ -8,5 +8,6 @@ export interface Seller {
     givenPoints: number;
     storeName: string;
     owner: string;
+    description: string;
     // TODO: fertig machen
 }

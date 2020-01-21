@@ -4,6 +4,10 @@ export interface Seller {
     buyingUsers24: string[];
     categoryId: string;
     city: string;
+    zip: string;
     givenPoints: number;
+    storeName: string;
+    owner: string;
+    description: string;
     // TODO: fertig machen
 }

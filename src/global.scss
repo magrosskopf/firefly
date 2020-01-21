@@ -25,14 +25,17 @@
 @import "~@ionic/angular/css/flex-utils.css";
 @import "theme/variables.scss";
 
-body {
-  font-family: "Avenir Next";
-}
 
 /*********************************/
 /* General styling */
 body {
   font-family: "Avenir Next";
+}
+
+
+h4 {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 ion-app {
@@ -54,6 +57,9 @@ ion-header {
   z-index: 999;
   padding: 40px 0;
   height: 160px;
+  ion-title {
+
+  }
   ion-toolbar {
     height: 100%;
     //STYLE IONIC SHADOW DOM ELEMENTS
@@ -110,6 +116,7 @@ h2 {
 
 h3 {
   font-size: $h3;
+  font-weight: 400;
 }
 
 .headline {

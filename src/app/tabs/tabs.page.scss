@@ -1,1 +1,10 @@
+@import "../../global.scss";
+@import "../../theme/variables.scss";
 
+ion-tab-button:focus {
+  color: $primary;
+}
+
+ion-tab-bar {
+  color: $primary;
+}

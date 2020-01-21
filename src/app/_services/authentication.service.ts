@@ -38,7 +38,7 @@ export class AuthenticationService {
     this.afAuth.user.subscribe(data => {
       this.user = data;
       this.uid = data.uid;
-    })
+    });
   }
 
    login(email, password) {
@@ -61,6 +61,10 @@ export class AuthenticationService {
       duration: 2000
     });
     toast.present();
+  }
+
+  getUserId() {
+    return this.afAuth.auth.currentUser.uid;
   }
 
   // Registrierung

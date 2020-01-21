@@ -1,0 +1,57 @@
+@import "../../../global.scss";
+@import "../../../theme/variables.scss";
+
+
+p {
+  font-weight: 300;
+}
+
+ion-header{
+  padding: 40px 0;
+  height: 15%;
+  background: white;
+}
+
+
+ion-content{
+  background: white;
+  height: auto;
+
+  .shop_beschreibung{
+    padding: 17px;
+    height: auto;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    position: relative;
+    top: -20px;
+    box-shadow: 0px -7px 7px 0px rgba(0,0,0,0.1);
+  }
+
+  .overscroll{
+    background: white;
+  }
+
+  ion-img{
+    z-index: 99;
+  }
+
+  ion-row{
+
+    ion-col{
+      .price{
+        text-align: end;
+      }
+
+      ion-icon.time_location {
+        color: $darkgrey;
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+  #fab-plus {
+    width: 100px;
+    height: 100px;
+  }
+}
+

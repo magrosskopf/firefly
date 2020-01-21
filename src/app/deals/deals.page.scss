@@ -1,0 +1,42 @@
+@import "../../global.scss";
+@import "../../theme/variables.scss";
+
+
+h3 {
+ padding-left: 17px;
+}
+
+ion-header {
+    height: 100px;
+}
+
+ion-content {
+    ion-searchbar {
+        --background: white !important;        
+    }
+
+    ion-col{
+        .img_logo{        
+            width: 68%;
+            margin-top: 10px;
+        }
+    }
+}
+
+ion-card {
+    --background: white !important;
+    
+
+    ion-card-header{
+        padding: 10px;
+        
+    }
+
+    ion-card-content{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 10px;
+        padding-top: 0px;
+    }
+}

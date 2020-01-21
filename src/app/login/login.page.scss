@@ -4,14 +4,22 @@
 ion-grid {
   width: 100%;
   margin: auto;
-  padding: 110px 8%;
+  padding: 120px 8%;
   text-align: center;
 
   ion-header {
     background-color: white;
+    ion-toolbar {
+      ion-buttons {
+        ion-back-button {
+          display: none !important;
+        }
+      }
+    }
   }
 
   ion-content {
+    //STYLE IONIC SHADOW DOM ELEMENTS
     --background: $background-gradient;
     margin-top: 10px;
   }
@@ -21,6 +29,7 @@ ion-grid {
 
     ion-item {
       --ion-item-background: transparent !important;
+      margin-bottom: 20px;
 
       .form-group {
         margin: 30px 0;
@@ -37,11 +46,6 @@ ion-grid {
 .ion-activatable {
   position: relative;
   overflow: hidden;
-}
-
-ion-button {
-  margin-top: 30px;
-  margin-bottom: 20px;
 }
 
 ion-label {

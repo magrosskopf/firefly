@@ -3,43 +3,43 @@ import { AuthenticationService } from './authentication.service';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { PersonalInfo } from '../_interfaces/personal-info';
-import { map } from 'rxjs/operators'; 
 import { ToastController } from '@ionic/angular';
-
+import { Seller } from '../_interfaces/seller';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserInfoService {
 
-
-  constructor(public _authentication: AuthenticationService, public db: AngularFirestore, public toastController: ToastController) { 
-
+  constructor(public authentication: AuthenticationService,
+              public db: AngularFirestore,
+              public toastController: ToastController) {
   }
 
-  user = this._authentication.afAuth.auth.currentUser;
+  user = this.authentication.afAuth.auth.currentUser;
   userInfo: Observable<PersonalInfo>;
-  private itemDoc: AngularFirestoreDocument<any>;
+
   nfToken: string;
 
   updateNameAndPhoto(name, url) {
-    if(this.user) {
+    if (this.user) {
       this.user.updateProfile({
         displayName: name,
         photoURL: url
       }).then(() => {
         console.log('Update Successful');
-        this.presentToast("Name wurde aktualisiert");
+        this.presentToast('Name wurde aktualisiert');
       }).catch(error => {
         console.log('Update failed');
         this.presentToast(error);
 
       });
     }
-   }
+  }
 
-  updateEmail(email){
-    this.user.updateEmail(email).then(success => {
+  updateEmail(email) {
+    this.user.updateEmail(email)
+    .then(success => {
       console.log('Hurray' + success);
       this.presentToast('Emailadresse wurde geändert!');
     }).catch(error => {
@@ -50,28 +50,44 @@ export class UserInfoService {
 
   deleteUser() {
     this.user.delete().then(success => console.log(success))
-    .catch(error => console.log(error))
+    .catch(error => console.log(error));
   }
 
-  getPersonalDataFromFirestore(uid: string){
+  getPersonalDataFromFirestore(uid: string, type: string): Observable<PersonalInfo> {
     // tslint:disable-next-line:max-line-length
-    this.userInfo = this.db.doc<PersonalInfo>('customer/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
+    console.log(uid, type);
+
+    return this.db.doc<PersonalInfo>(type + '/' + uid).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
   }
 
-  updatePermissonTokenFirestore(token: string) {
-    const itemRef = this.db.doc('customer/' + this.user.uid);
-    itemRef.update({ notificationsToken: token});
+  updatePersonalDataFromFirestore(uid: string, item: PersonalInfo) {
+    this.db.doc<PersonalInfo>('customer/' + uid).update(item);
   }
 
-  deletePermissonTokenFirestore() {
-    const itemRef = this.db.doc('customer/' + this.user.uid);
-    itemRef.update({ notificationsToken: null});
+  getSellerDataFromFirestore(uid: string): Observable<Seller> {
+    // tslint:disable-next-line:max-line-length
+    return this.db.doc<any>('salesperson/' + uid).valueChanges();
   }
 
-  getPermissonTokenFirestore(): any {
-    const item = this.db.doc<any>('customer/' + this.user.uid);
+  updateSellerDataFromFirestore(uid: string, seller: Seller) {
+    // tslint:disable-next-line:max-line-length
+    this.db.doc<any>('salesperson/' + uid).update(seller);
+  }
+
+  updatePermissonTokenFirestore(token: string, uid: string) {
+    const itemRef = this.db.doc('customer/' + uid);
+    itemRef.update({notificationsToken: token});
+  }
+
+  deletePermissonTokenFirestore(uid: string) {
+    const itemRef = this.db.doc('customer/' + uid);
+    itemRef.update({notificationsToken: null});
+  }
+
+  getPermissonTokenFirestore(uid: string): any {
+    const item = this.db.doc<any>('customer/' + uid);
     item.valueChanges().subscribe(data => {
-       this.nfToken = data.notificationsToken;
+      this.nfToken = data.notificationsToken;
     });
   }
 

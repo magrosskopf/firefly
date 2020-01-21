@@ -21,7 +21,7 @@
   $secondary-gradient: linear-gradient(to right, #EA7724 , #EA9736);
 
   /** background gradient **/
-  $background-gradient: linear-gradient(to right, rgba(255, 183, 98, 0.18) , rgba(255, 164, 98, 0.33));
+  $background-gradient: linear-gradient(to right, rgb(255, 241, 226), rgb(255, 225, 204));
 
   /** success **/
   --ion-color-success: #10dc60;
@@ -65,3 +65,8 @@ $h3: 18px;
 $headline: 16px;
 $subheadline: 14px;
 $text: 12px;
+
+
+ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .nav-decor {
+  background: transparent none !important;
+}

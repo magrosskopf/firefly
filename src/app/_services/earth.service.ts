@@ -41,5 +41,4 @@ export class EarthService {
   setPosition(lat, long) {
     this.map.panTo(new L.LatLng(lat, long));
   }
-
 }

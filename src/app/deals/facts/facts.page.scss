@@ -14,23 +14,56 @@ ion-content{
 
     ion-row{
         padding: 17px;
+        margin-top: -24px;
+        padding-bottom: 0px;
 
         .text{
             top: -40px;
             position: relative;
         }
 
-        ion-col{            
-            ion-img{
-                .fact_img{
+        .daily{
+            
+        }
+
+        ion-col{   
+
+            padding: 0px;
+            
+           p {
+               text-align: justify;
+               margin-bottom: 30px;
+           }
+
+           h2{
+               text-align: center;
+           }
+            
+            img{
                 border-radius: 20px;
-                }
+            
             }
         }
 
         ion-icon {
             font-size: 44px;
             color: peachpuff;
+        }
+    }
+
+    .h3_weiterefacts{
+        padding-left: 17px;
+        padding-top: 20px;
+    }
+
+    .weitere_facts{
+        h3{
+            padding-left: 4px;
+            padding-top: 30px;
+        }
+
+        .sc-ion-card-ios-h{
+            margin-inline-start: 6px;
         }
     }
 }

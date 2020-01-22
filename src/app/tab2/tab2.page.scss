@@ -28,3 +28,16 @@
   #setPosition {
     z-index: 40000;
   }
+
+
+.leaflet-popup-content-wrapper {
+  background-color: red !important;
+}
+  
+  .leaflet-popup-content {
+      margin: 0 !important;
+      //margin: 0px 0px 13px 0px;
+      background: purple !important;
+      
+  }
+  

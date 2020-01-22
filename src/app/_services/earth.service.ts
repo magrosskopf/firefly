@@ -39,30 +39,10 @@ export class EarthService {
         
           '<img src="' + element.imgUrl + '" width="100%" />' +
           
-            '<h2>' + 
+            '<a href="/shop-detail/0WfSKft5onQ44wlYWlBqAisk2KJ2"><h2>' + 
               element.storeName + 
-            '</h2>' +
-       
-      
-            '<ul>' +
-              '<li>' + 
-                element.adress +
-              '</li>' +
-              '<li>' + 
-                element.zip + element.city +
-              '</li>' +
-              '<li>' + 
-                'Inhaber. ' + element.owner +
-              '</li>' +
-            '</ul>' +
-            '</br>' +
-          '<ion-button href="/shop-detail/0WfSKft5onQ44wlYWlBqAisk2KJ2">' +
-            'Zum Shop' +
-          '</ion-button>'
-
-         
-              
-          
+            '</h2>'+
+            '</a>'          
       )
     });
     

@@ -6,6 +6,18 @@ ion-header{
     ion-row{
         padding: 17px;
     }
+
+    ion-toolbar{
+        top: -35px;
+    }
+
+    .logo{
+        margin: 0px auto 0 !important;
+    }
+
+    hr{
+        margin: -12px;
+    }
 }
 
 ion-content{
@@ -48,6 +60,7 @@ ion-content{
         ion-icon {
             font-size: 44px;
             color: peachpuff;
+            margin-left: 26px;
         }
     }
 

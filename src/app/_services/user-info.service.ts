@@ -11,15 +11,16 @@ import { Seller } from '../_interfaces/seller';
 })
 export class UserInfoService {
 
+  user = this.authentication.afAuth.auth.currentUser;
+  userInfo: Observable<PersonalInfo>;
+  nfToken: string;
+
+
   constructor(public authentication: AuthenticationService,
               public db: AngularFirestore,
               public toastController: ToastController) {
+
   }
-
-  user = this.authentication.afAuth.auth.currentUser;
-  userInfo: Observable<PersonalInfo>;
-
-  nfToken: string;
 
   updateNameAndPhoto(name, url) {
     if (this.user) {
@@ -38,8 +39,7 @@ export class UserInfoService {
   }
 
   updateEmail(email) {
-    this.user.updateEmail(email)
-    .then(success => {
+    this.user.updateEmail(email).then(success => {
       console.log('Hurray' + success);
       this.presentToast('Emailadresse wurde geändert!');
     }).catch(error => {
@@ -57,7 +57,7 @@ export class UserInfoService {
     // tslint:disable-next-line:max-line-length
     console.log(uid, type);
 
-    return this.db.doc<PersonalInfo>(type + '/' + uid).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
+    return this.db.doc<PersonalInfo>(type + '/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
   }
 
   updatePersonalDataFromFirestore(uid: string, item: PersonalInfo) {
@@ -67,6 +67,10 @@ export class UserInfoService {
   getSellerDataFromFirestore(uid: string): Observable<Seller> {
     // tslint:disable-next-line:max-line-length
     return this.db.doc<any>('salesperson/' + uid).valueChanges();
+  }
+
+  getAllSellerFromFirestore(): Observable<Seller[]> {
+    return this.db.collection<Seller>('salesperson/').valueChanges();
   }
 
   updateSellerDataFromFirestore(uid: string, seller: Seller) {

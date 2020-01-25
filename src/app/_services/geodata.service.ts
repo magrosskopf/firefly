@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { UserInfoService } from './user-info.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -8,36 +10,43 @@ export class GeodataService {
 
   lat: number;
   long: number;
-  geofence = [{
-    lat: 54.0,
-    long: 9.0,
-    radius: 100,
-    shopId: '0WfSKft5onQ44wlYWlBqAisk2KJ2',
-    isInFence: false
-  },
+  geofence = [
     {
+      lat: 54.0,
+      long: 9.0,
+      radius: 100,
+      shopId: '0WfSKft5onQ44wlYWlBqAisk2KJ2',
+      isInFence: false
+    }, {
       lat: 53.0,
       long: 9.0,
       radius: 100,
       shopId: '123456',
       isInFence: false
-    },
-    {
+    }, {
       lat: 54.0,
       long: 8.0,
       radius: 100,
       shopId: '123457',
       isInFence: false
-    }];
+    },
+  ];
   passedGeofence: boolean;
   passedShop;
+  cUser;
 
-  constructor(private geolocation: Geolocation) {
+  constructor(private geolocation: Geolocation, private userinfo: UserInfoService, private afAuth: AngularFireAuth) {
     this.lat = 0;
     this.long = 0;
     this.passedGeofence = false;
     this.passedShop = {};
-
+    this.userinfo.getAllSellerFromFirestore().subscribe(data => {
+      // this.geofence = data
+      console.log(this.geofence);
+    });
+    this.afAuth.user.subscribe(user => {
+      this.cUser = user;
+    });
   }
 
   getGeolocation() {
@@ -71,9 +80,12 @@ export class GeodataService {
       num = (Math.pow(Math.pow(this.lat - el.lat, 2), 0.5) + Math.pow(Math.pow(this.long - el.long, 2), 0.5));
       if (num < 0.001 && stop) {
         this.passedShop = el;
-
         this.passedGeofence = true;
         stop = false;
+        if (this.passedShop.walkbyUsers24.indexOf(this.cUser.uid) < 0) {
+          this.passedShop.walkbyUsers24.push(this.cUser.uid);
+          this.cUser.points += 5;
+        }
         // Todo: Check if User already passed this fence and if not, give him some points
       } else if (num > 0.001 && stop) {
         this.passedShop = {};

@@ -1,0 +1,36 @@
+ion-header{
+    background: white;
+    padding: 40px 0;
+    height: 15%;
+
+    ion-row{
+        padding: 17px;
+    }
+}
+
+ion-content{
+    background: white;
+    padding: 0 17px 0;
+
+    ion-row{
+        padding: 17px;
+
+        .text{
+            top: -40px;
+            position: relative;
+        }
+
+        ion-col{            
+            ion-img{
+                .fact_img{
+                border-radius: 20px;
+                }
+            }
+        }
+
+        ion-icon {
+            font-size: 44px;
+            color: peachpuff;
+        }
+    }
+}

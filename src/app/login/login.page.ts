@@ -13,8 +13,6 @@ export class LoginPage implements OnInit {
   pwd: string;
   email: string;
 
-  // TODO MSC 21.01.20: Login Page hat als Pfad "/" --> anpassen auf /login und bei register path anpassen
-
   constructor(public afAuth: AngularFireAuth,
               public authentication: AuthenticationService,
               public router: Router) {
@@ -28,7 +26,7 @@ export class LoginPage implements OnInit {
   navigate() {
     this.authentication.login(this.email, this.pwd);
     setTimeout(() => {
-      this.router.navigateByUrl('/tabs/tabs/tab1');
+      this.router.navigateByUrl('/tabs/map');
     }, 1000);
   }
 

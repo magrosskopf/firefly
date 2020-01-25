@@ -1,0 +1,113 @@
+@import "../../global.scss";
+@import "../../theme/variables.scss";
+
+ion-header {
+  padding: 20px 0 !important;
+  height: auto !important;
+}
+
+
+ion-icon {
+  font-size: 30px;
+  color: $primary;
+
+  &:hover {
+    color: $secondary;
+  }
+}
+
+#qr-icon {
+  color: white;
+}
+
+ion-grid {
+  padding: 0 40px;
+  margin-top: 20px;
+
+  ion-avatar {
+    margin: auto;
+    height: 120px;
+    width: 120px;
+  }
+
+  ion-item {
+    --background: transparent;
+    height: 60px;
+    margin-top: -20px;
+
+    .item-inner {
+      border: none !important;
+    }
+
+    ion-label {
+      text-align: center;
+    }
+  }
+
+  ion-row.section-name {
+    margin-bottom: 30px !important;
+  }
+}
+
+ion-col {
+  padding: 0;
+
+  p {
+    text-align: center;
+    font-size: 11px;
+    margin: 0 0 5px;
+  }
+}
+
+.stores {
+  margin-top: 40px;
+  height: 50px;
+}
+
+.favourite-stores {
+  margin-bottom: -70px;
+}
+
+
+.horizontal-scroll-wrapper {
+  transform:rotate(-90deg) translateY(-150px);
+  transform-origin: right top;
+  width: 150px;
+  height: 290px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+.horizontal-scroll-wrapper > ion-card {
+  transform: rotate(90deg);
+  transform-origin: right top;
+}
+
+
+ion-footer {
+  width: 100vw;
+  height: 100%;
+  background-color: white;
+  position: absolute;
+  margin-top: 50px;
+  border-radius: 20px 20px 0 0;
+  left: 0;
+  padding: 0 40px;
+  ion-list-header {
+    padding: 0 !important;
+  }
+  ion-card {
+    background-color: white;
+    width: 150px;
+    height: 150px;
+    margin: 0 0 10px 0;
+    top: 150px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px 0;
+    ion-card-header {
+      padding: 5px;
+      text-align: center;
+      height: auto;
+    }
+  }
+}

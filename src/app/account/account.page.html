@@ -1,74 +1,114 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Account</ion-title>
+    <ion-buttons slot="start">
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-fab vertical="bottom" id="setPsosition" horizontal="end" slot="fixed">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-between section-name">
+      <h3>Mein Account</h3>
+      <ion-icon routerLink="settings" expand="block" name="settings"></ion-icon>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-avatar>
+          <img src="../../assets/img/account_pic.jpg" alt="profile_pic"/>
+        </ion-avatar>
+        <ion-item lines="none">
+          <ion-label position="floating" for="name"><b>{{ user.displayName }}</b></ion-label>
+
+          <!-- INPUT FIELD
+           <ion-input type="text" class="form-control" id="name" [(ngModel)]="displayName" (keydown.enter)="saveNameAndPhoto()"
+                      (focusout)="saveNameAndPhoto()"
+                      name="name">
+
+           </ion-input>-->
+        </ion-item>
+        <p>Mitglied seit September 2019</p>
+        <p>Punktestand: <b>72 Punkte</b></p>
+
+        <!--  USER EMAIL ADDRESS
+                 <ion-item>
+                 <ion-label position="floating" for="email">{{ user.email }}</ion-label>
+                 <ion-input type="text" class="form-control" id="email" [(ngModel)]="email" (keydown.enter)="saveEmail(email)" (focusout)="saveEmail(email)"
+                            name="email"></ion-input>
+               </ion-item>-->
+      </ion-col>
+    </ion-row>
+    <ion-footer>
+      <ion-row class="stores ion-justify-content-between">
+        <ion-col>
+          <ion-list>
+            <ion-list-header>
+              Lieblingsläden
+            </ion-list-header>
+            <ion-item *ngFor="let favstore of personalInfo.favStores" lines="none">
+              {{ favstore }}
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-icon expand="block" name="create"></ion-icon>
+      </ion-row>
+      <ion-row class="favourite-stores horizontal-scroll-wrapper">
+        <ion-card>
+          <ion-img src="../../assets/img/alnatura.jpg"></ion-img>
+          <ion-card-header>Alnatura Bio Super Markt</ion-card-header>
+        </ion-card>
+        <ion-card>
+          <ion-img src="../../assets/img/annas_laden.jpeg"></ion-img>
+          <ion-card-header>Annas – natürlich nachhaltig</ion-card-header>
+        </ion-card>
+        <ion-card>
+          <ion-img src="../../assets/img/denns_bionmarkt.jpg"></ion-img>
+          <ion-card-header>Denn's BIOMARKT</ion-card-header>
+        </ion-card>
+        <ion-card>
+          <ion-img src="../../assets/img/heinrich_hof.jpg"></ion-img>
+          <ion-card-header>Heinrich Hof – der Hofladen</ion-card-header>
+        </ion-card>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-list-header>
+              Entdeckte Läden
+            </ion-list-header>
+            <ion-item *ngFor="let favstore of personalInfo.favStores" lines="none">
+              {{ favstore }}
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-footer>
+
+    <!-- SEND PUSH NOTIFICATION -->
+    <!--    <ion-row>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+
+            <button (click)="sendNotification()">
+              Send sth.
+            </button>
+          </ion-col>
+        </ion-row>-->
+
+    <!-- LOGOUT BUTTON -->
+    <!--  <ion-row>
+        <ion-col>
+          <ion-button size=small class="ion-activatable" type="submit" (click)="_authentication.logout()" routerLink="login">
+            Logout
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      -->
+  </ion-grid>
+  <ion-fab vertical="bottom" id="setPosition" horizontal="end" slot="fixed">
     <ion-fab-button>
-      <ion-icon name="qr-scanner" routerLink="/qr-code"></ion-icon>
+      <ion-icon id="qr-icon" name="qr-scanner" routerLink="/qr-code"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-avatar slot="start">
-          <img src="{{ user.photoURL }}" alt="photo">
-          </ion-avatar>
-          <ion-item>
-            <ion-label position="floating" for="name">{{ user.displayName }}</ion-label>
-            <ion-input type="text" class="form-control" id="name" [(ngModel)]="displayName" (keydown.enter)="saveNameAndPhoto()" (focusout)="saveNameAndPhoto()" name="name"></ion-input>
-          </ion-item>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating" for="email">{{ user.email }}</ion-label>
-          <ion-input type="text" class="form-control" id="email" [(ngModel)]="email" (keydown.enter)="saveEmail(email)" (focusout)="saveEmail(email)" name="email"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-list>
-          <ion-list-header>
-            Lieblingsläden
-          </ion-list-header>
-          <!-- <ion-item *ngFor="let favstore of personalInfo.favStores">
-            {{ favstore }}
-          </ion-item> -->
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-list>
-          <ion-list-header>
-            Entdeckte Läden
-          </ion-list-header>
-          <!-- <ion-item *ngFor="let favstore of personalInfo.favStores">
-            {{ favstore }}
-          </ion-item> -->
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-      </ion-col>
-      <ion-col>
-        
-       <button (click)="sendNotification()">
-         Send sth.
-       </button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-button size=small class="ion-activatable" type="submit" (click)="authentication.logout()" routerLink="login">
-          Logout
-          <ion-ripple-effect></ion-ripple-effect>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 </ion-content>

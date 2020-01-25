@@ -22,11 +22,10 @@ import { AngularFireMessaging } from '@angular/fire/messaging';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { QRCodeModule } from 'angularx-qrcode';
-
 
 @NgModule({
   declarations: [AppComponent],

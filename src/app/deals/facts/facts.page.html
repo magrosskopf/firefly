@@ -1,4 +1,5 @@
 <ion-header>
+  <p class="logo">firefly</p>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button text="Zurück" defaultHref="/tabs/deals"></ion-back-button>
@@ -8,17 +9,35 @@
 </ion-header>
 
 <ion-content>
-  <ion-row>
+  <ion-row class="daily">
     <ion-col size="10"><h3>Daily Fact</h3></ion-col>
-    <ion-col size="2" routerLink="deals"><ion-icon name="close"></ion-icon></ion-col>
+    <ion-col size="2" routerLink="/tabs/deals"><ion-icon name="close"></ion-icon></ion-col>
   </ion-row>
 
   <ion-row class="text">
-    <ion-col size="12">
-      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam 
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.</p>
-      <h2><b>12 Tonnen Dreck im Meer</b></h2>
+    <ion-col class="beschreibung" size="12">
+      <p>Das Meer ist inzwischen einer der dreckigsten Orte der Welt. In fünf großen Müllstrudeln treiben Plastiktüten, Plastikflaschen, Strohhalme und Zahnbürsten. Wahre Plastikmüll-Wellen werden an den Stränden angespült. Tun wir nichts dagegen, wird <b>2050 mehr Plastik im Meer schwimmen als Fische.</b><br/></p>
       <ion-img class="fact_img" src="../../assets/plastics.jpg"></ion-img>
     </ion-col>
   </ion-row>
+
+  <h3 class="h3_weiterefacts">Weitere Facts</h3>
+  <ion-row class="weitere_facts">
+    <ion-col size="6">
+      <ion-card>
+        <ion-img src="../../assets/trockenheit.jpg"></ion-img>
+        <ion-card-header>Trockenheit</ion-card-header>
+      </ion-card>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-card>
+        <ion-img src="../../assets/baumpflanzen.jpg"></ion-img>
+        <ion-card-header>Bäume pflanzen</ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+
 </ion-content>

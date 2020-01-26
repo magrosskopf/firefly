@@ -22,8 +22,91 @@
       <ion-icon id="add-icon" name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+<ion-row class="favourite-stores horizontal-scroll-wrapper">
+    <ion-col size="12">
+      
+      <ion-card routerLink="deals-detail">
+        <ion-card-header>Bio Müller</ion-card-header>
+        <ion-img src="../../assets/angebote/zitronen.jpg"></ion-img>
+        <ion-card-subtitle>
+          <p>Zitronen halber Preis - 0,79 €</p>
+        </ion-card-subtitle>
+      </ion-card>
+
+      <ion-card routerLink="deals-detail">
+        <ion-card-header>Ehrne</ion-card-header>
+        <ion-img src="../../assets/angebote/marmelade.jpg"></ion-img>
+        <ion-card-subtitle>
+          <p>Regionale Marmelade 1,45 €</p>
+        </ion-card-subtitle>
+      </ion-card>
+
+      <ion-card routerLink="deals-detail">
+        <ion-card-header>Alnatura</ion-card-header>
+        <ion-img src="../../assets/angebote/tee.jpg"></ion-img>
+        <ion-card-subtitle>
+          <p>Moringo Tee im Angebot - 2,99 €</p>
+        </ion-card-subtitle>
+      </ion-card>
+
+      <ion-card routerLink="deals-detail">
+        <ion-card-header>annas</ion-card-header>
+        <ion-img src="../../assets/angebote/nudeln_angebot.jpg"></ion-img>
+        <ion-card-subtitle>
+          <p>Nudeln um 10 % reduziert</p>
+        </ion-card-subtitle>
+      </ion-card>
+
+    </ion-col>
+  </ion-row>
+
+
+  <h3 id="headline_laden">Läden</h3>
+  <ion-row class="favourite-stores horizontal-scroll-wrapper">
+    <ion-col size="12">
+      
+      <ion-card routerLink="store">
+        <ion-card-header>annas</ion-card-header>
+        <ion-img src="../../assets/angebote/nudeln_angebot.jpg"></ion-img>
+        <ion-card-subtitle>
+          <p>Nudeln um 10 % reduziert</p>
+        </ion-card-subtitle>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>denn's Biomarkt</ion-card-header>
+        <ion-img src="../../assets/angebote/nudeln_angebot.jpg"></ion-img>
+        <ion-card-subtitle>
+          <p>Äpfel diese Woche nur 0,99 €</p>
+        </ion-card-subtitle>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>annas</ion-card-header>
+        <ion-img src="../../assets/angebote/nudeln_angebot.jpg"></ion-img>
+        <ion-card-subtitle>
+          <p>Nudeln um 10 % reduziert</p>
+        </ion-card-subtitle>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>annas</ion-card-header>
+        <ion-img src="../../assets/angebote/nudeln_angebot.jpg"></ion-img>
+        <ion-card-subtitle>
+          <p>Nudeln um 10 % reduziert</p>
+        </ion-card-subtitle>
+      </ion-card>
+
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+
+
+
   
-  <ion-row>
+ <!-- <ion-row>
     <ion-col routerLink="{{ deal.id }}" size="6" *ngFor="let deal of allDeals">
       <ion-card>
         <ion-img src="../../assets/avocado.jpg"></ion-img>
@@ -39,3 +122,5 @@
     </ion-col>
   </ion-row>
 </ion-content>
+
+-->

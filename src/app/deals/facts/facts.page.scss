@@ -6,6 +6,18 @@ ion-header{
     ion-row{
         padding: 17px;
     }
+
+    ion-toolbar{
+        top: -35px;
+    }
+
+    .logo{
+        margin: 0 auto 0 !important;
+    }
+
+    hr{
+        margin: -12px;
+    }
 }
 
 ion-content{
@@ -14,23 +26,61 @@ ion-content{
 
     ion-row{
         padding: 17px;
+        margin-top: -24px;
+        padding-bottom: 0;
 
         .text{
             top: -40px;
             position: relative;
         }
 
-        ion-col{            
-            ion-img{
-                .fact_img{
+        .daily{
+            
+        }
+
+        ion-col{   
+
+            padding: 0;
+            
+           p {
+               text-align: justify;
+               margin-bottom: 30px;
+               line-height: 1.5;
+           }
+
+           h2{
+               text-align: center;
+           }
+            
+            .fact_img{
                 border-radius: 20px;
-                }
+                overflow: hidden;
+            
             }
         }
 
         ion-icon {
             font-size: 44px;
             color: peachpuff;
+            margin-left: 26px;
+        }
+    }
+
+    .h3_weiterefacts{
+        padding-left: 17px;
+        padding-top: 20px;
+    }
+
+    .weitere_facts{
+        height: 155px;
+
+        h3{
+            padding-left: 4px;
+            padding-top: 30px;
+        }
+
+        .sc-ion-card-ios-h{
+            margin-inline-start: 6px;
         }
     }
 }

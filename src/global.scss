@@ -29,7 +29,7 @@
 /*********************************/
 /* General styling */
 body {
-  font-family: "Avenir Next";
+  font-family: "Avenir Next", sans-serif;
 }
 
 
@@ -141,4 +141,33 @@ a {
 hr {
   margin: 20px 0;
   border: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.leaflet-popup {
+  bottom: -10px !important;
+  left: -113px !important;
+}
+
+.leaflet-popup-content-wrapper{
+  border-radius: 20px;
+}
+
+.leaflet-popup-content {
+  margin: 0 0 13px 0 !important;
+  width: 240px;
+  height: 215px;
+
+    img{
+      border-radius: 20px 20px 0 0;
+      }
+    
+    h2{
+      margin: 10px;
+    }
+}
+
+.leaflet-popup-close-button{
+  color: #EA7724 !important;
+  top: 8px !important;
+  right: 8px !important;
 }

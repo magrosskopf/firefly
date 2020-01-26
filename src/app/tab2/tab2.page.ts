@@ -78,6 +78,9 @@ export class Tab2Page {
     this.router.navigateByUrl('/shop-detail');
   }
 
+  // TODO MSC 22.01.20 tab2 und map sind mehr oder weniger doppelt.
+  //  Leaflet Popup zieht sich die Daten von map. Was von tab2page wird noch gebraucht?
+
   getDiscoveredStores(userObs: Observable<PersonalInfo>) {
     userObs.subscribe(data => {
 
@@ -111,21 +114,20 @@ export class Tab2Page {
             'NImT9rCMfwXP8ewpAvTm',
             'kpNkGITCLeokQgFdM8gc',
             'q1WbZ5zZTOZQtqPc2E0Q'],
-          adress: 'Lütt-Moor 8',
+          adress: 'Schwanengasse 2',
           buyingUsers24: ['XAbffjv83Qca96mro0RXRYSlnys1'],
           categoryId: '',
-          city: 'Wismar',
+          city: 'Mosbach',
           givenPoints: 0,
-          // tslint:disable-next-line:max-line-length
-          imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Rostock_asv2018-05_img42_aerial_view.jpg/1200px-Rostock_asv2018-05_img42_aerial_view.jpg',
-          owner: 'Henningsvater Löwe',
+          imgUrl: '../../assets/annas.jpg',
+          owner: 'Anna Seeber',
           qrCode: '',
-          storeName: 'FSD',
+          storeName: 'Annas',
           toGoodToGoActive: [''],
           toGoodToGoHistory: [''],
           verified: false,
           walkbyUsers24: [''],
-          zip: '23970',
+          zip: '74821',
           lat: 49,
           long: 9
         }

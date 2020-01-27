@@ -25,8 +25,7 @@ export class EarthService {
   initMap(list: any[], favs: any[], lat, long): void {
     this.map = L.map('map').setView([lat, long], 8);
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      maxZoom: 19
     });
     this.addMarker(list);
     tiles.addTo(this.map);

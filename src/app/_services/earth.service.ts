@@ -44,7 +44,7 @@ export class EarthService {
           element.storeName +
           '</h2>' +
           '</ion-col>' +
-          '<ion-col size=4>' +
+          '<ion-col class="text-left" size=4>' +
           '<ion-icon size="large" name="arrow-dropright"></ion-icon>' +
           '</ion-col>' +
           '</ion-row>' +

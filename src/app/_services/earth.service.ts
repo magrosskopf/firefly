@@ -19,6 +19,16 @@ export class EarthService {
     popupAnchor: [-0, -76] // point from which the popup should open relative to the iconAnchor
   });
 
+  personIcon = L.icon({
+    iconUrl: 'assets/icon/_ionicons_svg_md-man.svg',
+    shadowUrl: 'assets/Element 1.svg',
+    iconSize: [40, 92], // size of the icon
+    shadowSize: [30, 44], // size of the shadow
+    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [20, 55],  // the same for the shadow
+    popupAnchor: [-0, -76] // point from which the popup should open relative to the iconAnchor
+  });
+
   map: any;
   follow = true;
 
@@ -31,12 +41,16 @@ export class EarthService {
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19
     });
-   
+    var marker = new L.marker([lat,long], {icon: this.personIcon}).addTo(this.map);
     const watch = this.geolocation.watchPosition();
     watch.subscribe(data => {
       if (this.follow) {
         this.setPosition(data.coords.latitude, data.coords.longitude)
       }
+      var lat = data.coords.latitude;
+      var lng = data.coords.longitude;
+      var newLatLng = new L.LatLng(lat, lng);
+      marker.setLatLng(newLatLng); 
     });
     this.addMarker(list);
     tiles.addTo(this.map);

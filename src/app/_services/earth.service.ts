@@ -37,25 +37,19 @@ export class EarthService {
       const marker = new L.marker([element.lat, element.long], {icon: this.greenIcon}).addTo(this.map)
       .bindPopup(
           '<img src="' + element.imgUrl + '" width="100%" alt="shop_image" />' +
+          '<a href="/tabs/map/shop-detail/0WfSKft5onQ44wlYWlBqAisk2KJ2">' +
+          '<ion-row>' +
+          '<ion-col size=8>' +
           '<h2>' +
           element.storeName +
           '</h2>' +
-
-          '<ul>' +
-          '<li>' +
-          element.adress +
-          '</li>' +
-          '<li>' +
-          element.zip + element.city +
-          '</li>' +
-          '<li>' +
-          'Inhaber. ' + element.owner +
-          '</li>' +
-          '</ul>' +
-          '</br>' +
-          '<ion-button href="/tabs/map/shop-detail/0WfSKft5onQ44wlYWlBqAisk2KJ2">' +
-          'Zum Shop' +
-          '</ion-button>'
+          '</ion-col>' +
+          '<ion-col size=4>' +
+          '<ion-icon size="large" name="arrow-dropright"></ion-icon>' +
+          '</ion-col>' +
+          '</ion-row>' +
+          '</a>' +
+          '<style> #map .leaflet-popup-content-wrapper { background:#FFA462; color:#fff !important; font-size:16px; line-height:24px;} #map h2 { color: #fff; text-align: right;} #map ion-icon {margin-top: 8px; color: white;} </style>'
       );
     });
   }

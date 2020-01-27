@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as L from 'leaflet';
 import { Router } from '@angular/router';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +20,10 @@ export class EarthService {
   });
 
   map: any;
+  follow = true;
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private geolocation: Geolocation) {
+    
   }
 
   initMap(list: any[], favs: any[], lat, long): void {
@@ -27,8 +31,20 @@ export class EarthService {
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19
     });
+   
+    const watch = this.geolocation.watchPosition();
+    watch.subscribe(data => {
+      if (this.follow) {
+        this.setPosition(data.coords.latitude, data.coords.longitude)
+      }
+    });
     this.addMarker(list);
     tiles.addTo(this.map);
+    document.getElementById('map').addEventListener('click', () => {
+      this.follow = false;
+      console.log(this.follow);
+      
+    })
   }
 
   addMarker(markerList: any[]) {
@@ -54,8 +70,9 @@ export class EarthService {
   }
 
   setPosition(lat, long) {
-
+    this.follow = true;
     this.map.panTo(new L.LatLng(lat, long));
+   
   }
 
   openShop(id) {

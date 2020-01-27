@@ -70,9 +70,10 @@ export class MapPage {
   }
 
   setPosition() {
-
     this.earth.setPosition(this.geodata.lat, this.geodata.long);
   }
+
+
 
   openShop(id) {
     console.log(id);

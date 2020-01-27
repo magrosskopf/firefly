@@ -11,7 +11,6 @@
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
 @import "~leaflet/dist/leaflet.css";
-
 /* Basic CSS for apps built with Ionic */
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
@@ -57,17 +56,21 @@ ion-header {
   z-index: 999;
   padding: 40px 0;
   height: 160px;
+
   ion-title {
 
   }
+
   ion-toolbar {
     height: 100%;
     //STYLE IONIC SHADOW DOM ELEMENTS
     --background: transparent !important;
     --ion-color-base: transparent !important;
+
     &:last-child {
       --border-width: 0 !important;
     }
+
     ion-buttons {
       ion-back-button {
         display: block !important;
@@ -86,6 +89,8 @@ ion-footer {
 }
 
 ion-button {
+  --color-activated: white;
+  --background-activated: linear-gradient(to right, #ff8321, #ffa704);
   height: 50px;
   --color: --ion-color-primary;
   width: 100%;
@@ -97,10 +102,12 @@ ion-button {
   &:hover {
     --color: --ion-color-primary-hover;
   }
+}
 
-  .activated {
-    --color: green;
-  }
+ion-fab-button {
+  --color-activated: white;
+  --background-activated: linear-gradient(to right, #ff8321, #ffa704);
+  overflow: hidden;
 }
 
 
@@ -148,7 +155,7 @@ hr {
   left: -113px !important;
 }
 
-.leaflet-popup-content-wrapper{
+.leaflet-popup-content-wrapper {
   border-radius: 20px;
 }
 
@@ -157,16 +164,16 @@ hr {
   width: 240px;
   height: 215px;
 
-    img{
-      border-radius: 20px 20px 0 0;
-      }
-    
-    h2{
-      margin: 10px;
-    }
+  img {
+    border-radius: 20px 20px 0 0;
+  }
+
+  h2 {
+    margin: 10px;
+  }
 }
 
-.leaflet-popup-close-button{
+.leaflet-popup-close-button {
   color: #EA7724 !important;
   top: 8px !important;
   right: 8px !important;

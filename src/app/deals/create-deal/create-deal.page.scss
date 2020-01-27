@@ -1,0 +1,14 @@
+@import "../../../global.scss";
+@import "../../../theme/variables.scss";
+
+ion-item {
+  --background: transparent !important;
+}
+
+ion-header {
+  background-image: linear-gradient(to right, rgb(255, 241, 226), rgb(255, 225, 204)) !important;
+}
+
+ion-content {
+  background-image: linear-gradient(to right, rgb(255, 241, 226), rgb(255, 225, 204)) !important;
+}

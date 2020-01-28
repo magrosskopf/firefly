@@ -1,19 +1,8 @@
-import {
-  Injectable
-} from '@angular/core';
-import {
-  HttpHeaders,
-  HttpClient
-} from '@angular/common/http';
-import {
-  AngularFireMessaging
-} from '@angular/fire/messaging';
-import {
-  mergeMapTo
-} from 'rxjs/operators';
-import {
-  UserInfoService
-} from './user-info.service';
+import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { mergeMapTo } from 'rxjs/operators';
+import { UserInfoService } from './user-info.service';
 import { BehaviorSubject } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { FirebaseAuth } from '@angular/fire';
@@ -32,10 +21,11 @@ export class NotificationService {
       'Content-Type': 'application/json'
     })
   };
-  currentMessage = new BehaviorSubject(null)
+  currentMessage = new BehaviorSubject(null);
   message;
   data$: any;
   uid: string;
+
   constructor(
     public http: HttpClient,
     public afMessaging: AngularFireMessaging,
@@ -48,13 +38,13 @@ export class NotificationService {
     // this.requestPermission(data.uid);
     // this.userinfo.getPermissonTokenFirestore(data.uid);
     // this.listen();
-    })
-     
+    });
   }
 
   enterFence() {
     const payload = {
-      reqToken: "ev5E-29vQPiLekEQzJO0jC:APA91bGVasLAGYcKuLhPH-8Vsz3NjwcmSDi9h6BsdJaOFcOdLLJ1i7irIDs_o9cfYeKIT13FjbQ7q5xJDorQbU4SZMgMg3ofF7MGyd0ADoBsizmlQ5EhGSnt6dqAYvzepxNBgAMGI1rp"
+      // tslint:disable-next-line:max-line-length
+      reqToken: 'ev5E-29vQPiLekEQzJO0jC:APA91bGVasLAGYcKuLhPH-8Vsz3NjwcmSDi9h6BsdJaOFcOdLLJ1i7irIDs_o9cfYeKIT13FjbQ7q5xJDorQbU4SZMgMg3ofF7MGyd0ADoBsizmlQ5EhGSnt6dqAYvzepxNBgAMGI1rp'
     };
     this.httpOptions.headers.append('Authorization', 'bearer ' + this.userinfo.nfToken);
 
@@ -62,9 +52,9 @@ export class NotificationService {
       payload,
       this.httpOptions).subscribe(data => {
         console.log(data);
-        let message = data['message'].message.notification.title  + " - " + data['message'].message.notification.body;
+        const message = data[this.message].message.notification.title  + ' - ' + data[this.message].message.notification.body;
         this.presentToast(message);
-      this.listen();
+        this.listen();
     });
   }
 
@@ -81,7 +71,8 @@ export class NotificationService {
     this.afMessaging.requestPermission
       .pipe(mergeMapTo(this.afMessaging.tokenChanges))
       .subscribe(
-        (token) => { console.log('Permission granted! Save to the server!', token); this.userinfo.updatePermissonTokenFirestore(token, uid)},
+        // tslint:disable-next-line:max-line-length
+        (token) => { console.log('Permission granted! Save to the server!', token); this.userinfo.updatePermissonTokenFirestore(token, uid); },
         (error) => { console.error(error); }
       );
 
@@ -89,7 +80,7 @@ export class NotificationService {
 
   listen() {
     this.afMessaging.messages
-      .subscribe((message) => { 
+      .subscribe((message) => {
         console.log(message);
         this.message = message;
       });

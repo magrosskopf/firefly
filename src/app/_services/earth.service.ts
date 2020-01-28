@@ -24,33 +24,42 @@ export class EarthService {
     shadowUrl: 'assets/Element 1.svg',
     iconSize: [40, 92], // size of the icon
     shadowSize: [30, 44], // size of the shadow
-    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [20, 55],  // the same for the shadow
+    iconAnchor: [20, 64], // point of the icon which will correspond to marker's location
+    shadowAnchor: [18, 25],  // the same for the shadow
     popupAnchor: [-0, -76] // point from which the popup should open relative to the iconAnchor
   });
 
   map: any;
+  circle: any;
   follow = true;
+
+  lat = 0;
+  lng = 0;
 
   constructor(public router: Router, private geolocation: Geolocation) {
     
   }
 
-  initMap(list: any[], favs: any[], lat, long): void {
-    this.map = L.map('map').setView([lat, long], 8);
+  initMap(list: any[], lat, long, map): void {
+    this.map = L.map(map).setView([lat, long], 8);
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19
     });
-    var marker = new L.marker([lat,long], {icon: this.personIcon}).addTo(this.map);
+    
+
+    let marker = new L.marker([lat,long], {icon: this.personIcon}).addTo(this.map);
     const watch = this.geolocation.watchPosition();
     watch.subscribe(data => {
       if (this.follow) {
         this.setPosition(data.coords.latitude, data.coords.longitude)
       }
-      var lat = data.coords.latitude;
-      var lng = data.coords.longitude;
-      var newLatLng = new L.LatLng(lat, lng);
+      this.lat = data.coords.latitude;
+      this.lng = data.coords.longitude;
+      var newLatLng = new L.LatLng(this.lat, this.lng);
       marker.setLatLng(newLatLng); 
+      this.circle.setLatLng(newLatLng)
+      console.log(this.circle.toGeoJSON());
+      
     });
     this.addMarker(list);
     tiles.addTo(this.map);
@@ -59,6 +68,8 @@ export class EarthService {
       console.log(this.follow);
       
     })
+
+
   }
 
   addMarker(markerList: any[]) {
@@ -82,6 +93,16 @@ export class EarthService {
       );
     });
   }
+
+  drawCircle(radius: number, lat, lng) {
+   this.circle = new L.circleMarker([lat, lng], {radius: radius, color: '#ff0314'}).addTo(this.map);
+    
+  }
+
+  changeCircle(radius: number, lat?, lng?) {
+    this.circle.setRadius(radius);
+  }
+
 
   setPosition(lat, long) {
     this.follow = true;

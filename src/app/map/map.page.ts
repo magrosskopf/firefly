@@ -150,7 +150,7 @@ export class MapPage {
             this.list.push(element);
           }
         })
-        this.earth.initMap(this.list, this.favs, this.geodata.lat, this.geodata.long);
+        this.earth.initMap(this.list, this.geodata.lat, this.geodata.long, 'map');
 
       });
       console.log(this.list);

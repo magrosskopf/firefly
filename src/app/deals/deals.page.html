@@ -11,7 +11,10 @@
       <ion-searchbar></ion-searchbar>
     </ion-col>
     <ion-col size="2">
-      <ion-img routerLink="facts" class="img_logo" src="../../assets/icon/firefly_icon.png"></ion-img>
+      <div class="facts-icon">
+        <div class="spot"></div>
+        <ion-img routerLink="facts" class="img_logo" src="../../assets/icon/firefly_icon.png"></ion-img>
+      </div>
     </ion-col>
   </ion-row>
 
@@ -23,9 +26,9 @@
     </ion-fab-button>
   </ion-fab>
 
-<ion-row class="favourite-stores horizontal-scroll-wrapper">
+  <ion-row class="favourite-stores horizontal-scroll-wrapper">
     <ion-col size="12">
-      
+
       <ion-card routerLink="deals-detail">
         <ion-card-header>Bio Müller</ion-card-header>
         <ion-img src="../../assets/angebote/zitronen.jpg"></ion-img>
@@ -61,11 +64,10 @@
     </ion-col>
   </ion-row>
 
-
   <h3 id="headline_laden">Läden</h3>
   <ion-row class="favourite-stores horizontal-scroll-wrapper">
     <ion-col size="12">
-      
+
       <ion-card routerLink="store">
         <ion-card-header>annas</ion-card-header>
         <ion-img src="../../assets/angebote/nudeln_angebot.jpg"></ion-img>
@@ -102,25 +104,21 @@
   </ion-row>
 </ion-content>
 
+<!-- <ion-row>
+   <ion-col routerLink="{{ deal.id }}" size="6" *ngFor="let deal of allDeals">
+     <ion-card>
+       <ion-img src="../../assets/avocado.jpg"></ion-img>
+       <ion-card-header>
+         <ion-card-title>{{ deal.title }}</ion-card-title>
+         <ion-card-subtitle>{{ deal.price }} €</ion-card-subtitle>
+       </ion-card-header>
 
-
-
-  
- <!-- <ion-row>
-    <ion-col routerLink="{{ deal.id }}" size="6" *ngFor="let deal of allDeals">
-      <ion-card>
-        <ion-img src="../../assets/avocado.jpg"></ion-img>
-        <ion-card-header>
-          <ion-card-title>{{ deal.title }}</ion-card-title>
-          <ion-card-subtitle>{{ deal.price }} €</ion-card-subtitle>
-        </ion-card-header>
-      
-        <ion-card-content>
-          {{ deal.description }}
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
+       <ion-card-content>
+         {{ deal.description }}
+       </ion-card-content>
+     </ion-card>
+   </ion-col>
+ </ion-row>
 </ion-content>
 
 -->

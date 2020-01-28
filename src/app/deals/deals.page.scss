@@ -76,6 +76,23 @@ ion-col {
   .sc-ion-card-ios-h {
     transform: rotate(90deg)
   }
+
+  .facts-icon {
+    display: flex;
+    align-items: center;
+
+    .spot {
+      height: 10px;
+      width: 10px;
+      background-color: red;
+      border-radius: 50%;
+      display: block;
+      margin-left: 30px;
+      margin-top: -5px;
+      position: absolute;
+      box-shadow: #2224281c 0 0 1px 0;
+    }
+  }
 }
 
 .stores {
@@ -85,6 +102,7 @@ ion-col {
 
 .favourite-stores {
   margin-bottom: -70px;
+
   &::-webkit-scrollbar {
     display: none; // Safari and Chrome
   }

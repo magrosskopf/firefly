@@ -1,5 +1,5 @@
 export interface Seller {
-    adId: string;
+    adId: string[];
     adress: string;
     buyingUsers24: string[];
     categoryId: string;

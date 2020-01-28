@@ -3,6 +3,7 @@ import { Deal } from '../../_interfaces/deal';
 import { NgForm } from '@angular/forms';
 import { DealService } from '../../_services/deal.service';
 import { AuthenticationService } from '../../_services/authentication.service';
+import { UserInfoService } from '../../_services/user-info.service';
 
 @Component({
   selector: 'app-create-deal',
@@ -17,10 +18,20 @@ export class CreateDealPage implements OnInit {
     description: '',
     active: true,
     location: '',
-    price: 0
+    afterPrice: 0,
+    beforePrice: 0,
+    storeName: ''
   };
 
-  constructor(public dealService: DealService, public authentication: AuthenticationService) { }
+  userId: string;
+
+  constructor(public dealService: DealService, public authentication: AuthenticationService, public userService: UserInfoService) {
+
+    this.userId = this.authentication.afAuth.auth.currentUser.uid;
+    this.userService.getSellerDataFromFirestore(this.userId).subscribe((data) => {
+      this.deal.storeName = data.storeName;
+    });
+  }
 
   ngOnInit() {
   }
@@ -28,12 +39,13 @@ export class CreateDealPage implements OnInit {
   onSubmit(form: NgForm) {
     const infos = form.value;
 
-    this.deal.userId = this.authentication.getUserId();
+    this.deal.userId = this.userId;
     this.deal.title = infos.title;
     this.deal.description = infos.description;
-    this.deal.price = infos.price;
+    this.deal.afterPrice = infos.afterPrice;
+    this.deal.beforePrice = infos.beforePrice;
 
-    this.dealService.addDeal(this.deal);
+    this.dealService.addDealtoFirestore(this.deal);
   }
 
 }

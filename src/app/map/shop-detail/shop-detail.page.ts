@@ -11,7 +11,7 @@ import { Seller } from '../../_interfaces/seller';
 export class ShopDetailPage implements OnInit {
 
   store: Seller = {
-    adId: '',
+    adId: [],
     adress: '',
     buyingUsers24: [],
     categoryId: '',

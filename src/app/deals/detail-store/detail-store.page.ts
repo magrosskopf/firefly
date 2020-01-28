@@ -12,7 +12,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class DetailStorePage implements OnInit {
 
   store: Seller = {
-    adId: '',
+    adId: [],
     adress: '',
     buyingUsers24: [],
     categoryId: '',

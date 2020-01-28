@@ -1,7 +1,7 @@
 export interface Store {
-  title?: string;
+  storeName?: string;
   description?: string;
-  address?: string;
+  adress?: string;
   zip?: string;
   city?: string;
 }

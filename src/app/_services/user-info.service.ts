@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { PersonalInfo } from '../_interfaces/personal-info';
 import { ToastController } from '@ionic/angular';
 import { Seller } from '../_interfaces/seller';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
 
 
 @Injectable({
@@ -19,6 +21,7 @@ export class UserInfoService {
 
   constructor(public authentication: AuthenticationService,
               public db: AngularFirestore,
+              public afAuth: AngularFireAuth,
               public toastController: ToastController) {
 
   }
@@ -59,6 +62,38 @@ export class UserInfoService {
     console.log(uid, type);
 
     return this.db.doc<PersonalInfo>(type + '/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
+  }
+
+  getPersonalFavStoreFromFirestore(): Promise<any> {
+    const user = this.afAuth.auth.currentUser;
+    const userRef = this.db.collection('customer').doc(user.uid).ref;
+
+    return userRef.get().then((doc) => {
+      if (doc.exists) {
+          console.log('Document data:', doc.data());
+          return doc.data();
+      } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!');
+      }
+    }).catch((error) => {
+        console.log('Error getting document:', error);
+    });
+  }
+
+  changePersonalFavStore(storeId: string, favStore: boolean) {
+    const userId = this.afAuth.auth.currentUser.uid;
+    const userRef = this.db.collection('customer').doc(userId);
+
+    if (favStore) {
+      userRef.update({
+        favStores: firebase.firestore.FieldValue.arrayUnion(storeId)
+      });
+    } else {
+      userRef.update({
+        favStores: firebase.firestore.FieldValue.arrayRemove(storeId)
+      });
+    }
   }
 
   updatePersonalDataFromFirestore(uid: string, item: PersonalInfo) {

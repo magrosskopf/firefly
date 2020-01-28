@@ -23,7 +23,6 @@ export class UserInfoService {
               public db: AngularFirestore,
               public afAuth: AngularFireAuth,
               public toastController: ToastController) {
-
   }
 
   updateNameAndPhoto(name, url) {
@@ -58,32 +57,11 @@ export class UserInfoService {
   }
 
   getPersonalDataFromFirestore(uid: string, type: string): Observable<PersonalInfo> {
-    // tslint:disable-next-line:max-line-length
-    console.log(uid, type);
-
     return this.db.doc<PersonalInfo>(type + '/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
   }
 
-  getPersonalFavStoreFromFirestore(): Promise<any> {
-    const user = this.afAuth.auth.currentUser;
-    const userRef = this.db.collection('customer').doc(user.uid).ref;
-
-    return userRef.get().then((doc) => {
-      if (doc.exists) {
-          console.log('Document data:', doc.data());
-          return doc.data();
-      } else {
-          // doc.data() will be undefined in this case
-          console.log('No such document!');
-      }
-    }).catch((error) => {
-        console.log('Error getting document:', error);
-    });
-  }
-
-  changePersonalFavStore(storeId: string, favStore: boolean) {
-    const userId = this.afAuth.auth.currentUser.uid;
-    const userRef = this.db.collection('customer').doc(userId);
+  changePersonalFavStore(uid: string, storeId: string, favStore: boolean) {
+    const userRef = this.db.collection('customer').doc(uid);
 
     if (favStore) {
       userRef.update({
@@ -101,7 +79,6 @@ export class UserInfoService {
   }
 
   getSellerDataFromFirestore(uid: string): Observable<Seller> {
-    // tslint:disable-next-line:max-line-length
    return this.db.doc<any>('salesperson/' + uid ).valueChanges();
   }
 
@@ -110,7 +87,6 @@ export class UserInfoService {
   }
 
   updateSellerDataFromFirestore(uid: string, seller: Seller) {
-    // tslint:disable-next-line:max-line-length
    this.db.doc<any>('salesperson/' + uid ).update(seller);
   }
 

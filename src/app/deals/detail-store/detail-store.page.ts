@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '../../_interfaces/store';
 import { Router } from '@angular/router';
-import { StoreService } from '../../_services/store.service';
 import { UserInfoService } from '../../_services/user-info.service';
+import { Seller } from '../../_interfaces/seller';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-detail-store',
@@ -11,33 +11,37 @@ import { UserInfoService } from '../../_services/user-info.service';
 })
 export class DetailStorePage implements OnInit {
 
-  store: Store = {
-    storeName: '',
-    description: '',
+  store: Seller = {
+    adId: '',
     adress: '',
+    buyingUsers24: [],
+    categoryId: '',
+    city: '',
+    givenPoints: 0,
+    storeName: '',
+    owner: '',
     zip: '',
-    city: ''
+    description: ''
   };
 
+  userId: string;
   favStore = false;
   storeId: string;
 
-  constructor(private router: Router, public storeService: StoreService, public userService: UserInfoService) { }
+  constructor( private router: Router, public userService: UserInfoService, public afAuth: AngularFireAuth) {
+    this.userId = this.afAuth.auth.currentUser.uid;
 
-  ngOnInit() {
     const pathArray = this.router.url.split('/');
     const pathId = pathArray[pathArray.length - 1];
 
-    this.storeService.getStore(pathId).then((data) => {
-      this.store.storeName = data.storeName;
-      this.store.description = data.description;
-      this.store.adress = data.adress;
-      this.store.zip = data.zip;
-      this.store.city = data.city;
+    this.userService.getSellerDataFromFirestore(pathId)
+    .subscribe(data => {
+      this.store = data;
       this.storeId = pathId;
     });
 
-    this.userService.getPersonalFavStoreFromFirestore().then((data) => {
+    this.userService.getPersonalDataFromFirestore(this.userId, 'customer')
+    .subscribe(data => {
       data.favStores.forEach(element => {
         if (pathId === element) {
           this.favStore = true;
@@ -46,9 +50,12 @@ export class DetailStorePage implements OnInit {
     });
   }
 
+  ngOnInit() {
+  }
+
   changeFavStore() {
     this.favStore = !this.favStore;
-    this.userService.changePersonalFavStore(this.storeId, this.favStore);
+    this.userService.changePersonalFavStore(this.userId, this.storeId, this.favStore);
   }
 
 }

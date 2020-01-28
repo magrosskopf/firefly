@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Deal } from '../_interfaces/deal';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,10 @@ export class DealService {
     .catch((error) => {
         console.error('Error adding document: ', error);
     });
+  }
+
+  getAllDealsFromFirestore(): Observable<Deal[]> {
+    return this.afDB.collection<Deal>('deals/').valueChanges();
   }
 
   getDeal(dealId: string): Promise<any> {

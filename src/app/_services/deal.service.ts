@@ -2,76 +2,56 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Deal } from '../_interfaces/deal';
+import { Seller } from '../_interfaces/seller';
 import { Observable } from 'rxjs';
+import { UserInfoService } from './user-info.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DealService {
 
-  constructor(public afAuth: AngularFireAuth, public afDB: AngularFirestore) { }
+  user = this.afAuth.auth.currentUser;
 
-  addDeal(deal: Deal) {
-    this.afDB.collection('deals').add({
+  constructor(public afAuth: AngularFireAuth, public afDB: AngularFirestore, public userService: UserInfoService) { }
+
+  addDealtoFirestore(deal: Deal) {
+    this.afDB.collection<Deal>('deals').add({
       userId: deal.userId,
       title: deal.title,
       description: deal.description,
       active: deal.active,
       location: deal.location,
-      price: deal.price,
-      date: new Date().getTime()
+      afterPrice: deal.afterPrice,
+      beforePrice: deal.beforePrice,
+      storeName: deal.storeName
     })
     .then((docRef) => {
 
-      console.log('Document written with ID: ', docRef.id);
-
       this.afDB.collection('deals').doc(docRef.id).update({
         id: docRef.id
-      }).then(() => {
-        console.log('ID successfully updated!');
       });
 
-      const user = this.afAuth.auth.currentUser;
-      const kategory = 'salesperson';
-
-      this.getDealsFromKategory(kategory, user.uid)
+      this.getDealsFromKategory('salesperson', this.user.uid)
       .then((userDeals) => {
-        this.afDB.collection('salesperson').doc(user.uid).update({
-        adId: [...userDeals, docRef.id]
-        })
-        .then(() => {
-          console.log('Salesperson successfully updated!');
-        })
-        .catch((error) => {
-          console.error('Error writing salesperson document: ', error);
+        this.afDB.collection('salesperson').doc(this.user.uid).update({
+          adId: [...userDeals, docRef.id]
         });
       });
 
-    })
-    .catch((error) => {
-        console.error('Error adding document: ', error);
     });
+  }
+
+  deleteDealFromFirestore(dealId: string) {
+    this.afDB.doc<Deal>('deals/' + dealId ).delete();
   }
 
   getAllDealsFromFirestore(): Observable<Deal[]> {
     return this.afDB.collection<Deal>('deals/').valueChanges();
   }
 
-  getDeal(dealId: string): Promise<any> {
-
-    const dealRef = this.afDB.collection('deals').doc(dealId).ref;
-
-    return dealRef.get().then((doc) => {
-      if (doc.exists) {
-          console.log('Document data:', doc.data());
-          return doc.data();
-      } else {
-          // doc.data() will be undefined in this case
-          console.log('No such document!');
-      }
-    }).catch((error) => {
-        console.log('Error getting document:', error);
-    });
+  getDealFromFirestore(dealId: string): Observable<Deal> {
+    return this.afDB.doc<Deal>('deals/' + dealId ).valueChanges();
   }
 
   getDealsFromKategory(kategory: string, userId: string) {
@@ -89,68 +69,45 @@ export class DealService {
     });
   }
 
-  getUserDeals() {
-    const user = this.afAuth.auth.currentUser;
-    const deals = [];
+  // getUserDeals() {
+  //   const user = this.afAuth.auth.currentUser;
+  //   const deals = [];
 
-    this.afDB.collection('deals').ref.where('userId', '==', user.uid)
-    .onSnapshot((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-          deals.push(doc.data());
-      });
-      console.log('UserDeals', deals);
-      return deals;
-    });
+  //   this.afDB.collection('deals').ref.where('userId', '==', user.uid)
+  //   .onSnapshot((querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //         deals.push(doc.data());
+  //     });
+  //     console.log('UserDeals', deals);
+  //     return deals;
+  //   });
 
-    return deals;
+  //   return deals;
 
-    // return this.afDB.collection('deals').ref.where('userId', '==', user.uid)
-    // .get()
-    // .then((querySnapshot) => {
-    //   const dealsUser = [];
-    //   querySnapshot.forEach((doc) => {
-    //     console.log(doc.id, '=>' , doc.data());
-    //     dealsUser.push(doc.data());
-    //   });
-    //   return dealsUser;
-    // })
-    // .catch((error) => {
-    //   console.log('Error getting documents: ', error);
-    // });
-  }
+  //   // return this.afDB.collection('deals').ref.where('userId', '==', user.uid)
+  //   // .get()
+  //   // .then((querySnapshot) => {
+  //   //   const dealsUser = [];
+  //   //   querySnapshot.forEach((doc) => {
+  //   //     console.log(doc.id, '=>' , doc.data());
+  //   //     dealsUser.push(doc.data());
+  //   //   });
+  //   //   return dealsUser;
+  //   // })
+  //   // .catch((error) => {
+  //   //   console.log('Error getting documents: ', error);
+  //   // });
+  // }
 
-  getAllDeals(): Promise<any> {
-    return this.afDB.collection('deals').ref.get().then((querySnapshot) => {
-      const deals = [];
-      querySnapshot.forEach((doc) => {
-        deals.push(doc.data());
-      });
-      return deals;
-    });
-  }
-
-  deleteDeal(dealId) {
-    const userId = this.afAuth.auth.currentUser.uid;
-    const dealRef = this.afDB.collection('deals').doc(dealId).ref;
-
-    dealRef.get().then((doc) => {
-      if (doc.exists) {
-          console.log('Document data:', doc.data());
-          if (doc.data().userId === userId) {
-            dealRef.delete().then(() => {
-              console.log('Document successfully deleted!');
-            }).catch((error) => {
-                console.error('Error removing document: ', error);
-            });
-          }
-      } else {
-          // doc.data() will be undefined in this case
-          console.log('No such document!');
-      }
-    }).catch((error) => {
-        console.log('Error getting document:', error);
-    });
-  }
+  // getAllDeals(): Promise<any> {
+  //   return this.afDB.collection('deals').ref.get().then((querySnapshot) => {
+  //     const deals = [];
+  //     querySnapshot.forEach((doc) => {
+  //       deals.push(doc.data());
+  //     });
+  //     return deals;
+  //   });
+  // }
 
   editDeal(dealId: string, deal: Deal) {
     const userId = this.afAuth.auth.currentUser.uid;
@@ -163,7 +120,8 @@ export class DealService {
             dealRef.update({
               title: deal.title,
               description: deal.description,
-              price: deal.price
+              afterPrice: deal.afterPrice,
+              beforePrice: deal.beforePrice
             })
             .then(() => {
               console.log('Deal successfully updated!');

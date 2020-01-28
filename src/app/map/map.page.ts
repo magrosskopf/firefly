@@ -87,78 +87,95 @@ export class MapPage {
     userObs.subscribe(data => {
 
       this.personalInfo = data;
-      // this.getStoreData();
-      this.list = [
-        {
-          adId: ['',
-            'KlupshZuIxtQ5dfqf3AG',
-            'NFZV3JOzWcC3rbUNpctd',
-            'cfmde9Oezwms9Y9oQkRu',
-            '8MrtrXGfTOsEpuMHv0Yk',
-            'fcd9YbIAOsoialx56QAh',
-            'XK8NVOrIjiaiYRfnNkaY',
-            'nbZffS1zBfsEuRzChT3L',
-            'Kb8LMrue7acSkrvIFmye',
-            '7FjFoXSxo8aR6jKi9d0x',
-            'p7cngRHytryAdHRvcd9M',
-            'HnppUZ0w7P3kLFie9jLs',
-            'Y8yp2TMMLCLLqMDQY6Vg',
-            'pA63Tzs4pFMWpQZnuA2w',
-            'TY1GEN1XWHk1pZBxC1qg',
-            'cx6kXSoNUQMi2FuCCZ6y',
-            'CRI4gRAJrW8wCGfRi50V',
-            'KIEQTo0BCzl0wTnRnEvp',
-            '048rnuQhtrZTFHi8215B',
-            'OLc2eUbdX5YRiEpLYZFm',
-            'q7BiOJnOXafvvgz6XNyP',
-            'Uru8sCRQnY8Y7SBimLXj',
-            'NImT9rCMfwXP8ewpAvTm',
-            'kpNkGITCLeokQgFdM8gc',
-            'q1WbZ5zZTOZQtqPc2E0Q'],
-          adress: 'Schwanengasse 2',
-          buyingUsers24: ['XAbffjv83Qca96mro0RXRYSlnys1'],
-          categoryId: '',
-          city: 'Mosbach',
-          givenPoints: 0,
-          imgUrl: '../../assets/annas.jpg',
-          owner: 'Anna Seeber',
-          qrCode: '',
-          storeName: 'Annas',
-          toGoodToGoActive: [''],
-          toGoodToGoHistory: [''],
-          verified: false,
-          walkbyUsers24: [''],
-          zip: '74821 ',
-          lat: 49,
-          long: 9
-        }
-      ];
-      this.earth.initMap(this.list, this.favs, this.geodata.lat, this.geodata.long);
+       this.getStoreData();
+      // this.list = [
+      //   {
+      //     adId: ['',
+      //       'KlupshZuIxtQ5dfqf3AG',
+      //       'NFZV3JOzWcC3rbUNpctd',
+      //       'cfmde9Oezwms9Y9oQkRu',
+      //       '8MrtrXGfTOsEpuMHv0Yk',
+      //       'fcd9YbIAOsoialx56QAh',
+      //       'XK8NVOrIjiaiYRfnNkaY',
+      //       'nbZffS1zBfsEuRzChT3L',
+      //       'Kb8LMrue7acSkrvIFmye',
+      //       '7FjFoXSxo8aR6jKi9d0x',
+      //       'p7cngRHytryAdHRvcd9M',
+      //       'HnppUZ0w7P3kLFie9jLs',
+      //       'Y8yp2TMMLCLLqMDQY6Vg',
+      //       'pA63Tzs4pFMWpQZnuA2w',
+      //       'TY1GEN1XWHk1pZBxC1qg',
+      //       'cx6kXSoNUQMi2FuCCZ6y',
+      //       'CRI4gRAJrW8wCGfRi50V',
+      //       'KIEQTo0BCzl0wTnRnEvp',
+      //       '048rnuQhtrZTFHi8215B',
+      //       'OLc2eUbdX5YRiEpLYZFm',
+      //       'q7BiOJnOXafvvgz6XNyP',
+      //       'Uru8sCRQnY8Y7SBimLXj',
+      //       'NImT9rCMfwXP8ewpAvTm',
+      //       'kpNkGITCLeokQgFdM8gc',
+      //       'q1WbZ5zZTOZQtqPc2E0Q'],
+      //     adress: 'Schwanengasse 2',
+      //     buyingUsers24: ['XAbffjv83Qca96mro0RXRYSlnys1'],
+      //     categoryId: '',
+      //     city: 'Mosbach',
+      //     givenPoints: 0,
+      //     imgUrl: '../../assets/annas.jpg',
+      //     owner: 'Anna Seeber',
+      //     qrCode: '',
+      //     storeName: 'Annas',
+      //     toGoodToGoActive: [''],
+      //     toGoodToGoHistory: [''],
+      //     verified: false,
+      //     walkbyUsers24: [''],
+      //     zip: '74821 ',
+      //     lat: 49,
+      //     long: 9
+      //   }
+      // ];
 
     });
 
   }
 
   getStoreData() {
-    this.personalInfo.discoveredStores.forEach(element => {
-      this.userInfo.getSellerDataFromFirestore(element).subscribe(data => {
-        if (data !== undefined) {
-          console.log(data);
 
-          this.list.push(data);
-        }
+    
 
+   
+      this.userInfo.getAllSellerFromFirestore().subscribe(data => {
+        data.forEach(element => {
+          if (element !== undefined) {
+            // this.list = data;
+            this.list.push(element);
+          }
+        })
+        this.earth.initMap(this.list, this.favs, this.geodata.lat, this.geodata.long);
 
       });
-    });
-    this.personalInfo.favStores.forEach(element => {
-      this.userInfo.getSellerDataFromFirestore(element).subscribe(data => {
-        if (data !== undefined) {
-          this.favs.push(data);
-        }
-      });
-    });
-  }
+      console.log(this.list);
+      
+     }
+     // this.personalInfo.discoveredStores.forEach(element => {
+    //   this.userInfo.getSellerDataFromFirestore(element).subscribe(data => {
+    //     if (data !== undefined) {
+    //       console.log(data);
+
+    //       this.list.push(data);
+    //     }
+
+
+    //   });
+    // });
+    // this.personalInfo.favStores.forEach(element => {
+    //   this.userInfo.getSellerDataFromFirestore(element).subscribe(data => {
+    //     if (data !== undefined) {
+    //       this.favs.push(data);
+    //     }
+    //   });
+    // });
+ 
+
 
 }
 

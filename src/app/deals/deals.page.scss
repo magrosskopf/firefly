@@ -24,7 +24,6 @@ ion-content {
     ion-searchbar {
         --background: white !important;        
     }
-
     ion-col{
         .img_logo{        
             width: 68%;
@@ -36,27 +35,22 @@ ion-content {
 ion-grid {
     padding: 0 40px;
     margin-top: 20px;
-
     ion-avatar {
       margin: auto;
       height: 120px;
       width: 120px;
     }
-
     ion-item {
       --background: transparent;
       height: 60px;
       margin-top: -20px;
-
       .item-inner {
         border: none !important;
       }
-
       ion-label {
         text-align: center;
       }
     }
-
     ion-row.section-name {
       margin-bottom: 30px !important;
     }
@@ -64,7 +58,6 @@ ion-grid {
 
 ion-col {
     padding: 0;
-
     p {
       text-align: center;
       font-size: 11px;
@@ -75,12 +68,7 @@ ion-col {
     }
 }
 
-.stores {
-    margin-top: 40px;
-    height: 50px;
-}
-
-.favourite-stores {
+.deals, .stores {
     margin-bottom: -70px;
 }
 
@@ -95,33 +83,47 @@ ion-col {
 }
 
 
-ion-card {
+.deals ion-card {
     background: white;
     width: 150px;
     height: 150px;
     margin: 0 0 10px 0;
     top: 15px;
     box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px 0;
-    
     ion-card-header {
         padding: 5px;
         text-align: center;
         height: auto;
     }
-
     ion-card-subtitle{
         p{
             margin: 3px 10px 3px 10px;
         }
-        
     }
-
     ion-card-content{
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         padding: 10px;
         padding-top: 0;
+    }
+}
+
+.stores ion-card {
+    background-color: white;
+    width: 150px;
+    height: 150px;
+    margin: 0 0 10px 0;
+    top: 15px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px 0;
+    ion-card-header {
+        padding: 5px;
+        text-align: center;
+        height: auto;
+    }
+    ion-img{
+        height: 115px;
+        object-fit: cover;
     }
 }
 

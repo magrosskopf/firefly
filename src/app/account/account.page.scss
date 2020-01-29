@@ -91,10 +91,7 @@ ion-footer {
   margin-top: 50px;
   border-radius: 20px 20px 0 0;
   left: 0;
-  padding: 0 40px;
-  ion-list-header {
-    padding: 0 !important;
-  }
+  padding: 30px 40px;
   ion-card {
     background-color: white;
     width: 150px;
@@ -106,6 +103,10 @@ ion-footer {
       padding: 5px;
       text-align: center;
       height: auto;
+    }
+    ion-img{
+      height: 115px;
+      object-fit: cover;
     }
   }
 }

@@ -24,7 +24,7 @@
   <div *ngIf="dealsLoaded === true && storesLoaded === true">
     <h3>Angebote</h3>
 
-    <ion-row class="favourite-stores horizontal-scroll-wrapper" >
+    <ion-row class="deals horizontal-scroll-wrapper" >
       <ion-col size="12">
         <div *ngFor="let deal of allDeals">
           <ion-card routerLink="deal/{{ deal.id }}">
@@ -41,7 +41,7 @@
 
 
     <h3 id="headline_laden">Läden</h3>
-    <ion-row class="favourite-stores horizontal-scroll-wrapper">
+    <ion-row class="stores horizontal-scroll-wrapper">
       <ion-col size="12">
         <div *ngFor="let store of allStores">
           <ion-card routerLink="store/{{ store.storeId }}">

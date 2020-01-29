@@ -41,7 +41,7 @@
       <h3>Lieblingsläden</h3>
       <ion-row class="favourite-stores horizontal-scroll-wrapper">
         <div *ngFor="let store of seller">
-          <ion-card routerLink="/tabs/shop/{{ store.storeId }}">
+          <ion-card routerLink="/tabs/shop/{{ store.uid }}">
             <ion-img src="../../assets/img/alnatura.jpg"></ion-img>
             <ion-card-header>{{ store.storeName }}</ion-card-header>
           </ion-card>

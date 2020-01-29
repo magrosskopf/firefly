@@ -53,7 +53,7 @@ export class EarthService {
           '</li>' +
           '</ul>' +
           '</br>' +
-          '<ion-button href="/tabs/map/shop-detail/0WfSKft5onQ44wlYWlBqAisk2KJ2">' +
+          '<ion-button href="/tabs/shop/0WfSKft5onQ44wlYWlBqAisk2KJ2">' +
           'Zum Shop' +
           '</ion-button>'
       );

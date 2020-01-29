@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserInfoService } from '../../_services/user-info.service';
-import { Seller } from '../../_interfaces/seller';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { UserInfoService } from '../_services/user-info.service';
+import { Seller } from '../_interfaces/seller';
 
 @Component({
-  selector: 'app-detail-store',
-  templateUrl: './detail-store.page.html',
-  styleUrls: ['./detail-store.page.scss'],
+  selector: 'app-shop',
+  templateUrl: './shop.page.html',
+  styleUrls: ['./shop.page.scss'],
 })
-export class DetailStorePage implements OnInit {
+export class ShopPage implements OnInit {
 
   store: Seller = {
     adId: [],

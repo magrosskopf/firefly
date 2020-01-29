@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: MapPage
-  },
-  {
-    path: 'shop-detail/:id',
-    loadChildren: () => import('./shop-detail/shop-detail.module').then( m => m.ShopDetailPageModule)
   }
 ];
 

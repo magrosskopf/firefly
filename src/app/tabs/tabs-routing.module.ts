@@ -36,7 +36,25 @@ const routes: Routes = [
               import('../account/account.module').then(m => m.AccountPageModule)
           }
         ]
-      }
+      },
+      {
+        path: 'shop',
+        children: [
+          {
+            path: ':id',
+            loadChildren: () => import('../shop/shop.module').then( m => m.ShopPageModule)
+          }
+        ]
+      },
+      {
+        path: 'facts',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../facts/facts.module').then( m => m.FactsPageModule)
+          }
+        ]
+      },
     ]
   },
   {

@@ -11,7 +11,7 @@
       <ion-searchbar></ion-searchbar>
     </ion-col>
     <ion-col size="2">
-      <ion-img routerLink="facts" class="img_logo" src="../../assets/icon/firefly_icon.png"></ion-img>
+      <ion-img routerLink="/tabs/facts" class="img_logo" src="../../assets/icon/firefly_icon.png"></ion-img>
     </ion-col>
   </ion-row>
 
@@ -27,7 +27,7 @@
     <ion-row class="deals horizontal-scroll-wrapper" >
       <ion-col size="12">
         <div *ngFor="let deal of allDeals">
-          <ion-card routerLink="deal/{{ deal.id }}">
+          <ion-card routerLink="{{ deal.id }}">
             <ion-card-header>{{ deal.storeName }}</ion-card-header>
             <ion-img src="../../assets/angebote/zitronen.jpg"></ion-img>
             <ion-card-subtitle>
@@ -44,7 +44,7 @@
     <ion-row class="stores horizontal-scroll-wrapper">
       <ion-col size="12">
         <div *ngFor="let store of allStores">
-          <ion-card routerLink="store/{{ store.storeId }}">
+          <ion-card routerLink="/tabs/shop/{{ store.storeId }}">
             <ion-img src="../../assets/angebote/nudeln_angebot.jpg"></ion-img>
             <ion-card-header>{{ store.storeName }}</ion-card-header>
           </ion-card>

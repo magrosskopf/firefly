@@ -87,7 +87,7 @@ export class AuthenticationService {
   setLocalUser(user: User) {
 
     console.log(user.displayName);
-    
+
     this.user.displayName = user.displayName === undefined ? this.user.displayName : user.displayName;
     this.user.email = user.email === undefined ? this.user.email : user.email;
     this.user.password = user.password === undefined ? this.user.password : user.password;
@@ -110,10 +110,10 @@ export class AuthenticationService {
 
       user.updateProfile({
         displayName: this.user.displayName
-      }).then(() => {
-        console.log(user);
-      }).catch((error) => {
-        console.log('Update des Profiles nicht erfolgreich.');
+      });
+
+      this.afDB.collection('roles').doc(user.uid).set({
+        role: kategory
       });
 
       if (kategory === 'customer') {
@@ -121,13 +121,8 @@ export class AuthenticationService {
         this.afDB.collection('customer').doc(user.uid).set({
             discoveredStores: [''],
             favStores: [''],
-            history: ['']
-          })
-          .then(() => {
-            console.log('Document successfully written!');
-          })
-          .catch((error) => {
-            console.error('Error writing document: ', error);
+            history: [''],
+            points: 0
           });
 
       } else if (kategory === 'salesperson') {
@@ -151,17 +146,12 @@ export class AuthenticationService {
             lat: this.user.lat,
             lng: this.user.lng,
             uid: this.afAuth.auth.currentUser.uid
-          })
-          .then(() => {
-            console.log('Document successfully written!');
-          })
-          .catch((error) => {
-            console.error('Error writing document: ', error);
           });
 
       } else {
         console.log('Die Kategory hat nicht überein gestimmt.');
       }
+      console.log('Added new User');
     }
   }
 }

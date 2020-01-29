@@ -7,17 +7,17 @@
 
 <ion-content>
 
-  <ion-fab vertical="bottom" id="setPosition" horizontal="end" slot="fixed">
+  <ion-fab *ngIf="role === 'customer'" vertical="bottom" id="setPosition" horizontal="end" slot="fixed">
     <ion-fab-button>
-      <ion-icon name="qr-scanner" routerLink="/qr-code"></ion-icon>
+      <ion-icon id="qr-icon" name="qr-scanner" routerLink="/qr-code"></ion-icon>
     </ion-fab-button>
   </ion-fab>
   
-   <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab *ngIf="role === 'salesperson'" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="create">
       <ion-icon id="add-icon" name="add"></ion-icon>
     </ion-fab-button>
-  </ion-fab> -->
+  </ion-fab>
 
   <ion-row>
     <ion-col size="10">

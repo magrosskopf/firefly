@@ -105,7 +105,7 @@
       </ion-row>
       -->
   </ion-grid>
-  <ion-fab vertical="bottom" id="setPosition" horizontal="end" slot="fixed">
+  <ion-fab *ngIf="role === 'customer'" vertical="bottom" id="setPosition" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon id="qr-icon" name="qr-scanner" routerLink="/qr-code"></ion-icon>
     </ion-fab-button>

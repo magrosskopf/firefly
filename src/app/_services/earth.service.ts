@@ -33,7 +33,6 @@ export class EarthService {
   follow = true;
 
   constructor(public router: Router, private geolocation: Geolocation) {
-    
   }
 
   initMap(list: any[], favs: any[], lat, long): void {
@@ -41,29 +40,29 @@ export class EarthService {
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19
     });
-    var marker = new L.marker([lat,long], {icon: this.personIcon}).addTo(this.map);
+    const marker = new L.marker([lat, long], {icon: this.personIcon}).addTo(this.map);
     const watch = this.geolocation.watchPosition();
     watch.subscribe(data => {
       if (this.follow) {
-        this.setPosition(data.coords.latitude, data.coords.longitude)
+        this.setPosition(data.coords.latitude, data.coords.longitude);
       }
-      var lat = data.coords.latitude;
-      var lng = data.coords.longitude;
-      var newLatLng = new L.LatLng(lat, lng);
-      marker.setLatLng(newLatLng); 
+      lat = data.coords.latitude;
+      long = data.coords.longitude;
+      const newLatLng = new L.LatLng(lat, long);
+      marker.setLatLng(newLatLng);
     });
     this.addMarker(list);
     tiles.addTo(this.map);
     document.getElementById('map').addEventListener('click', () => {
       this.follow = false;
       console.log(this.follow);
-      
-    })
+    });
   }
 
   addMarker(markerList: any[]) {
     markerList.forEach(element => {
-      const marker = new L.marker([element.lat, element.lng === undefined ? element.long : element.lng], {icon: this.greenIcon}).addTo(this.map)
+      const marker = new L.marker([element.lat, element.lng === undefined ? element.long : element.lng], {icon: this.greenIcon})
+      .addTo(this.map)
       .bindPopup(
           '<img src="' + element.imgUrl + '" width="100%" alt="shop_image" />' +
           '<a href="/tabs/map/shop-detail/0WfSKft5onQ44wlYWlBqAisk2KJ2">' +
@@ -78,6 +77,7 @@ export class EarthService {
           '</ion-col>' +
           '</ion-row>' +
           '</a>' +
+          // tslint:disable-next-line:max-line-length
           '<style> #map .leaflet-popup-content-wrapper { background:#FFA462; color:#fff !important; font-size:16px; line-height:24px;} #map h2 { color: #fff; text-align: right;} #map ion-icon {margin-top: 8px; color: white;} </style>'
       );
     });
@@ -86,7 +86,6 @@ export class EarthService {
   setPosition(lat, long) {
     this.follow = true;
     this.map.panTo(new L.LatLng(lat, long));
-   
   }
 
   openShop(id) {

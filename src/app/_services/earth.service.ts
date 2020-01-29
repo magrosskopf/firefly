@@ -63,7 +63,7 @@ export class EarthService {
 
   addMarker(markerList: any[]) {
     markerList.forEach(element => {
-      const marker = new L.marker([element.lat, element.long], {icon: this.greenIcon}).addTo(this.map)
+      const marker = new L.marker([element.lat, element.lng === undefined ? element.long : element.lng], {icon: this.greenIcon}).addTo(this.map)
       .bindPopup(
           '<img src="' + element.imgUrl + '" width="100%" alt="shop_image" />' +
           '<a href="/tabs/map/shop-detail/0WfSKft5onQ44wlYWlBqAisk2KJ2">' +

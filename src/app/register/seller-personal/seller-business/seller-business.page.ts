@@ -14,7 +14,9 @@ export class SellerBusinessPage implements OnInit {
     storeName: '',
     adress: '',
     zip: '',
-    city: ''
+    city: '',
+    lat: null,
+    lng: null
   };
 
   constructor( public authentication: AuthenticationService ) { }
@@ -29,6 +31,8 @@ export class SellerBusinessPage implements OnInit {
     this.user.adress = infos.adress;
     this.user.zip = infos.zip;
     this.user.city = infos.city;
+    this.user.lat = infos.lat;
+    this.user.lng = infos.lng;
 
     console.log(this.user);
     this.authentication.setLocalUser(this.user);

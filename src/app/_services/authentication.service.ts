@@ -10,18 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
-  user: User = {
-    uid: '',
-    displayName: '',
-    email: '',
-    password: '',
-    confirm: '',
-    storeName: '',
-    adress: '',
-    zip: '',
-    city: '',
-    photoURL: ''
-  };
+  user: User;
 
   uid: string;
 
@@ -31,12 +20,26 @@ export class AuthenticationService {
     public router: Router,
     public toastController: ToastController
   ) {
+    this.user  = {
+      uid: '',
+      displayName: '',
+      email: '',
+      password: '',
+      confirm: '',
+      storeName: '',
+      adress: '',
+      zip: '',
+      city: '',
+      photoURL: '',
+      lat: null,
+      lng: null
+    };
     this.setUser();
   }
 
   setUser() {
     this.afAuth.user.subscribe(data => {
-      this.user = data;
+      // this.user = data;
       this.uid = data.uid;
     });
   }
@@ -74,10 +77,17 @@ export class AuthenticationService {
       console.error('Passwörter stimmen nicht überein.');
     } else {
       this.afAuth.auth.createUserWithEmailAndPassword(this.user.email, this.user.password).catch(error => console.log(error));
+      setTimeout(() => {
+        this.login(this.user.email, this.user.password);
+        this.router.navigateByUrl('/tabs/map');
+      }, 2000);
     }
   }
 
   setLocalUser(user: User) {
+
+    console.log(user.displayName);
+    
     this.user.displayName = user.displayName === undefined ? this.user.displayName : user.displayName;
     this.user.email = user.email === undefined ? this.user.email : user.email;
     this.user.password = user.password === undefined ? this.user.password : user.password;
@@ -86,6 +96,9 @@ export class AuthenticationService {
     this.user.adress = user.adress === undefined ? this.user.adress : user.adress;
     this.user.zip = user.zip === undefined ? this.user.zip : user.zip;
     this.user.city = user.city === undefined ? this.user.city : user.city;
+    this.user.lat = user.lat === undefined ? this.user.lat : user.lat;
+    this.user.lng = user.lng === undefined ? this.user.lng : user.lng;
+    console.log(user);
     console.log(this.user);
   }
 
@@ -134,7 +147,9 @@ export class AuthenticationService {
             imgUrl: '',
             qrCode: '',
             toGoodToGoActive: [''],
-            toGoodToGoHistory: ['']
+            toGoodToGoHistory: [''],
+            lat: this.user.lat,
+            lng: this.user.lng
           })
           .then(() => {
             console.log('Document successfully written!');

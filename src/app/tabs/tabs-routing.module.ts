@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
   {
@@ -35,7 +36,9 @@ const routes: Routes = [
             loadChildren: () =>
               import('../account/account.module').then(m => m.AccountPageModule)
           }
-        ]
+        ], 
+        canActivate: [AngularFireAuthGuard]
+
       }
     ]
   },

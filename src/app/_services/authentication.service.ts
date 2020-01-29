@@ -32,7 +32,16 @@ export class AuthenticationService {
       city: '',
       photoURL: '',
       lat: null,
-      lng: null
+      lng: null,
+      opening: {
+        mo: [null, null],
+        di: [null, null],
+        mi: [null, null],
+        do: [null, null],
+        fr: [null, null],
+        sa: [null, null],
+        so: [null, null]
+    }
     };
     this.setUser();
   }
@@ -80,13 +89,13 @@ export class AuthenticationService {
       setTimeout(() => {
         this.login(this.user.email, this.user.password);
         this.router.navigateByUrl('/tabs/map');
-      }, 2000);
+      }, 1000);
     }
   }
 
   setLocalUser(user: User) {
 
-    console.log(user.displayName);
+    console.log(user);
     
     this.user.displayName = user.displayName === undefined ? this.user.displayName : user.displayName;
     this.user.email = user.email === undefined ? this.user.email : user.email;
@@ -98,8 +107,8 @@ export class AuthenticationService {
     this.user.city = user.city === undefined ? this.user.city : user.city;
     this.user.lat = user.lat === undefined ? this.user.lat : user.lat;
     this.user.lng = user.lng === undefined ? this.user.lng : user.lng;
-    console.log(user);
-    console.log(this.user);
+    this.user.opening = user.opening === undefined ? this.user.opening : user.opening;
+  
   }
 
   initUserData(kategory) {
@@ -150,7 +159,8 @@ export class AuthenticationService {
             toGoodToGoHistory: [''],
             lat: this.user.lat,
             lng: this.user.lng,
-            uid: this.afAuth.auth.currentUser.uid
+            uid: this.afAuth.auth.currentUser.uid,
+            opening: this.user.opening
           })
           .then(() => {
             console.log('Document successfully written!');

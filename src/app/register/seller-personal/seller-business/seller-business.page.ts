@@ -16,7 +16,16 @@ export class SellerBusinessPage implements OnInit {
     zip: '',
     city: '',
     lat: null,
-    lng: null
+    lng: null,
+    opening: {
+      mo: [null, null],
+      di: [null, null],
+      mi: [null, null],
+      do: [null, null],
+      fr: [null, null],
+      sa: [null, null],
+      so: [null, null]
+    }
   };
 
   constructor( public authentication: AuthenticationService ) { }
@@ -26,13 +35,23 @@ export class SellerBusinessPage implements OnInit {
 
   onSubmit(form: NgForm) {
     const infos = form.value;
-
     this.user.storeName = infos.storeName;
     this.user.adress = infos.adress;
     this.user.zip = infos.zip;
     this.user.city = infos.city;
     this.user.lat = infos.lat;
     this.user.lng = infos.lng;
+    this.user.opening = {
+      mo: [infos.mo, infos.mo_end],
+      di: [infos.di, infos.di_end],
+      mi: [infos.mi, infos.mi_end],
+      do: [infos.do, infos.do_end],
+      fr: [infos.fr, infos.fr_end],
+      sa: [infos.sa, infos.sa_end],
+      so: [infos.so, infos.so_end]
+    }
+    
+    
 
     console.log(this.user);
     this.authentication.setLocalUser(this.user);

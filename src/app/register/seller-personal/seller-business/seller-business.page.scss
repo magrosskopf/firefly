@@ -17,3 +17,13 @@ ion-header {
 ion-content {
   background-image: linear-gradient(to right, rgb(255, 241, 226), rgb(255, 225, 204)) !important;
 }
+
+.öff ion-input {
+  text-align: center;
+}
+
+.öff ion-item ion-input{
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+}

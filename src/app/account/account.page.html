@@ -38,48 +38,14 @@
       </ion-col>
     </ion-row>
     <ion-footer>
-      <ion-row class="stores ion-justify-content-between">
-        <ion-col>
-          <ion-list>
-            <ion-list-header>
-              Lieblingsläden
-            </ion-list-header>
-            <ion-item *ngFor="let favstore of personalInfo.favStores" lines="none">
-              {{ favstore }}
-            </ion-item>
-          </ion-list>
-        </ion-col>
-        <ion-icon expand="block" name="create"></ion-icon>
-      </ion-row>
+      <ion-list-header>Lieblingsläden</ion-list-header>
       <ion-row class="favourite-stores horizontal-scroll-wrapper">
-        <ion-card>
-          <ion-img src="../../assets/img/alnatura.jpg"></ion-img>
-          <ion-card-header>Alnatura Bio Super Markt</ion-card-header>
-        </ion-card>
-        <ion-card>
-          <ion-img src="../../assets/img/annas_laden.jpeg"></ion-img>
-          <ion-card-header>Annas – natürlich nachhaltig</ion-card-header>
-        </ion-card>
-        <ion-card>
-          <ion-img src="../../assets/img/denns_bionmarkt.jpg"></ion-img>
-          <ion-card-header>Denn's BIOMARKT</ion-card-header>
-        </ion-card>
-        <ion-card>
-          <ion-img src="../../assets/img/heinrich_hof.jpg"></ion-img>
-          <ion-card-header>Heinrich Hof – der Hofladen</ion-card-header>
-        </ion-card>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-list>
-            <ion-list-header>
-              Entdeckte Läden
-            </ion-list-header>
-            <ion-item *ngFor="let favstore of personalInfo.favStores" lines="none">
-              {{ favstore }}
-            </ion-item>
-          </ion-list>
-        </ion-col>
+        <div *ngFor="let store of seller">
+          <ion-card>
+            <ion-img src="../../assets/img/alnatura.jpg"></ion-img>
+            <ion-card-header>{{ store.storeName }}</ion-card-header>
+          </ion-card>
+        </div>
       </ion-row>
     </ion-footer>
 

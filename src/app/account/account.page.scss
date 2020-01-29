@@ -68,7 +68,6 @@ ion-col {
   margin-bottom: -70px;
 }
 
-
 .horizontal-scroll-wrapper {
   transform:rotate(-90deg) translateY(-150px);
   transform-origin: right top;
@@ -78,8 +77,7 @@ ion-col {
   overflow-x: hidden;
 }
 
-
-.horizontal-scroll-wrapper > ion-card {
+.horizontal-scroll-wrapper ion-card {
   transform: rotate(90deg);
   transform-origin: right top;
 }

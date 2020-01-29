@@ -45,11 +45,8 @@
       <ion-col size="12">
         <div *ngFor="let store of allStores">
           <ion-card routerLink="store/{{ store.storeId }}">
-            <ion-card-header>{{ store.storeName }}</ion-card-header>
             <ion-img src="../../assets/angebote/nudeln_angebot.jpg"></ion-img>
-            <ion-card-subtitle>
-              <p>{{ store.description }}</p>
-            </ion-card-subtitle>
+            <ion-card-header>{{ store.storeName }}</ion-card-header>
           </ion-card>
         </div>
       </ion-col>

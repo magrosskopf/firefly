@@ -149,7 +149,8 @@ export class AuthenticationService {
             toGoodToGoActive: [''],
             toGoodToGoHistory: [''],
             lat: this.user.lat,
-            lng: this.user.lng
+            lng: this.user.lng,
+            uid: this.afAuth.auth.currentUser.uid
           })
           .then(() => {
             console.log('Document successfully written!');

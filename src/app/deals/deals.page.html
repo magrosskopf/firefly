@@ -44,7 +44,7 @@
     <ion-row class="stores horizontal-scroll-wrapper">
       <ion-col size="12">
         <div *ngFor="let store of allStores">
-          <ion-card routerLink="/tabs/shop/{{ store.storeId }}">
+          <ion-card routerLink="/tabs/shop/{{ store.uid }}">
             <ion-img src="../../assets/angebote/nudeln_angebot.jpg"></ion-img>
             <ion-card-header>{{ store.storeName }}</ion-card-header>
           </ion-card>

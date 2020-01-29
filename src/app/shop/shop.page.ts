@@ -12,6 +12,7 @@ import { Seller } from '../_interfaces/seller';
 export class ShopPage implements OnInit {
 
   store: Seller = {
+    uid: '',
     adId: [],
     adress: '',
     buyingUsers24: [],
@@ -37,7 +38,6 @@ export class ShopPage implements OnInit {
     this.userService.getSellerDataFromFirestore(pathId)
     .subscribe(data => {
       this.store = data;
-      this.storeId = pathId;
     });
 
     this.userService.getPersonalDataFromFirestore(this.userId, 'customer')

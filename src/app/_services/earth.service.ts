@@ -107,12 +107,10 @@ export class EarthService {
   setPosition(lat, long) {
     this.follow = true;
     this.map.panTo(new L.LatLng(lat, long));
-   
   }
 
   openShop(id) {
     console.log(id);
-
     this.router.navigateByUrl('/shop-detail');
   }
 }

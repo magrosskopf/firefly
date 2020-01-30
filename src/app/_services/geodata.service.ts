@@ -59,8 +59,6 @@ export class GeodataService {
     let stop = true;
     this.geofence.forEach(el => {
       num = (Math.pow(Math.pow(this.lat - el.lat, 2), 0.5) + Math.pow(Math.pow(this.long - el.lng, 2), 0.5));
-      console.log(num, el.lat, this.lat, el.lng, this.long);
-      
       if (num < 0.001 && stop) {
         this.passedShop = el;
         this.passedGeofence = true;

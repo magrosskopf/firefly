@@ -57,8 +57,6 @@ export class EarthService {
       var newLatLng = new L.LatLng(this.lat, this.lng);
       marker.setLatLng(newLatLng); 
       this.circle.setLatLng(newLatLng)
-      console.log(this.circle.toGeoJSON());
-      
     });
     this.addMarker(list);
     tiles.addTo(this.map);

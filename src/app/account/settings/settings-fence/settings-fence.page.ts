@@ -41,7 +41,6 @@ export class SettingsFencePage implements OnInit {
 
   drawCircle() {
     this.earth.changeCircle(this.sliderrange, this.latitude, this.longitude);
-    
   }
 
   updateHomefence() {

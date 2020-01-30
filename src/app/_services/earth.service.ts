@@ -40,12 +40,11 @@ export class EarthService {
     
   }
 
-  initMap(list: any[], lat, long, map): void {
+  initMap(list: any[], lat, long, map: string): void {
     this.map = L.map(map).setView([lat, long], 8);
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19
     });
-    
 
     let marker = new L.marker([lat,long], {icon: this.personIcon}).addTo(this.map);
     const watch = this.geolocation.watchPosition();
@@ -74,7 +73,7 @@ export class EarthService {
 
   addMarker(markerList: any[]) {
     markerList.forEach(element => {
-      const marker = new L.marker([element.lat, element.long], {icon: this.greenIcon}).addTo(this.map)
+      const marker = new L.marker([element.lat, element.lng], {icon: this.greenIcon}).addTo(this.map)
       .bindPopup(
           '<img src="' + element.imgUrl + '" width="100%" alt="shop_image" />' +
           '<a href="/tabs/map/shop-detail/0WfSKft5onQ44wlYWlBqAisk2KJ2">' +
@@ -101,6 +100,12 @@ export class EarthService {
 
   changeCircle(radius: number, lat?, lng?) {
     this.circle.setRadius(radius);
+  }
+
+  getCircle(): any {
+    console.log(this.circle.toGeoJSON());
+    
+    return this.circle.toGeoJSON();
   }
 
 

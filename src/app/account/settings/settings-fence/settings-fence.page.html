@@ -9,32 +9,38 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <h3>Mein Homefence / Standort</h3>
+      <h3 >Mein Homefence / Standort</h3>
     </ion-row>
     <ion-row>
-      <div class="map-container">
-        <ion-icon name="pin"></ion-icon>
-        <div class="map-frame">
+      <!-- <div class="map-container">
+        <ion-icon name="pin"></ion-icon> -->
+        <!-- <div class="map-frame">
           <div id="map">
             <img src="../../../../assets/img/map.png" alt="map"/>
           </div>
+        </div> -->
+        <div class="map-container1">
+          <div class="map-frame1">
+            <div id="map1">
+            </div>
+          </div>
         </div>
-      </div>
+      <!-- </div> -->
     </ion-row>
-    <ion-row>
+    <ion-row class="m5 pt-5">
       <ion-col size="5">
-        <h4>Adresse</h4>
-        <p>Gartenweg 2</p>
-        <p>Mosbach</p>
+        <h4 (click)="earth.getCircle()">Adresse</h4>
+        <p>Oberer Mühlenweg 2-6</p>
+        <p>74821 Mosbach</p>
       </ion-col>
       <ion-col size="7" class="set-radius">
         <h4>Umkreis anpassen</h4>
         <ion-row justify-content-between align-items-center>
           <ion-col size="7">
-            <ion-range min="0" max="30" [(ngModel)]="sliderrange"></ion-range>
+            <ion-range min="0" max="30" (ngModelChange)="drawCircle()" [(ngModel)]="sliderrange"></ion-range>
           </ion-col>
           <ion-col size="5">
-            <span type="text" id="radius" value="pin">{{sliderrange}} km</span>
+            <span type="text" id="radius"  value="pin">{{sliderrange}} km</span>
           </ion-col>
         </ion-row>
       </ion-col>

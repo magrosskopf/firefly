@@ -1,10 +1,14 @@
-@import "../../../global.scss";
-@import "../../../theme/variables.scss";
+@import "../../global.scss";
+@import "../../theme/variables.scss";
 
 
 p {
   font-weight: 300;
 }
+
+h3 {
+  padding-left: 17px;
+ }
 
 ion-header{
   padding: 40px 0;
@@ -53,5 +57,40 @@ ion-content{
     height: 50px;
     width: 50px;
   }
+}
+
+.stores ion-card {
+  background-color: white;
+  width: 150px;
+  height: 150px;
+  margin: 0 0 10px 0;
+  top: 15px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px 0;
+  ion-card-header {
+      padding: 5px;
+      text-align: center;
+      height: auto;
+  }
+  ion-img{
+      height: 88px;
+      object-fit: cover;
+  }
+}
+
+.stores {
+  margin-bottom: -70px;
+}
+
+.horizontal-scroll-wrapper {
+  transform:rotate(-90deg) translateY(-150px);
+  transform-origin: right top;
+  width: 150px;
+  height: 358px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sc-ion-card-ios-h{
+  transform:rotate(90deg)
 }
 

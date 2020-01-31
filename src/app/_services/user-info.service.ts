@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { PersonalInfo } from '../_interfaces/personal-info';
 import { ToastController } from '@ionic/angular';
 import { Seller } from '../_interfaces/seller';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
 
 
 @Injectable({
@@ -19,16 +21,12 @@ export class UserInfoService {
 
   constructor(public authentication: AuthenticationService,
               public db: AngularFirestore,
+              public afAuth: AngularFireAuth,
               public toastController: ToastController) {
-
   }
 
   updateNameAndPhoto(name, url) {
-    this.user = this.authentication.afAuth.auth.currentUser;
-    
     if (this.user) {
-      console.log(url);
-
       this.user.updateProfile({
         displayName: name,
         photoURL: url
@@ -38,13 +36,11 @@ export class UserInfoService {
       }).catch(error => {
         console.log('Update failed');
         this.presentToast(error);
-
       });
     } else {
       console.log('no user');
-      
     }
-   }
+  }
 
   updateEmail(email) {
     this.user.updateEmail(email).then(success => {
@@ -62,10 +58,21 @@ export class UserInfoService {
   }
 
   getPersonalDataFromFirestore(uid: string, type: string): Observable<PersonalInfo> {
-    // tslint:disable-next-line:max-line-length
-    console.log(uid, type);
-
     return this.db.doc<PersonalInfo>(type + '/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
+  }
+
+  changePersonalFavStore(uid: string, storeId: string, favStore: boolean) {
+    const userRef = this.db.collection('customer').doc(uid);
+
+    if (favStore) {
+      userRef.update({
+        favStores: firebase.firestore.FieldValue.arrayUnion(storeId)
+      });
+    } else {
+      userRef.update({
+        favStores: firebase.firestore.FieldValue.arrayRemove(storeId)
+      });
+    }
   }
 
   updatePersonalDataFromFirestore(uid: string, item: PersonalInfo) {
@@ -73,7 +80,6 @@ export class UserInfoService {
   }
 
   getSellerDataFromFirestore(uid: string): Observable<Seller> {
-    // tslint:disable-next-line:max-line-length
    return this.db.doc<any>('salesperson/' + uid ).valueChanges();
   }
 
@@ -82,8 +88,7 @@ export class UserInfoService {
   }
 
   updateSellerDataFromFirestore(uid: string, seller: Seller) {
-    // tslint:disable-next-line:max-line-length
-   this.db.doc<any>('salesperson/' + uid ).update(seller);
+    this.db.doc<any>('salesperson/' + uid ).update(seller);
   }
 
   updatePermissonTokenFirestore(token: string, uid: string) {

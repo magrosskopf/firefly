@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_services/authentication.service';
 import { UserInfoService } from '../_services/user-info.service';
 import { PersonalInfo } from '../_interfaces/personal-info';
-import { AngularFireMessaging } from '@angular/fire/messaging';
 import { NotificationService } from '../_services/notification.service';
-import { DealService } from '../_services/deal.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ImguploaderService } from '../_services/imguploader.service';
@@ -21,10 +19,12 @@ export class AccountPage implements OnInit {
   email: string;
   displayName: string;
   activeDeals = [];
+  seller = [];
+  favStores = false;
 
   constructor(
     private authentication: AuthenticationService,
-    private userInfo: UserInfoService,
+    private userService: UserInfoService,
     private afAuth: AngularFireAuth,
     private afDB: AngularFirestore,
     private notification: NotificationService,
@@ -36,34 +36,39 @@ export class AccountPage implements OnInit {
       history: [''],
       points: 0
     };
-    console.log(this.user);
-    
+
     this.email = '';
     this.displayName = '';
-    if (false) { // TODO: Set to true when needed for testing
-      this.userInfo.getPersonalDataFromFirestore('XAbffjv83Qca96mro0RXRYSlnys1', 'customer'); // TODO: durch User.Uid ersetzen
-      this.userInfo.userInfo.subscribe(data => {
+
+    this.userService.getPersonalDataFromFirestore(this.user.uid, 'customer')
+    .subscribe(data => {
       this.personalInfo = data;
-      console.log(data);
+      this.seller = [];
+      this.favStores = false;
+      this.personalInfo.favStores.forEach(element => {
+        this.userService.getSellerDataFromFirestore(element)
+        .subscribe( sellerData => {
+          this.seller.push(sellerData);
+          this.favStores = true;
+        });
+      });
     });
-    }
 
     this.getUserDeals();
-
   }
 
   ngOnInit() {}
 
   saveEmail(email) {
     if (this.email !== '') {
-      this.userInfo.updateEmail(email);
+      this.userService.updateEmail(email);
       this.email = '';
     }
   }
 
   saveNameAndPhoto() {
     if (this.displayName !== '') {
-      this.userInfo.updateNameAndPhoto(this.displayName, this.user.photoURL);
+      this.userService.updateNameAndPhoto(this.displayName, this.user.photoURL);
       this.displayName = '';
     }
   }
@@ -79,7 +84,6 @@ export class AccountPage implements OnInit {
       });
     });
   }
-
 
   sendNotification() {
     this.notification.enterFence();

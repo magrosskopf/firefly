@@ -148,6 +148,24 @@ ion-card {
   }
 }
 
+.stores ion-card {
+    background-color: white;
+    width: 150px;
+    height: 150px;
+    margin: 0 0 10px 0;
+    top: 15px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px 0;
+    ion-card-header {
+        padding: 5px;
+        text-align: center;
+        height: auto;
+    }
+    ion-img{
+        height: 115px;
+        object-fit: cover;
+    }
+}
+
 #add-icon {
   height: 50px;
   width: 50px;

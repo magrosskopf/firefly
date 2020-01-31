@@ -5,5 +5,8 @@ export interface Deal {
     active: boolean;
     picture?: string;
     location: string;
-    price: number;
+    afterPrice: number;
+    beforePrice: number;
+    id?: string;
+    storeName: string;
 }

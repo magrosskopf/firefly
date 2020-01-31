@@ -5,7 +5,7 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
@@ -36,10 +36,27 @@ const routes: Routes = [
             loadChildren: () =>
               import('../account/account.module').then(m => m.AccountPageModule)
           }
-        ], 
+        ],
         canActivate: [AngularFireAuthGuard]
-
-      }
+      },
+      {
+        path: 'shop',
+        children: [
+          {
+            path: ':id',
+            loadChildren: () => import('../shop/shop.module').then( m => m.ShopPageModule)
+          }
+        ]
+      },
+      {
+        path: 'facts',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../facts/facts.module').then( m => m.FactsPageModule)
+          }
+        ]
+      },
     ]
   },
   {

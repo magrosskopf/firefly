@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DealService } from '../_services/deal.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { UserInfoService } from '../_services/user-info.service';
 
 @Component({
   selector: 'app-deals',
@@ -11,25 +12,31 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class DealsPage implements OnInit {
 
   allDeals = [];
+  allStores = [];
+  dealsLoaded = false;
+  storesLoaded = false;
 
   constructor(
-    public dealService: DealService,
     public afAuth: AngularFireAuth,
-    public afDB: AngularFirestore
-  ) { }
+    public afDB: AngularFirestore,
+    public dealService: DealService,
+    public userService: UserInfoService
+  ) {
+
+    this.dealService.getAllDealsFromFirestore()
+    .subscribe(data => {
+      this.allDeals = data;
+      this.dealsLoaded = true;
+    });
+
+    this.userService.getAllSellerFromFirestore()
+    .subscribe(data => {
+      this.allStores = data;
+      this.storesLoaded = true;
+    });
+
+  }
 
   ngOnInit() {
-    this.getUserDeals();
   }
-
-  getUserDeals() {
-    this.afDB.collection('deals').ref
-    .onSnapshot((querySnapshot) => {
-      this.allDeals = [];
-      querySnapshot.forEach((doc) => {
-        this.allDeals.push(doc.data());
-      });
-    });
-  }
-
 }

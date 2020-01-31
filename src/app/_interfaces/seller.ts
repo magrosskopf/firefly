@@ -1,5 +1,6 @@
 export interface Seller {
-    adId: string;
+    uid: string;
+    adId: string[];
     adress: string;
     buyingUsers24: string[];
     categoryId: string;

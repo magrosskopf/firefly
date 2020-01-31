@@ -16,18 +16,24 @@ export class DetailDealPage implements OnInit {
     description: '',
     active: true,
     location: '',
-    price: 0
+    afterPrice: 0,
+    beforePrice: 0,
+    storeName: ''
   };
 
-  constructor(private router: Router, public dealService: DealService) {}
+  constructor(private router: Router, public dealService: DealService) {
 
-  ngOnInit() {
     const pathArray = this.router.url.split('/');
     const pathId = pathArray[pathArray.length - 1];
 
-    this.dealService.getDeal(pathId).then((data) => {
+    this.dealService.getDealFromFirestore(pathId)
+    .subscribe((data) => {
       this.deal = data;
     });
+
+  }
+
+  ngOnInit() {
   }
 
 }

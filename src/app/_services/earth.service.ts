@@ -37,7 +37,6 @@ export class EarthService {
   lng = 0;
 
   constructor(public router: Router, private geolocation: Geolocation) {
-    
   }
 
   initMap(list: any[], lat, long, map: string): void {
@@ -46,25 +45,24 @@ export class EarthService {
       maxZoom: 19
     });
 
-    let marker = new L.marker([lat,long], {icon: this.personIcon}).addTo(this.map);
+    const marker = new L.marker([lat, long], {icon: this.personIcon}).addTo(this.map);
     const watch = this.geolocation.watchPosition();
     watch.subscribe(data => {
       if (this.follow) {
-        this.setPosition(data.coords.latitude, data.coords.longitude)
+        this.setPosition(data.coords.latitude, data.coords.longitude);
       }
       this.lat = data.coords.latitude;
       this.lng = data.coords.longitude;
-      var newLatLng = new L.LatLng(this.lat, this.lng);
-      marker.setLatLng(newLatLng); 
-      this.circle.setLatLng(newLatLng)
+      const newLatLng = new L.LatLng(this.lat, this.lng);
+      marker.setLatLng(newLatLng);
+      this.circle.setLatLng(newLatLng);
     });
     this.addMarker(list);
     tiles.addTo(this.map);
     document.getElementById('map').addEventListener('click', () => {
       this.follow = false;
       console.log(this.follow);
-      
-    })
+    });
 
 
   }
@@ -86,14 +84,14 @@ export class EarthService {
           '</ion-col>' +
           '</ion-row>' +
           '</a>' +
+          // tslint:disable-next-line:max-line-length
           '<style> #map .leaflet-popup-content-wrapper { background:#FFA462; color:#fff !important; font-size:16px; line-height:24px;} #map h2 { color: #fff; text-align: right;} #map ion-icon {margin-top: 8px; color: white;} </style>'
       );
     });
   }
 
   drawCircle(radius: number, lat, lng) {
-   this.circle = new L.circleMarker([lat, lng], {radius: radius, color: '#ff0314'}).addTo(this.map);
-    
+   this.circle = new L.circleMarker([lat, lng], {radius, color: '#ff0314'}).addTo(this.map);
   }
 
   changeCircle(radius: number, lat?, lng?) {
@@ -101,8 +99,6 @@ export class EarthService {
   }
 
   getCircle(): any {
-    console.log(this.circle.toGeoJSON());
-    
     return this.circle.toGeoJSON();
   }
 
@@ -113,7 +109,6 @@ export class EarthService {
   }
 
   openShop(id) {
-    console.log(id);
     this.router.navigateByUrl('/shop-detail');
   }
 }

@@ -65,7 +65,6 @@ export class NotificationService {
     toast.present();
   }
 
-
   requestPermission(uid) {
     this.afMessaging.requestPermission
       .pipe(mergeMapTo(this.afMessaging.tokenChanges))

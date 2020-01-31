@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
 
   user: User;
-
   uid: string;
 
   constructor(
@@ -41,17 +40,19 @@ export class AuthenticationService {
         fr: [null, null],
         sa: [null, null],
         so: [null, null]
-    }
+      }
     };
-    this.setUser();
+    // this.setUser();
   }
 
-  setUser() {
-    this.afAuth.user.subscribe(data => {
-      // this.user = data;
-      this.uid = data.uid;
-    });
-  }
+  // setUser() {
+  //   if (this.afAuth.user) {
+  //     this.afAuth.user.subscribe(data => {
+  //       // this.user = data;
+  //       this.uid = data.uid;
+  //     });
+  //   }
+  // }
 
    login(email, password) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(error => {

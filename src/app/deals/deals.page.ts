@@ -15,7 +15,7 @@ export class DealsPage implements OnInit {
   allDeals = [];
   allStores = [];
   dealsLoaded = false;
-  storesLoaded = true;
+  storesLoaded = false;
 
   constructor(
     public afAuth: AngularFireAuth,

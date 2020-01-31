@@ -33,6 +33,24 @@
       </ion-col>
       <ion-col size="8">Öffnungszeiten: Montag bis Freitag von 08:00 bis 17:30 Uhr</ion-col>
     </ion-row>
+
+    <div *ngIf="dealsLoaded">
+      <h3>Angebote</h3>
+  
+      <ion-row class="stores horizontal-scroll-wrapper" >
+        <ion-col size="12">
+          <div *ngFor="let deal of allDeals">
+            <ion-card routerLink="{{ deal.id }}">
+              <ion-img src="../../assets/angebote/zitronen.jpg"></ion-img>
+              <ion-card-subtitle>
+                <p>{{ deal.title }}</p>
+                <p>{{ deal.afterPrice.toFixed(2) }}€ statt <s>{{ deal.beforePrice.toFixed(2) }}€</s></p>
+              </ion-card-subtitle>
+            </ion-card>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
   </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

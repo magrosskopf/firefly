@@ -27,7 +27,7 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard]
   },
   {
-    path: '**', redirectTo: 'tab'
+    path: '**', redirectTo: 'tabs'
   }
 ];
 

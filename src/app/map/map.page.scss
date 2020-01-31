@@ -7,6 +7,10 @@ ion-header {
   height: 100px;
 }
 
+ion-fab-button {
+  overflow: visible !important;
+}
+
 .ion-activatable {
   position: relative;
   overflow: hidden;

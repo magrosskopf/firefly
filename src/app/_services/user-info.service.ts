@@ -20,7 +20,7 @@ export class UserInfoService {
 
 
   constructor(public authentication: AuthenticationService,
-              public db: AngularFirestore,
+              public afDB: AngularFirestore,
               public afAuth: AngularFireAuth,
               public toastController: ToastController) {
   }
@@ -58,11 +58,11 @@ export class UserInfoService {
   }
 
   getPersonalDataFromFirestore(uid: string, type: string): Observable<PersonalInfo> {
-    return this.db.doc<PersonalInfo>(type + '/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
+    return this.afDB.doc<PersonalInfo>(type + '/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
   }
 
   changePersonalFavStore(uid: string, storeId: string, favStore: boolean) {
-    const userRef = this.db.collection('customer').doc(uid);
+    const userRef = this.afDB.collection('customer').doc(uid);
 
     if (favStore) {
       userRef.update({
@@ -76,40 +76,40 @@ export class UserInfoService {
   }
 
   updatePersonalDataFromFirestore(uid: string, item: PersonalInfo) {
-    this.db.doc<PersonalInfo>('customer/' + uid).update(item);
+    this.afDB.doc<PersonalInfo>('customer/' + uid).update(item);
   }
 
   getSellerDataFromFirestore(uid: string): Observable<Seller> {
-   return this.db.doc<any>('salesperson/' + uid ).valueChanges();
+   return this.afDB.doc<any>('salesperson/' + uid ).valueChanges();
   }
 
   getAllSellerFromFirestore(): Observable<Seller[]> {
-    return this.db.collection<Seller>('salesperson/').valueChanges();
+    return this.afDB.collection<Seller>('salesperson/').valueChanges();
   }
 
   updateSellerDataFromFirestore(uid: string, seller: Seller) {
-    this.db.doc<any>('salesperson/' + uid ).update(seller);
+    this.afDB.doc<any>('salesperson/' + uid ).update(seller);
   }
 
   updatePermissonTokenFirestore(token: string, uid: string) {
-    const itemRef = this.db.doc('customer/' + uid);
+    const itemRef = this.afDB.doc('customer/' + uid);
     itemRef.update({ notificationsToken: token});
   }
 
   deletePermissonTokenFirestore(uid: string) {
-    const itemRef = this.db.doc('customer/' + uid);
+    const itemRef = this.afDB.doc('customer/' + uid);
     itemRef.update({ notificationsToken: null});
   }
 
   getPermissonTokenFirestore(uid: string): any {
-    const item = this.db.doc<any>('customer/' + uid);
+    const item = this.afDB.doc<any>('customer/' + uid);
     item.valueChanges().subscribe(data => {
        this.nfToken = data.notificationsToken;
     });
   }
 
   getRoleFromFirestore(uid: string) {
-    return this.db.doc<any>('roles/' + uid).valueChanges();
+    return this.afDB.doc<any>('roles/' + uid).valueChanges();
   }
 
   async presentToast(msg) {

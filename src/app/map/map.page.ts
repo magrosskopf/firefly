@@ -48,6 +48,7 @@ export class MapPage {
   ) {
     this.userService.getRoleFromFirestore(this.user.uid)
     .subscribe(data => {
+      console.log(data.role);
       this.role = data.role;
     });
 

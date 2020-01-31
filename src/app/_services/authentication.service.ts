@@ -81,15 +81,13 @@ export class AuthenticationService {
 
   // Registrierung
 
-  register() {
+  async register() {
     if (this.user.password !== this.user.confirm) {
       console.error('Passwörter stimmen nicht überein.');
     } else {
       this.afAuth.auth.createUserWithEmailAndPassword(this.user.email, this.user.password).catch(error => console.log(error));
-      setTimeout(() => {
-        this.login(this.user.email, this.user.password);
-        this.router.navigateByUrl('/tabs/map');
-      }, 1000);
+      await this.login(this.user.email, this.user.password);
+      this.router.navigateByUrl('/tabs/map');
     }
   }
 

@@ -24,7 +24,6 @@ export class ImguploaderService {
    }
 
   pick() {
-    
     // this.filePicker.pickFile()
     //   .then(uri => {
     //     this.uploadFile(uri)
@@ -37,21 +36,20 @@ export class ImguploaderService {
     const filePath = path + '/' + name;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
-    console.log(file)
+    console.log(file);
     // observe percentage changes
     this.uploadPercentage = task.percentageChanges();
     // get notified when the download URL is available
     task.snapshotChanges().pipe(
-        finalize(() => {
-          this.downloadURL = fileRef.getDownloadURL();
-          this.downloadURL.subscribe(data => {
-            this.userinfo.updateNameAndPhoto(this.afAuth.auth.currentUser.displayName, data);
-          });
-        })
-     )
-    .subscribe(data => console.log(data))
+      finalize(() => {
+        this.downloadURL = fileRef.getDownloadURL();
+        this.downloadURL.subscribe(data => {
+          this.userinfo.updateNameAndPhoto(this.afAuth.auth.currentUser.displayName, data);
+        });
+      })
+    )
+    .subscribe(data => console.log(data));
 
-    
     // task.snapshotChanges().pipe(
     //   finalize(() => {
     //     this.downloadURL = fileRef.getDownloadURL();
@@ -60,7 +58,4 @@ export class ImguploaderService {
     // ).subscribe(data => { console.log(data);
     // })
   }
-
-
-
 }

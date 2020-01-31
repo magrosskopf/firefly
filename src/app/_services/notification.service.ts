@@ -5,7 +5,6 @@ import { mergeMapTo } from 'rxjs/operators';
 import { UserInfoService } from './user-info.service';
 import { BehaviorSubject } from 'rxjs';
 import { ToastController } from '@ionic/angular';
-import { FirebaseAuth } from '@angular/fire';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
@@ -71,11 +70,12 @@ export class NotificationService {
     this.afMessaging.requestPermission
       .pipe(mergeMapTo(this.afMessaging.tokenChanges))
       .subscribe(
-        // tslint:disable-next-line:max-line-length
-        (token) => { console.log('Permission granted! Save to the server!', token); this.userinfo.updatePermissonTokenFirestore(token, uid); },
+        (token) => {
+          console.log('Permission granted! Save to the server!', token);
+          this.userinfo.updatePermissonTokenFirestore(token, uid);
+        },
         (error) => { console.error(error); }
       );
-
   }
 
   listen() {

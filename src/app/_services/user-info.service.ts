@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { PersonalInfo } from '../_interfaces/personal-info';
 import { ToastController } from '@ionic/angular';
@@ -17,7 +17,6 @@ export class UserInfoService {
   user = this.authentication.afAuth.auth.currentUser;
   userInfo: Observable<PersonalInfo>;
   nfToken: string;
-
 
   constructor(public authentication: AuthenticationService,
               public afDB: AngularFirestore,
@@ -58,7 +57,7 @@ export class UserInfoService {
   }
 
   getPersonalDataFromFirestore(uid: string, type: string): Observable<PersonalInfo> {
-    return this.afDB.doc<PersonalInfo>(type + '/' + uid ).valueChanges(); //  TODO: Auskommentieren wenn gebraucht wird
+    return this.afDB.doc<PersonalInfo>(type + '/' + uid ).valueChanges();
   }
 
   changePersonalFavStore(uid: string, storeId: string, favStore: boolean) {

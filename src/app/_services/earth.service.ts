@@ -100,7 +100,6 @@ export class EarthService {
     return this.circle.toGeoJSON();
   }
 
-
   setPosition(lat, long) {
     this.follow = true;
     this.map.panTo(new L.LatLng(lat, long));

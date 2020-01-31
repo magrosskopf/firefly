@@ -18,5 +18,4 @@ export class SettingsPage implements OnInit {
   uploadFile(event, path, name) {
     this.imguploader.uploadFile(event, path, name);
   }
-
 }

@@ -38,7 +38,6 @@ export class DealService {
           adId: [...userDeals, docRef.id]
         });
       });
-
     });
   }
 

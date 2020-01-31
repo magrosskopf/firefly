@@ -31,7 +31,6 @@ export class SellerPersonalPage implements OnInit {
     this.user.confirm = infos.confirm;
     this.user.displayName = infos.firstName + ' ' + infos.lastName;
 
-    console.log(this.user);
     this.authentication.setLocalUser(this.user);
   }
 

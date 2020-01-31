@@ -13,7 +13,7 @@ export interface User {
     city?: string;
     lat?: number;
     lng?: number;
-    opening: {
+    opening?: {
         mo: [Time, Time],
         di: [Time, Time],
         mi: [Time, Time],

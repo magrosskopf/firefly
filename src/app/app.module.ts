@@ -26,6 +26,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { QRCodeModule } from 'angularx-qrcode';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -52,6 +53,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     AngularFireAuth,
     AngularFireFunctions,
     AngularFireAuthGuard,
+    AngularFireStorageModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]

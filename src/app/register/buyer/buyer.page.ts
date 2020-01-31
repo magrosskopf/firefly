@@ -15,7 +15,23 @@ export class BuyerPage implements OnInit {
     displayName: '',
     email: '',
     password: '',
-    confirm: ''
+    confirm: '',
+    photoURL: '',
+    storeName: '',
+    adress: '',
+    zip: '',
+    city: '',
+    lat: null,
+    lng: null,
+    opening: {
+        mo: [null, null],
+        di: [null, null],
+        mi: [null, null],
+        do: [null, null],
+        fr: [null, null],
+        sa: [null, null],
+        so: [null, null]
+    }
   };
 
   constructor( public authentication: AuthenticationService ) {

@@ -6,8 +6,8 @@
 
 <ion-content>
   <ion-row>
-    <ion-col class="d-flex flex-row justify-content-center">
-      <qrcode [qrdata]="myAngularxQrCode" [width]="500" [errorCorrectionLevel]="'L'"></qrcode>
+    <ion-col class="d-flex flex-row justify-content-center" id="qr">
+      <qrcode [qrdata]="myAngularxQrCode" [width]="400" [errorCorrectionLevel]="'L'"></qrcode>
     </ion-col>
   </ion-row>
   <ion-fab vertical="bottom" id="setPosition" horizontal="center" slot="fixed">

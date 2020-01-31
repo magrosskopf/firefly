@@ -28,10 +28,9 @@ export class SellerBusinessPage implements OnInit {
     }
   };
 
-  constructor( public authentication: AuthenticationService ) { }
+  constructor(public authentication: AuthenticationService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit(form: NgForm) {
     const infos = form.value;
@@ -49,9 +48,9 @@ export class SellerBusinessPage implements OnInit {
       fr: [infos.fr, infos.fr_end],
       sa: [infos.sa, infos.sa_end],
       so: [infos.so, infos.so_end]
-    }
-    
-    
+    };
+
+
 
     console.log(this.user);
     this.authentication.setLocalUser(this.user);

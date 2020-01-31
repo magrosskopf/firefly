@@ -21,5 +21,5 @@ export interface User {
         fr: [Time, Time],
         sa: [Time, Time],
         so: [Time, Time]
-    }
+    };
 }

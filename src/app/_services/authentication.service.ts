@@ -96,7 +96,7 @@ export class AuthenticationService {
   setLocalUser(user: User) {
 
     console.log(user);
-    
+
     this.user.displayName = user.displayName === undefined ? this.user.displayName : user.displayName;
     this.user.email = user.email === undefined ? this.user.email : user.email;
     this.user.password = user.password === undefined ? this.user.password : user.password;
@@ -108,7 +108,7 @@ export class AuthenticationService {
     this.user.lat = user.lat === undefined ? this.user.lat : user.lat;
     this.user.lng = user.lng === undefined ? this.user.lng : user.lng;
     this.user.opening = user.opening === undefined ? this.user.opening : user.opening;
-  
+
   }
 
   initUserData(kategory) {

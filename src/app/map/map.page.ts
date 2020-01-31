@@ -22,7 +22,7 @@ export class MapPage {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Access-Control-Allow-Origin':  'localhost:8100',
+      'Access-Control-Allow-Origin': 'localhost:8100',
       'Access-Control-Allow-Methods': 'POST',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Content-Type': 'application/json'
@@ -36,12 +36,14 @@ export class MapPage {
   uid;
   discoveredStoresApi = 'https://us-central1-firefly-5af90.cloudfunctions.net/getDiscoveredStores';
 
-  constructor(public afAuth: AngularFireAuth,
-              public router: Router,
-              private earth: EarthService,
-              public http: HttpClient,
-              public geodata: GeodataService,
-              public userInfo: UserInfoService) {
+  constructor(
+    public afAuth: AngularFireAuth,
+    public router: Router,
+    private earth: EarthService,
+    public http: HttpClient,
+    public geodata: GeodataService,
+    public userInfo: UserInfoService
+  ) {
 
     this.geodata.getGeolocation();
     this.latitude = this.geodata.lat;
@@ -66,11 +68,10 @@ export class MapPage {
     });
   }
 
-  ionViewDidEnter() {
-  }
+  ionViewDidEnter() {}
 
   setPosition() {
-    
+
     this.earth.setPosition(this.geodata.lat, this.geodata.long);
   }
 
@@ -84,11 +85,11 @@ export class MapPage {
 
 
 
-  getDiscoveredStores(userObs: Observable<PersonalInfo>) {
+  getDiscoveredStores(userObs: Observable < PersonalInfo > ) {
     userObs.subscribe(data => {
 
       this.personalInfo = data;
-       this.getStoreData();
+      this.getStoreData();
       // this.list = [
       //   {
       //     adId: ['',
@@ -141,41 +142,40 @@ export class MapPage {
 
   getStoreData() {
 
-    
 
-   
-      this.userInfo.getAllSellerFromFirestore().subscribe(data => {
-        data.forEach(element => {
-          if (element !== undefined) {
-            // this.list = data;
-            this.list.push(element);
-          }
-        })
-        this.earth.initMap(this.list, this.geodata.lat, this.geodata.long, 'map');
 
+
+    this.userInfo.getAllSellerFromFirestore().subscribe(data => {
+      data.forEach(element => {
+        if (element !== undefined) {
+          // this.list = data;
+          this.list.push(element);
+        }
       });
-      console.log(this.list);
-      
-     }
-     // this.personalInfo.discoveredStores.forEach(element => {
-    //   this.userInfo.getSellerDataFromFirestore(element).subscribe(data => {
-    //     if (data !== undefined) {
-    //       console.log(data);
+      this.earth.initMap(this.list, this.geodata.lat, this.geodata.long, 'map');
 
-    //       this.list.push(data);
-    //     }
+    });
+    console.log(this.list);
+
+  }
+  // this.personalInfo.discoveredStores.forEach(element => {
+  //   this.userInfo.getSellerDataFromFirestore(element).subscribe(data => {
+  //     if (data !== undefined) {
+  //       console.log(data);
+
+  //       this.list.push(data);
+  //     }
 
 
-    //   });
-    // });
-    // this.personalInfo.favStores.forEach(element => {
-    //   this.userInfo.getSellerDataFromFirestore(element).subscribe(data => {
-    //     if (data !== undefined) {
-    //       this.favs.push(data);
-    //     }
-    //   });
-    // });
- 
+  //   });
+  // });
+  // this.personalInfo.favStores.forEach(element => {
+  //   this.userInfo.getSellerDataFromFirestore(element).subscribe(data => {
+  //     if (data !== undefined) {
+  //       this.favs.push(data);
+  //     }
+  //   });
+  // });
 
 
 }

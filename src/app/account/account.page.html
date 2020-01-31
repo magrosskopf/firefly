@@ -14,7 +14,7 @@
     <ion-row>
       <ion-col>
         <ion-avatar (click)="uploadFile()">
-          <img src="../../assets/img/account_pic.jpg" alt="profile_pic"/>
+          <img src="{{ user.photoURL }}" alt="profile_pic"/>
         </ion-avatar>
         <ion-item lines="none">
           <ion-label position="floating" for="name"><b>{{ user.displayName }}</b></ion-label>

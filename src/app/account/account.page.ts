@@ -36,7 +36,8 @@ export class AccountPage implements OnInit {
       history: [''],
       points: 0
     };
-
+    console.log(this.user);
+    
     this.email = '';
     this.displayName = '';
     if (false) { // TODO: Set to true when needed for testing
@@ -58,10 +59,6 @@ export class AccountPage implements OnInit {
       this.userInfo.updateEmail(email);
       this.email = '';
     }
-  }
-
-  uploadFile() {
-    this.imguploader.pick();
   }
 
   saveNameAndPhoto() {

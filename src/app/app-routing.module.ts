@@ -4,12 +4,12 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'tab',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [AngularFireAuthGuard]
   },
   {
-    path: 'login',
+    path: '',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
@@ -29,7 +29,7 @@ const routes: Routes = [
 
   },
   {
-    path: '**', redirectTo: 'login'
+    path: '**', redirectTo: 'tab'
   }
 ];
 

@@ -29,6 +29,9 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { AngularFireStorageModule, AngularFireStorage } from '@angular/fire/storage';
 import { IOSFilePicker } from '@ionic-native/file-picker/ngx';
 
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -53,6 +56,7 @@ import { IOSFilePicker } from '@ionic-native/file-picker/ngx';
     AngularFirestore,
     AngularFireAuth,
     IOSFilePicker,
+    ImagePicker,
     AngularFireStorage,
     AngularFireFunctions,
     AngularFireAuthGuard,

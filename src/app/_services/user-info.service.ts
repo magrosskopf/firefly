@@ -24,18 +24,25 @@ export class UserInfoService {
   }
 
   updateNameAndPhoto(name, url) {
+    this.user = this.authentication.afAuth.auth.currentUser;
+    
     if (this.user) {
+      console.log(url);
+
       this.user.updateProfile({
         displayName: name,
         photoURL: url
       }).then(() => {
         console.log('Update Successful');
-        this.presentToast('Name wurde aktualisiert');
+        this.presentToast('Erfolgreich aktualisiert');
       }).catch(error => {
         console.log('Update failed');
         this.presentToast(error);
 
       });
+    } else {
+      console.log('no user');
+      
     }
    }
 

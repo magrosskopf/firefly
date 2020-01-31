@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
   navigate() {
     this.authentication.login(this.email, this.pwd);
     setTimeout(() => {
-      this.router.navigateByUrl('/tabs/map');
+      this.router.navigateByUrl('/tab/tabs/map');
     }, 1000);
   }
 

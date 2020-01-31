@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../../_services/authentication.service';
 import { NgForm } from '@angular/forms';
 import { User } from '../../../_interfaces/user';
+import { GeodataService } from '../../../_services/geodata.service';
 
 @Component({
   selector: 'app-seller-business',
@@ -28,18 +29,19 @@ export class SellerBusinessPage implements OnInit {
     }
   };
 
-  constructor(public authentication: AuthenticationService) {}
+  constructor(public authentication: AuthenticationService, public geodataService: GeodataService) {}
 
   ngOnInit() {}
 
-  onSubmit(form: NgForm) {
+  async onSubmit(form: NgForm) {
     const infos = form.value;
+    const locationIq = await this.geodataService.getGeodataFromLocationIQ(infos.adress, infos.zip, infos.city);
     this.user.storeName = infos.storeName;
     this.user.adress = infos.adress;
     this.user.zip = infos.zip;
     this.user.city = infos.city;
-    this.user.lat = infos.lat;
-    this.user.lng = infos.lng;
+    this.user.lat = locationIq[0].lat;
+    this.user.lng = locationIq[0].lon;
     this.user.opening = {
       mo: [infos.mo, infos.mo_end],
       di: [infos.di, infos.di_end],
@@ -50,16 +52,9 @@ export class SellerBusinessPage implements OnInit {
       so: [infos.so, infos.so_end]
     };
 
-
-
-    console.log(this.user);
     this.authentication.setLocalUser(this.user);
-
-    this.authentication.register();
-
-    setTimeout(() => {
-      this.authentication.initUserData('salesperson');
-    }, 1000);
+    await this.authentication.register();
+    this.authentication.initUserData('salesperson');
   }
 
 }

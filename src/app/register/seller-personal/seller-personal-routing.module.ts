@@ -9,7 +9,7 @@ const routes: Routes = [
     component: SellerPersonalPage
   },
   {
-    path: 'seller-business',
+    path: 'business',
     loadChildren: () => import('./seller-business/seller-business.module').then( m => m.SellerBusinessPageModule)
   }
 ];

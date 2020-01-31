@@ -7,6 +7,7 @@ import { NotificationService } from '../_services/notification.service';
 import { DealService } from '../_services/deal.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ImguploaderService } from '../_services/imguploader.service';
 
 @Component({
   selector: 'app-account',
@@ -22,11 +23,12 @@ export class AccountPage implements OnInit {
   activeDeals = [];
 
   constructor(
-    public authentication: AuthenticationService,
-    public userInfo: UserInfoService,
-    public afAuth: AngularFireAuth,
-    public afDB: AngularFirestore,
-    public notification: NotificationService
+    private authentication: AuthenticationService,
+    private userInfo: UserInfoService,
+    private afAuth: AngularFireAuth,
+    private afDB: AngularFirestore,
+    private notification: NotificationService,
+    private imguploader: ImguploaderService
   ) {
     this.personalInfo = {
       favStores: [''],
@@ -56,6 +58,10 @@ export class AccountPage implements OnInit {
       this.userInfo.updateEmail(email);
       this.email = '';
     }
+  }
+
+  uploadFile() {
+    this.imguploader.pick();
   }
 
   saveNameAndPhoto() {

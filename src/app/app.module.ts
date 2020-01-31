@@ -26,7 +26,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { QRCodeModule } from 'angularx-qrcode';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireStorageModule, AngularFireStorage } from '@angular/fire/storage';
+import { IOSFilePicker } from '@ionic-native/file-picker/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,6 +52,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     AngularFireMessaging,
     AngularFirestore,
     AngularFireAuth,
+    IOSFilePicker,
+    AngularFireStorage,
     AngularFireFunctions,
     AngularFireAuthGuard,
     AngularFireStorageModule,

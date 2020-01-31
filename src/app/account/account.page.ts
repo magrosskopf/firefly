@@ -21,6 +21,7 @@ export class AccountPage implements OnInit {
   activeDeals = [];
   seller = [];
   favStores = false;
+  role = '';
 
   constructor(
     private authentication: AuthenticationService,
@@ -36,6 +37,11 @@ export class AccountPage implements OnInit {
       history: [''],
       points: 0
     };
+
+    this.userService.getRoleFromFirestore(this.user.uid)
+    .subscribe(data => {
+      this.role = data.role;
+    });
 
     this.email = '';
     this.displayName = '';

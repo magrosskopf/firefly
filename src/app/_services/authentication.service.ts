@@ -94,9 +94,6 @@ export class AuthenticationService {
   }
 
   setLocalUser(user: User) {
-
-    console.log(user);
-
     this.user.displayName = user.displayName === undefined ? this.user.displayName : user.displayName;
     this.user.email = user.email === undefined ? this.user.email : user.email;
     this.user.password = user.password === undefined ? this.user.password : user.password;
@@ -108,7 +105,6 @@ export class AuthenticationService {
     this.user.lat = user.lat === undefined ? this.user.lat : user.lat;
     this.user.lng = user.lng === undefined ? this.user.lng : user.lng;
     this.user.opening = user.opening === undefined ? this.user.opening : user.opening;
-
   }
 
   initUserData(kategory) {
@@ -119,10 +115,10 @@ export class AuthenticationService {
 
       user.updateProfile({
         displayName: this.user.displayName
-      }).then(() => {
-        console.log(user);
-      }).catch((error) => {
-        console.log('Update des Profiles nicht erfolgreich.');
+      });
+
+      this.afDB.collection('roles').doc(user.uid).set({
+        role: kategory
       });
 
       if (kategory === 'customer') {
@@ -130,48 +126,44 @@ export class AuthenticationService {
         this.afDB.collection('customer').doc(user.uid).set({
             discoveredStores: [''],
             favStores: [''],
-            history: ['']
-          })
-          .then(() => {
-            console.log('Document successfully written!');
-          })
-          .catch((error) => {
-            console.error('Error writing document: ', error);
+            history: [''],
+            points: 0
           });
 
       } else if (kategory === 'salesperson') {
 
         this.afDB.collection('salesperson').doc(user.uid).set({
-            storeName: this.user.storeName,
-            adress: this.user.adress,
-            zip: this.user.zip,
-            city: this.user.city,
-            owner: '',
-            verified: false,
-            categoryId: '',
-            adId: [''],
-            buyingUsers24: [''],
-            walkbyUsers24: [''],
-            givenPoints: 0,
-            imgUrl: '',
-            qrCode: '',
-            toGoodToGoActive: [''],
-            toGoodToGoHistory: [''],
-            lat: this.user.lat,
-            lng: this.user.lng,
-            uid: this.afAuth.auth.currentUser.uid,
-            opening: this.user.opening
-          })
-          .then(() => {
-            console.log('Document successfully written!');
-          })
-          .catch((error) => {
-            console.error('Error writing document: ', error);
-          });
+          storeName: this.user.storeName,
+          adress: this.user.adress,
+          zip: this.user.zip,
+          city: this.user.city,
+          owner: '',
+          verified: false,
+          categoryId: '',
+          adId: [''],
+          buyingUsers24: [''],
+          walkbyUsers24: [''],
+          givenPoints: 0,
+          imgUrl: '',
+          qrCode: '',
+          toGoodToGoActive: [''],
+          toGoodToGoHistory: [''],
+          lat: this.user.lat,
+          lng: this.user.lng,
+          uid: this.afAuth.auth.currentUser.uid,
+          opening: this.user.opening
+        })
+        .then(() => {
+          console.log('Document successfully written!');
+        })
+        .catch((error) => {
+          console.error('Error writing document: ', error);
+        });
 
       } else {
         console.log('Die Kategory hat nicht überein gestimmt.');
       }
+      console.log('Added new User');
     }
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DealService } from '../_services/deal.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthenticationService } from '../_services/authentication.service';
 import { UserInfoService } from '../_services/user-info.service';
 
 @Component({
@@ -11,6 +12,8 @@ import { UserInfoService } from '../_services/user-info.service';
 })
 export class DealsPage implements OnInit {
 
+  user = this.authentication.afAuth.auth.currentUser;
+  role = '';
   allDeals = [];
   allStores = [];
   dealsLoaded = false;
@@ -19,9 +22,14 @@ export class DealsPage implements OnInit {
   constructor(
     public afAuth: AngularFireAuth,
     public afDB: AngularFirestore,
+    public authentication: AuthenticationService,
+    public userService: UserInfoService,
     public dealService: DealService,
-    public userService: UserInfoService
   ) {
+    this.userService.getRoleFromFirestore(this.user.uid)
+    .subscribe(data => {
+      this.role = data.role;
+    });
 
     this.dealService.getAllDealsFromFirestore()
     .subscribe(data => {
@@ -34,7 +42,6 @@ export class DealsPage implements OnInit {
       this.allStores = data;
       this.storesLoaded = true;
     });
-
   }
 
   ngOnInit() {

@@ -108,6 +108,10 @@ export class UserInfoService {
     });
   }
 
+  getRoleFromFirestore(uid: string) {
+    return this.db.doc<any>('roles/' + uid).valueChanges();
+  }
+
   async presentToast(msg) {
     const toast = await this.toastController.create({
       message: msg,

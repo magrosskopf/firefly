@@ -7,6 +7,7 @@ import { PersonalInfo } from '../_interfaces/personal-info';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EarthService } from '../_services/earth.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({
   selector: 'app-map',
@@ -17,8 +18,8 @@ export class MapPage {
 
   latitude = 54;
   longitude = 9;
-
-
+  user = this.authentication.afAuth.auth.currentUser;
+  role = '';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -42,8 +43,13 @@ export class MapPage {
     private earth: EarthService,
     public http: HttpClient,
     public geodata: GeodataService,
-    public userInfo: UserInfoService
+    public authentication: AuthenticationService,
+    public userService: UserInfoService
   ) {
+    this.userService.getRoleFromFirestore(this.user.uid)
+    .subscribe(data => {
+      this.role = data.role;
+    });
 
     this.geodata.getGeolocation();
     this.latitude = this.geodata.lat;
@@ -52,38 +58,22 @@ export class MapPage {
     this.favs = [];
     this.afAuth.user.subscribe(user => {
       this.uid = user.uid;
-      this.getDiscoveredStores(this.userInfo.getPersonalDataFromFirestore(this.uid, 'customer'));
+      this.getDiscoveredStores(this.userService.getPersonalDataFromFirestore(this.uid, 'customer'));
 
     });
-
-    /* this.userInfo.getPersonalDataFromFirestore(afAuth.auth.currentUser.uid)
-    this.userInfo.personalInfo.subscribe(data => {
-      this.personalInfo = data;
-      console.log(data);
-
-    }) */
 
     this.afAuth.user.subscribe(user => {
       this.uid = user.uid;
     });
   }
 
-  ionViewDidEnter() {}
-
   setPosition() {
-
     this.earth.setPosition(this.geodata.lat, this.geodata.long);
   }
 
-
-
   openShop(id) {
-    console.log(id);
-
-    this.router.navigateByUrl('/shop-detail');
+    this.router.navigateByUrl('/tabs/shop');
   }
-
-
 
   getDiscoveredStores(userObs: Observable < PersonalInfo > ) {
     userObs.subscribe(data => {
@@ -135,17 +125,11 @@ export class MapPage {
       //     long: 9
       //   }
       // ];
-
     });
-
   }
 
   getStoreData() {
-
-
-
-
-    this.userInfo.getAllSellerFromFirestore().subscribe(data => {
+    this.userService.getAllSellerFromFirestore().subscribe(data => {
       data.forEach(element => {
         if (element !== undefined) {
           // this.list = data;
@@ -153,30 +137,7 @@ export class MapPage {
         }
       });
       this.earth.initMap(this.list, this.geodata.lat, this.geodata.long, 'map');
-
     });
-    console.log(this.list);
-
   }
-  // this.personalInfo.discoveredStores.forEach(element => {
-  //   this.userInfo.getSellerDataFromFirestore(element).subscribe(data => {
-  //     if (data !== undefined) {
-  //       console.log(data);
-
-  //       this.list.push(data);
-  //     }
-
-
-  //   });
-  // });
-  // this.personalInfo.favStores.forEach(element => {
-  //   this.userInfo.getSellerDataFromFirestore(element).subscribe(data => {
-  //     if (data !== undefined) {
-  //       this.favs.push(data);
-  //     }
-  //   });
-  // });
-
-
 }
 

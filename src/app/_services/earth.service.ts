@@ -44,7 +44,6 @@ export class EarthService {
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19
     });
-
     const marker = new L.marker([lat, long], {icon: this.personIcon}).addTo(this.map);
     const watch = this.geolocation.watchPosition();
     watch.subscribe(data => {
@@ -63,13 +62,12 @@ export class EarthService {
       this.follow = false;
       console.log(this.follow);
     });
-
-
   }
 
   addMarker(markerList: any[]) {
     markerList.forEach(element => {
-      const marker = new L.marker([element.lat, element.lng], {icon: this.greenIcon}).addTo(this.map)
+      const marker = new L.marker([element.lat, element.lng === undefined ? element.long : element.lng], {icon: this.greenIcon})
+      .addTo(this.map)
       .bindPopup(
           '<img src="' + element.imgUrl + '" width="100%" alt="shop_image" />' +
           '<a href="/tabs/map/shop-detail/0WfSKft5onQ44wlYWlBqAisk2KJ2">' +

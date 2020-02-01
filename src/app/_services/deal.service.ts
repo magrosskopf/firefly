@@ -6,6 +6,7 @@ import { Seller } from '../_interfaces/seller';
 import { Observable } from 'rxjs';
 import { UserInfoService } from './user-info.service';
 import { ImguploaderService } from './imguploader.service';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,10 @@ export class DealService {
 
   deleteDealFromFirestore(dealId: string) {
     this.afDB.doc<Deal>('deals/' + dealId ).delete();
+    this.afDB.doc<any>('salesperson/' + this.user.uid)
+      .update({
+        adId: firebase.firestore.FieldValue.arrayRemove(dealId)
+      });
   }
 
   getAllDealsFromFirestore(): Observable<Deal[]> {

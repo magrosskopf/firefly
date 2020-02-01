@@ -127,4 +127,9 @@ ion-card {
     text-overflow: ellipsis;
     padding: 0 10px 10px 10px;
   }
+
+  ion-img {
+    height: 113px;
+    object-fit: cover;
+  }
 }

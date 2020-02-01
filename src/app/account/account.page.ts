@@ -6,6 +6,7 @@ import { NotificationService } from '../_services/notification.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ImguploaderService } from '../_services/imguploader.service';
+import { DealService } from '../_services/deal.service';
 
 @Component({
   selector: 'app-account',
@@ -18,9 +19,10 @@ export class AccountPage implements OnInit {
   personalInfo: PersonalInfo;
   email: string;
   displayName: string;
-  activeDeals = [];
-  seller = [];
-  favStores = false;
+  favStores = [];
+  sellerDeals = [];
+  favLoaded = false;
+  dealsLoaded = false;
   role = '';
 
   constructor(
@@ -29,6 +31,7 @@ export class AccountPage implements OnInit {
     private afAuth: AngularFireAuth,
     private afDB: AngularFirestore,
     private notification: NotificationService,
+    private dealService: DealService,
     private imguploader: ImguploaderService
   ) {
     this.personalInfo = {
@@ -38,32 +41,37 @@ export class AccountPage implements OnInit {
       points: 0
     };
 
-    this.userService.getRoleFromFirestore(this.user.uid)
-    .subscribe(data => {
-      this.role = data.role;
-    });
-
     this.email = '';
     this.displayName = '';
 
-    this.userService.getPersonalDataFromFirestore(this.user.uid, 'customer')
-    .subscribe(data => {
-      this.personalInfo = data;
-      this.seller = [];
-      this.favStores = false;
-      this.personalInfo.favStores.forEach(element => {
-        this.userService.getSellerDataFromFirestore(element)
-        .subscribe( sellerData => {
-          this.seller.push(sellerData);
-          this.favStores = true;
-        });
+    this.userService.getRoleFromFirestore(this.user.uid)
+      .subscribe(data => {
+        this.role = data.role;
+        if (this.role === 'customer') {
+          this.userService.getPersonalDataFromFirestore(this.user.uid, 'customer')
+            .subscribe( personalData => {
+              this.personalInfo = personalData;
+              this.favStores = [];
+              this.favLoaded = false;
+              this.personalInfo.favStores.forEach(element => {
+                this.userService.getSellerDataFromFirestore(element)
+                .subscribe( sellerData => {
+                  this.favStores.push(sellerData);
+                  this.favLoaded = true;
+                });
+              });
+            });
+        } else if (this.role === 'salesperson') {
+          this.dealService.getUserDealsFromFirestore().subscribe( deals => {
+            this.sellerDeals = deals;
+            this.dealsLoaded = true;
+          });
+        }
       });
-    });
-
-    this.getUserDeals();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   saveEmail(email) {
     if (this.email !== '') {
@@ -79,17 +87,17 @@ export class AccountPage implements OnInit {
     }
   }
 
-  getUserDeals() {
-    const user = this.afAuth.auth.currentUser;
+  // getUserDeals() {
+  //   const user = this.afAuth.auth.currentUser;
 
-    this.afDB.collection('deals').ref.where('userId', '==', user.uid)
-    .onSnapshot((querySnapshot) => {
-      this.activeDeals = [];
-      querySnapshot.forEach((doc) => {
-        this.activeDeals.push(doc.data());
-      });
-    });
-  }
+  //   this.afDB.collection('deals').ref.where('userId', '==', user.uid)
+  //   .onSnapshot((querySnapshot) => {
+  //     this.activeDeals = [];
+  //     querySnapshot.forEach((doc) => {
+  //       this.activeDeals.push(doc.data());
+  //     });
+  //   });
+  // }
 
   sendNotification() {
     this.notification.enterFence();

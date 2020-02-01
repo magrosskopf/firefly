@@ -1,5 +1,5 @@
 export interface Deal {
-    userId: string;
+    uid: string;
     title: string;
     description: string;
     active: boolean;

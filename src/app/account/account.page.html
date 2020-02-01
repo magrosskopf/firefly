@@ -25,13 +25,31 @@
       </ion-col>
     </ion-row>
     <div class="store-wrapper">
-      <div *ngIf="favStores" >
+      <!-- Käufer -->
+      <div *ngIf="role === 'customer' && favLoaded === true">
         <h3>Lieblingsläden</h3>
         <ion-row class="favourite-stores horizontal-scroll-wrapper">
-          <div *ngFor="let store of seller">
+          <div *ngFor="let store of favStores">
             <ion-card routerLink="/tabs/shop/{{ store.uid }}">
               <ion-img src="../../assets/img/alnatura.jpg"></ion-img>
-              <ion-card-header>{{ store.storeName }}</ion-card-header>
+              <ion-card-subtitle>{{ store.storeName }}</ion-card-subtitle>
+            </ion-card>
+          </div>
+        </ion-row>
+      </div>
+
+      <!-- Verkäufer -->
+      <div *ngIf="role === 'salesperson' && dealsLoaded === true">
+        <h3>Eingestellte Angebote</h3>
+        <ion-row class="favourite-stores horizontal-scroll-wrapper">
+          <div *ngFor="let deal of sellerDeals">
+            <ion-card routerLink="/tabs/deals/{{ deal.uid }}">
+              <!-- <ion-img src="{{ deal.imgUrl }}"></ion-img> -->
+              <ion-img src="../../assets/img/alnatura.jpg"></ion-img>
+              <ion-card-subtitle>
+                <p>{{ deal.title }}</p>
+                <p>{{ deal.afterPrice.toFixed(2) }}€ statt <s>{{ deal.beforePrice.toFixed(2) }}€</s></p>
+              </ion-card-subtitle>
             </ion-card>
           </div>
         </ion-row>

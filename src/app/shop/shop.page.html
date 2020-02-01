@@ -1,17 +1,17 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button text="Zurück" defaultHref=""></ion-back-button>
+      <ion-back-button text="Zurück" defaultHref="/tabs/deals"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-img src="../../assets/img/annas.jpeg"></ion-img>
+  <ion-img src="{{ store.imgUrl }}"></ion-img>
   <div class="shop_beschreibung">
     <ion-row>
       <ion-col class="store-name" size="9"><h2><b>{{ store.storeName }}</b></h2></ion-col>
-      <ion-col size="3" class="heart">
+      <ion-col *ngIf="role === 'customer'" size="3" class="heart">
         <ion-icon *ngIf="!favStore" (click)="changeFavStore()" name="heart-empty"></ion-icon>
         <ion-icon *ngIf="favStore" (click)="changeFavStore()" name="heart"></ion-icon>
       </ion-col>

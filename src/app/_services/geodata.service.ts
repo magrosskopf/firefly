@@ -78,6 +78,7 @@ export class GeodataService {
 
         if (this.passedShop.walkbyUsers24.indexOf(this.cUser.uid) < 0) {
           this.passedShop.walkbyUsers24.push(this.cUser.uid);
+          this.passedShop.givenPoints += 5;
           this.personalInfo.points += 5;
           console.log(this.passedShop, this.personalInfo);
           this.presentToast('You got 5 vegan points!');

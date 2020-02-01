@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-img src="../../assets/img/annas.jpeg"></ion-img>
+  <ion-img src="{{ store.imgUrl}}"></ion-img>
   <div class="shop_beschreibung">
     <ion-row>
         <ion-col size="9"><h2><b>{{ store.storeName }}</b></h2></ion-col>
@@ -41,7 +41,7 @@
         <ion-col size="12">
           <div *ngFor="let deal of allDeals">
             <ion-card routerLink="{{ deal.id }}">
-              <ion-img src="../../assets/angebote/zitronen.jpg"></ion-img>
+              <ion-img src=" {{ deal.imgUrl }}"></ion-img>
               <ion-card-subtitle>
                 <p>{{ deal.title }}</p>
                 <p>{{ deal.afterPrice.toFixed(2) }}€ statt <s>{{ deal.beforePrice.toFixed(2) }}€</s></p>

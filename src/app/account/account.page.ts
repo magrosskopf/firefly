@@ -73,6 +73,10 @@ export class AccountPage implements OnInit {
   ngOnInit() {
   }
 
+  uploadFile(event, path, name) {
+    this.imguploader.uploadFile(event, path, name);
+  }
+
   saveEmail(email) {
     if (this.email !== '') {
       this.userService.updateEmail(email);

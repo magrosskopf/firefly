@@ -1,13 +1,13 @@
 <ion-header>
 </ion-header>
 <ion-content>
-  <ion-fab vertical="top" id="setPosition" horizontal="end" slot="fixed">
+  <ion-fab vertical="top" class="setPosition" horizontal="end" slot="fixed">
     <ion-fab-button (click)="setPosition()">
       <ion-icon name="navigate"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-fab *ngIf="role === 'customer'" vertical="bottom" size="large" id="setPosition" horizontal="end" slot="fixed">
+  <ion-fab *ngIf="role === 'customer'" vertical="bottom" size="large" class="setPosition" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="qr-scanner" routerLink="/qr-code"></ion-icon>
     </ion-fab-button>

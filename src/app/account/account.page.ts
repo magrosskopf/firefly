@@ -7,6 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ImguploaderService } from '../_services/imguploader.service';
 import { DealService } from '../_services/deal.service';
+import { Seller } from '../_interfaces/seller';
 
 @Component({
   selector: 'app-account',
@@ -19,6 +20,7 @@ export class AccountPage implements OnInit {
   personalInfo: PersonalInfo;
   email: string;
   displayName: string;
+  seller: Seller;
   favStores = [];
   sellerDeals = [];
   favLoaded = false;
@@ -62,7 +64,12 @@ export class AccountPage implements OnInit {
               });
             });
         } else if (this.role === 'salesperson') {
-          this.dealService.getUserDealsFromFirestore().subscribe( deals => {
+          this.userService.getSellerDataFromFirestore(this.user.uid)
+            .subscribe( user => {
+              this.seller = user;
+            });
+          this.dealService.getUserDealsFromFirestore()
+            .subscribe( deals => {
             this.sellerDeals = deals;
             this.dealsLoaded = true;
           });
@@ -105,7 +112,7 @@ export class AccountPage implements OnInit {
 
   usePoints() {
     const num: number = Math.floor(this.personalInfo.points / 10);
-    
+
     this.personalInfo.points = this.personalInfo.points - (num * 10);
     this.userService.updatePersonalDataFromFirestore(this.afAuth.auth.currentUser.uid, this.personalInfo);
     this.userService.presentToast('Punkte wurden eingelöst');

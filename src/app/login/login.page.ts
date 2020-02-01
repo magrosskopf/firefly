@@ -13,9 +13,11 @@ export class LoginPage implements OnInit {
   pwd: string;
   email: string;
 
-  constructor(public afAuth: AngularFireAuth,
-              public authentication: AuthenticationService,
-              public router: Router) {
+  constructor(
+    public afAuth: AngularFireAuth,
+    public authentication: AuthenticationService,
+    public router: Router
+  ) {
     this.pwd = '123456';
     this.email = 'magrosskopf@web.de';
 

@@ -29,7 +29,6 @@ export class ImguploaderService {
     const filePath = path + '/' + name;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
-    console.log(file);
     // observe percentage changes
     this.uploadPercentage = task.percentageChanges();
     // get notified when the download URL is available
@@ -40,18 +39,9 @@ export class ImguploaderService {
           if (path === 'profilimg') {
             this.userinfo.updateNameAndPhoto(this.afAuth.auth.currentUser.displayName, data);
           }
-          
         });
       })
     )
     .subscribe(data => console.log(data));
-
-    // task.snapshotChanges().pipe(
-    //   finalize(() => {
-    //     this.downloadURL = fileRef.getDownloadURL();
-    //     this.userinfo.updateNameAndPhoto(this.afAuth.auth.currentUser.displayName, this.downloadURL);
-    //   })
-    // ).subscribe(data => { console.log(data);
-    // })
   }
 }

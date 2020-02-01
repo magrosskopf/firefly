@@ -48,7 +48,6 @@ export class CreateDealPage implements OnInit {
 
   onSubmit(form: NgForm) {
     const infos = form.value;
-    console.log(infos);
 
     this.deal.userId = this.userId;
     this.deal.title = infos.title;
@@ -56,11 +55,12 @@ export class CreateDealPage implements OnInit {
     this.deal.afterPrice = infos.afterPrice;
     this.deal.beforePrice = infos.beforePrice;
     // TODO: wait for file to upload
-    this.imguploader.downloadURL.subscribe(url => {
-      this.deal.imgUrl = url;
-      console.log(url);
-      this.dealService.addDealtoFirestore(this.deal);
-    });
+    setTimeout(() => {
+      this.imguploader.downloadURL.subscribe(url => {
+        this.deal.imgUrl = url;
+        console.log(url);
+        this.dealService.addDealtoFirestore(this.deal);
+      });
+    }, 5000);
   }
-
 }

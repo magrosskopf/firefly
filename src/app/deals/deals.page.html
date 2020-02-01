@@ -6,36 +6,67 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-fab *ngIf="role === 'customer'" vertical="bottom" id="setPosition" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon id="qr-icon" name="qr-scanner" routerLink="/qr-code"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+  <ion-fab *ngIf="role === 'salesperson'" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="create">
+      <ion-icon id="add-icon" name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-row>
     <ion-col size="10">
       <ion-searchbar></ion-searchbar>
     </ion-col>
     <ion-col size="2">
-      <ion-img routerLink="facts" class="img_logo" src="../../assets/icon/firefly_icon.png"></ion-img>
+      <div class="facts-icon">
+        <div class="spot"></div>
+        <ion-img routerLink="/tabs/facts" class="img_logo" src="../../assets/icon/firefly_icon.png"></ion-img>
+      </div>
     </ion-col>
   </ion-row>
-
-  <h3>Angebote</h3>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="create">
       <ion-icon id="add-icon" name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
-  <ion-row>
-    <ion-col routerLink="{{ deal.id }}" size="6" *ngFor="let deal of allDeals">
-      <ion-card>
-        <ion-img src="../../assets/avocado.jpg"></ion-img>
-        <ion-card-header>
-          <ion-card-title>{{ deal.title }}</ion-card-title>
-          <ion-card-subtitle>{{ deal.price }} €</ion-card-subtitle>
-        </ion-card-header>
-      
-        <ion-card-content>
-          {{ deal.description }}
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
+
+  <div *ngIf="dealsLoaded === true && storesLoaded === true">
+    <div>
+      <h3>Angebote</h3>
+      <ion-row class="deals horizontal-scroll-wrapper" >
+        <ion-col size="12">
+          <div *ngFor="let deal of allDeals">
+            <ion-card routerLink="{{ deal.id }}">
+              <ion-card-header>{{ deal.storeName }}</ion-card-header>
+              <ion-img src="{{ deal.imgUrl }}"></ion-img>
+              <ion-card-subtitle>
+                <p>{{ deal.title }}</p>
+                <p>{{ deal.afterPrice.toFixed(2) }}€ statt <s>{{ deal.beforePrice.toFixed(2) }}€</s></p>
+              </ion-card-subtitle>
+            </ion-card>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div>
+      <h3 id="headline_laden">Läden</h3>
+      <ion-row class="stores horizontal-scroll-wrapper">
+        <ion-col size="12">
+          <div *ngFor="let store of allStores">
+            <ion-card routerLink="/tabs/shop/{{ store.uid }}">
+              <ion-img src="../../assets/angebote/nudeln_angebot.jpg"></ion-img>
+              <ion-card-header>{{ store.storeName }}</ion-card-header>
+            </ion-card>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
 </ion-content>

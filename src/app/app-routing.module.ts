@@ -5,6 +5,10 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 const routes: Routes = [
   {
     path: '',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [AngularFireAuthGuard]
   },
@@ -18,14 +22,16 @@ const routes: Routes = [
   },
   {
     path: 'qr-code',
-    loadChildren: () => import('./qr-code/qr-code.module').then( m => m.QrCodePageModule)
+    loadChildren: () => import('./qr-code/qr-code.module').then( m => m.QrCodePageModule),
+    canActivate: [AngularFireAuthGuard]
   },
   {
     path: 'qr-code-generator',
-    loadChildren: () => import('./qr-code-generator/qr-code-generator.module').then( m => m.QrCodeGeneratorPageModule)
+    loadChildren: () => import('./qr-code-generator/qr-code-generator.module').then( m => m.QrCodeGeneratorPageModule),
+    canActivate: [AngularFireAuthGuard]
   },
   {
-    path: '**', redirectTo: 'login'
+    path: '**', redirectTo: 'tabs'
   }
 ];
 

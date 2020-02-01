@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_services/authentication.service';
 import { UserInfoService } from '../_services/user-info.service';
 import { PersonalInfo } from '../_interfaces/personal-info';
-import { AngularFireMessaging } from '@angular/fire/messaging';
 import { NotificationService } from '../_services/notification.service';
-import { DealService } from '../_services/deal.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ImguploaderService } from '../_services/imguploader.service';
+import { DealService } from '../_services/deal.service';
 
 @Component({
   selector: 'app-account',
@@ -19,14 +19,20 @@ export class AccountPage implements OnInit {
   personalInfo: PersonalInfo;
   email: string;
   displayName: string;
-  activeDeals = [];
+  favStores = [];
+  sellerDeals = [];
+  favLoaded = false;
+  dealsLoaded = false;
+  role = '';
 
   constructor(
-    public authentication: AuthenticationService,
-    public userInfo: UserInfoService,
-    public afAuth: AngularFireAuth,
-    public afDB: AngularFirestore,
-    public notification: NotificationService
+      private authentication: AuthenticationService,
+      private userService: UserInfoService,
+      private afAuth: AngularFireAuth,
+      private afDB: AngularFirestore,
+      private notification: NotificationService,
+      private dealService: DealService,
+      private imguploader: ImguploaderService
   ) {
     this.personalInfo = {
       favStores: [''],
@@ -37,48 +43,70 @@ export class AccountPage implements OnInit {
 
     this.email = '';
     this.displayName = '';
-    if (false) { // TODO: Set to true when needed for testing
-      this.userInfo.getPersonalDataFromFirestore('XAbffjv83Qca96mro0RXRYSlnys1', 'customer'); // TODO: durch User.Uid ersetzen
-      this.userInfo.userInfo.subscribe(data => {
-      this.personalInfo = data;
-      console.log(data);
+
+    this.userService.getRoleFromFirestore(this.user.uid)
+    .subscribe(data => {
+      this.role = data.role;
+      if (this.role === 'customer') {
+        this.userService.getPersonalDataFromFirestore(this.user.uid, 'customer')
+        .subscribe(personalData => {
+          this.personalInfo = personalData;
+          this.favStores = [];
+          this.favLoaded = false;
+          this.personalInfo.favStores.forEach(element => {
+            this.userService.getSellerDataFromFirestore(element)
+            .subscribe(sellerData => {
+              this.favStores.push(sellerData);
+              this.favLoaded = true;
+            });
+          });
+        });
+      } else if (this.role === 'salesperson') {
+        this.dealService.getUserDealsFromFirestore().subscribe(deals => {
+          this.sellerDeals = deals;
+          this.dealsLoaded = true;
+        });
+      }
     });
-    }
-
-    this.getUserDeals();
-
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   saveEmail(email) {
     if (this.email !== '') {
-      this.userInfo.updateEmail(email);
+      this.userService.updateEmail(email);
       this.email = '';
     }
   }
 
   saveNameAndPhoto() {
     if (this.displayName !== '') {
-      this.userInfo.updateNameAndPhoto(this.displayName, this.user.photoURL);
+      this.userService.updateNameAndPhoto(this.displayName, this.user.photoURL);
       this.displayName = '';
     }
   }
 
-  getUserDeals() {
-    const user = this.afAuth.auth.currentUser;
+  // getUserDeals() {
+  //   const user = this.afAuth.auth.currentUser;
 
-    this.afDB.collection('deals').ref.where('userId', '==', user.uid)
-    .onSnapshot((querySnapshot) => {
-      this.activeDeals = [];
-      querySnapshot.forEach((doc) => {
-        this.activeDeals.push(doc.data());
-      });
-    });
-  }
-
+  //   this.afDB.collection('deals').ref.where('userId', '==', user.uid)
+  //   .onSnapshot((querySnapshot) => {
+  //     this.activeDeals = [];
+  //     querySnapshot.forEach((doc) => {
+  //       this.activeDeals.push(doc.data());
+  //     });
+  //   });
+  // }
 
   sendNotification() {
     this.notification.enterFence();
+  }
+
+  usePoints() {
+    const num: number = Math.floor(this.personalInfo.points / 10);
+    this.personalInfo.points = this.personalInfo.points - (num * 10);
+    this.userService.updatePersonalDataFromFirestore(this.afAuth.auth.currentUser.uid, this.personalInfo);
+    this.userService.presentToast('Punkte wurden eingelöst');
   }
 }

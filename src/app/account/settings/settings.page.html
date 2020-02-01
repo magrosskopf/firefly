@@ -14,42 +14,42 @@
     <ion-row>
       <ion-list>
         <ion-item button>
-          <ion-label>
-            Konto
-          </ion-label>
+          <ion-label>Konto</ion-label>
         </ion-item>
+
         <ion-item button>
-          <ion-label routerLink="settings-fence">
-            Homefence / Standort
-          </ion-label>
+          <ion-label routerLink="settings-fence">Homefence / Standort</ion-label>
         </ion-item>
+
         <ion-item>
           <ion-label>Benachrichtigungen</ion-label>
           <ion-toggle></ion-toggle>
         </ion-item>
+
         <ion-item>
           <ion-label>Facts</ion-label>
           <ion-toggle></ion-toggle>
         </ion-item>
+
         <ion-item button>
-          <ion-label>
-            Favoriten
-          </ion-label>
+          <ion-label>Favoriten</ion-label>
         </ion-item>
+
         <ion-item button>
-          <ion-label>
-            Sicherheit
-          </ion-label>
+          <ion-label>Sicherheit</ion-label>
         </ion-item>
+        
         <ion-item button>
-          <ion-label>
-            Hilfe und Support
-          </ion-label>
+          <ion-label>Hilfe und Support</ion-label>
         </ion-item>
+
         <ion-item button>
-          <ion-label>
-            Info
-          </ion-label>
+          <ion-label>Info</ion-label>
+        </ion-item>
+
+        <ion-item button>
+          <ion-label>Profilbild ändern</ion-label>
+          <ion-input type="file" (change)="uploadFile($event, 'profilimg', afAuth.auth.currentUser.uid)" placeholder=""></ion-input>
         </ion-item>
       </ion-list>
     </ion-row>

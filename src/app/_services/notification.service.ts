@@ -51,7 +51,7 @@ export class NotificationService {
         payload,
         this.httpOptions).subscribe(data => {
       console.log(data);
-      const message = data['message'].message.notification.title + ' - ' + data['message'].message.notification.body;
+      const message = data[this.message].message.notification.title + ' - ' + data[this.message].message.notification.body;
       this.presentToast(message);
       this.listen();
     });
@@ -67,17 +67,14 @@ export class NotificationService {
 
   requestPermission(uid) {
     this.afMessaging.requestPermission
-    .pipe(mergeMapTo(this.afMessaging.tokenChanges))
-    .subscribe(
+      .pipe(mergeMapTo(this.afMessaging.tokenChanges))
+      .subscribe(
         (token) => {
           console.log('Permission granted! Save to the server!', token);
           this.userinfo.updatePermissonTokenFirestore(token, uid);
         },
-        (error) => {
-          console.error(error);
-        }
-    );
-
+        (error) => { console.error(error); }
+      );
   }
 
   listen() {

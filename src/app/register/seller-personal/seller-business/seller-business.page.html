@@ -14,7 +14,7 @@
             <h3>Gewerbliche Angaben</h3>
             <ion-item>
               <ion-label position="floating">Firmenname</ion-label>
-              <ion-input name="company" type="text" ngModel required></ion-input>
+              <ion-input name="storeName" type="text" ngModel required></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Adresse</ion-label>
@@ -32,7 +32,60 @@
               <ion-label position="floating">Umsatzsteuer-ID</ion-label>
               <ion-input name="taxId" type="text" ngModel required></ion-input>
             </ion-item>
+            <!-- <ion-item>
+              <ion-label position="floating">Längengrad</ion-label>
+              <ion-input name="lat" type="text" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Breitengrad</ion-label>
+              <ion-input name="lng" type="text" ngModel required></ion-input>
+            </ion-item> -->
           </div>
+          <div class="ion-padding öff">
+            <ion-label>Öffnungszeiten</ion-label>
+          
+              <ion-item>
+                <ion-label position="">Mo:</ion-label>
+                <ion-input name="mo" type="time" ngModel ></ion-input> bis <ion-input name="mo_end" type="time" ngModel required ></ion-input>
+              </ion-item>
+            <!-- </ion-col>
+            <ion-col> -->
+              <ion-item>
+                <ion-label position="">Di:</ion-label>
+                <ion-input name="di" type="time" ngModel ></ion-input> bis <ion-input name="di_end" type="time" ngModel ></ion-input>
+              </ion-item>
+            <!-- </ion-col>
+            <ion-col> -->
+              <ion-item>
+                <ion-label position="">Mi:</ion-label>
+                <ion-input name="mi" type="time" ngModel ></ion-input> bis <ion-input name="mi_end" type="time" ngModel ></ion-input>
+              </ion-item>
+            <!-- </ion-col>
+            <ion-col> -->
+              <ion-item>
+                <ion-label position="">Do:</ion-label>
+                <ion-input name="do" type="time" ngModel ></ion-input> bis <ion-input name="do_end" type="time" ngModel ></ion-input> 
+              </ion-item>
+            <!-- </ion-col>
+            <ion-col> -->
+              <ion-item>
+                <ion-label position="">Fr:</ion-label>
+                <ion-input name="fr" type="time" ngModel ></ion-input> bis <ion-input name="fr_end" type="time" ngModel ></ion-input>
+              </ion-item>
+            <!-- </ion-col>
+            <ion-col> -->
+              <ion-item>
+                <ion-label position="">Sa:</ion-label>
+                <ion-input name="sa" type="time" ngModel ></ion-input> bis <ion-input name="sa_end" type="time" ngModel ></ion-input>
+              </ion-item>
+            <!-- </ion-col>
+            <ion-col> -->
+              <ion-item>
+                <ion-label position="">So</ion-label>
+                <ion-input name="so" type="time" ngModel ></ion-input> bis <ion-input name="so_end" type="time" ngModel ></ion-input>
+              </ion-item>
+          </div>
+            
           <div class="ion-padding">
             <ion-button type="submit" [disabled]="form.invalid" expand="block">Registrieren</ion-button>
           </div>

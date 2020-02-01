@@ -18,16 +18,20 @@ export class LoginPage implements OnInit {
               public router: Router) {
     this.pwd = '123456';
     this.email = 'magrosskopf@web.de';
+
+    if (this.afAuth.auth.currentUser) {
+      setTimeout(() => {
+        this.router.navigateByUrl('/tabs/map');
+      }, 500);
+    }
   }
 
   ngOnInit() {
   }
 
-  navigate() {
-    this.authentication.login(this.email, this.pwd);
-    setTimeout(() => {
-      this.router.navigateByUrl('/tabs/map');
-    }, 1000);
+  async navigate() {
+    await this.authentication.login(this.email, this.pwd);
+    this.router.navigateByUrl('/tabs/map');
   }
 
 }

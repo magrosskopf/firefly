@@ -1,0 +1,96 @@
+@import "../../global.scss";
+@import "../../theme/variables.scss";
+
+
+p {
+  font-weight: 300;
+}
+
+h3 {
+  padding-left: 17px;
+ }
+
+ion-header{
+  padding: 40px 0;
+  height: 15%;
+  background: white;
+}
+
+
+ion-content{
+  background: white;
+  height: auto;
+
+  .shop_beschreibung{
+    padding: 17px;
+    height: auto;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    position: relative;
+    top: -20px;
+    box-shadow: 0px -7px 7px 0px rgba(0,0,0,0.1);
+  }
+
+  .overscroll{
+    background: white;
+  }
+
+  ion-img{
+    z-index: 99;
+  }
+
+  ion-row{
+
+    ion-col{
+      .price{
+        text-align: end;
+      }
+
+      ion-icon.time_location {
+        color: $darkgrey;
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+  #add-icon {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.stores ion-card {
+  background-color: white;
+  width: 150px;
+  height: 150px;
+  margin: 0 0 10px 0;
+  top: 15px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px 0;
+  ion-card-header {
+      padding: 5px;
+      text-align: center;
+      height: auto;
+  }
+  ion-img{
+      height: 88px;
+      object-fit: cover;
+  }
+}
+
+.stores {
+  margin-bottom: -70px;
+}
+
+.horizontal-scroll-wrapper {
+  transform:rotate(-90deg) translateY(-150px);
+  transform-origin: right top;
+  width: 150px;
+  height: 358px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sc-ion-card-ios-h{
+  transform:rotate(90deg)
+}
+

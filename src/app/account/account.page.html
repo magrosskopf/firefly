@@ -8,105 +8,55 @@
 <ion-content>
   <ion-grid>
     <ion-row class="ion-align-items-center ion-justify-content-between section-name">
-      <h3>Mein Account</h3>
+      <h3>Profil</h3>
       <ion-icon routerLink="settings" expand="block" name="settings"></ion-icon>
     </ion-row>
     <ion-row>
       <ion-col>
         <ion-avatar>
-          <img src="../../assets/img/account_pic.jpg" alt="profile_pic"/>
+          <img src="{{ user.photoURL }}" alt="profile_pic"/>
         </ion-avatar>
         <ion-item lines="none">
           <ion-label position="floating" for="name"><b>{{ user.displayName }}</b></ion-label>
-
-          <!-- INPUT FIELD
-           <ion-input type="text" class="form-control" id="name" [(ngModel)]="displayName" (keydown.enter)="saveNameAndPhoto()"
-                      (focusout)="saveNameAndPhoto()"
-                      name="name">
-
-           </ion-input>-->
         </ion-item>
         <p>Mitglied seit September 2019</p>
-        <p>Punktestand: <b>72 Punkte</b></p>
-
-        <!--  USER EMAIL ADDRESS
-                 <ion-item>
-                 <ion-label position="floating" for="email">{{ user.email }}</ion-label>
-                 <ion-input type="text" class="form-control" id="email" [(ngModel)]="email" (keydown.enter)="saveEmail(email)" (focusout)="saveEmail(email)"
-                            name="email"></ion-input>
-               </ion-item>-->
+        <p>Punktestand: <b> {{ this.personalInfo.points }}</b></p>
+        <ion-badge (click)="usePoints()">Punkte einlösen</ion-badge>
       </ion-col>
     </ion-row>
-    <ion-footer>
-      <ion-row class="stores ion-justify-content-between">
-        <ion-col>
-          <ion-list>
-            <ion-list-header>
-              Lieblingsläden
-            </ion-list-header>
-            <ion-item *ngFor="let favstore of personalInfo.favStores" lines="none">
-              {{ favstore }}
-            </ion-item>
-          </ion-list>
-        </ion-col>
-        <ion-icon expand="block" name="create"></ion-icon>
-      </ion-row>
-      <ion-row class="favourite-stores horizontal-scroll-wrapper">
-        <ion-card>
-          <ion-img src="../../assets/img/alnatura.jpg"></ion-img>
-          <ion-card-header>Alnatura Bio Super Markt</ion-card-header>
-        </ion-card>
-        <ion-card>
-          <ion-img src="../../assets/img/annas_laden.jpeg"></ion-img>
-          <ion-card-header>Annas – natürlich nachhaltig</ion-card-header>
-        </ion-card>
-        <ion-card>
-          <ion-img src="../../assets/img/denns_bionmarkt.jpg"></ion-img>
-          <ion-card-header>Denn's BIOMARKT</ion-card-header>
-        </ion-card>
-        <ion-card>
-          <ion-img src="../../assets/img/heinrich_hof.jpg"></ion-img>
-          <ion-card-header>Heinrich Hof – der Hofladen</ion-card-header>
-        </ion-card>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-list>
-            <ion-list-header>
-              Entdeckte Läden
-            </ion-list-header>
-            <ion-item *ngFor="let favstore of personalInfo.favStores" lines="none">
-              {{ favstore }}
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-    </ion-footer>
+    <div class="store-wrapper">
+      <!-- Käufer -->
+      <div *ngIf="role === 'customer' && favLoaded === true">
+        <h3>Lieblingsläden</h3>
+        <ion-row class="favourite-stores horizontal-scroll-wrapper">
+          <div *ngFor="let store of favStores">
+            <ion-card routerLink="/tabs/shop/{{ store.uid }}">
+              <ion-img src="../../assets/img/alnatura.jpg"></ion-img>
+              <ion-card-subtitle>{{ store.storeName }}</ion-card-subtitle>
+            </ion-card>
+          </div>
+        </ion-row>
+      </div>
 
-    <!-- SEND PUSH NOTIFICATION -->
-    <!--    <ion-row>
-          <ion-col>
-          </ion-col>
-          <ion-col>
-
-            <button (click)="sendNotification()">
-              Send sth.
-            </button>
-          </ion-col>
-        </ion-row>-->
-
-    <!-- LOGOUT BUTTON -->
-    <!--  <ion-row>
-        <ion-col>
-          <ion-button size=small class="ion-activatable" type="submit" (click)="_authentication.logout()" routerLink="login">
-            Logout
-            <ion-ripple-effect></ion-ripple-effect>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-      -->
+      <!-- Verkäufer -->
+      <div *ngIf="role === 'salesperson' && dealsLoaded === true">
+        <h3>Eingestellte Angebote</h3>
+        <ion-row class="favourite-stores horizontal-scroll-wrapper">
+          <div *ngFor="let deal of sellerDeals">
+            <ion-card routerLink="/tabs/deals/{{ deal.uid }}">
+              <!-- <ion-img src="{{ deal.imgUrl }}"></ion-img> -->
+              <ion-img src="../../assets/img/alnatura.jpg"></ion-img>
+              <ion-card-subtitle>
+                <p>{{ deal.title }}</p>
+                <p>{{ deal.afterPrice.toFixed(2) }}€ statt <s>{{ deal.beforePrice.toFixed(2) }}€</s></p>
+              </ion-card-subtitle>
+            </ion-card>
+          </div>
+        </ion-row>
+      </div>
+    </div>
   </ion-grid>
-  <ion-fab vertical="bottom" id="setPosition" horizontal="end" slot="fixed">
+  <ion-fab *ngIf="role === 'customer'" vertical="bottom" id="setPosition" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon id="qr-icon" name="qr-scanner" routerLink="/qr-code"></ion-icon>
     </ion-fab-button>

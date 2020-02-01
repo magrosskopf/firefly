@@ -10,19 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
-  user: User = {
-    uid: '',
-    displayName: '',
-    email: '',
-    password: '',
-    confirm: '',
-    storeName: '',
-    adress: '',
-    zip: '',
-    city: '',
-    photoURL: ''
-  };
-
+  user: User;
   uid: string;
 
   constructor(
@@ -31,15 +19,40 @@ export class AuthenticationService {
     public router: Router,
     public toastController: ToastController
   ) {
-    this.setUser();
+    this.user  = {
+      uid: '',
+      displayName: '',
+      email: '',
+      password: '',
+      confirm: '',
+      storeName: '',
+      adress: '',
+      zip: '',
+      city: '',
+      photoURL: '',
+      lat: null,
+      lng: null,
+      opening: {
+        mo: [null, null],
+        di: [null, null],
+        mi: [null, null],
+        do: [null, null],
+        fr: [null, null],
+        sa: [null, null],
+        so: [null, null]
+      }
+    };
+    // this.setUser();
   }
 
-  setUser() {
-    this.afAuth.user.subscribe(data => {
-      this.user = data;
-      this.uid = data.uid;
-    });
-  }
+  // setUser() {
+  //   if (this.afAuth.user) {
+  //     this.afAuth.user.subscribe(data => {
+  //       // this.user = data;
+  //       this.uid = data.uid;
+  //     });
+  //   }
+  // }
 
    login(email, password) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(error => {
@@ -69,11 +82,13 @@ export class AuthenticationService {
 
   // Registrierung
 
-  register() {
+  async register() {
     if (this.user.password !== this.user.confirm) {
       console.error('Passwörter stimmen nicht überein.');
     } else {
       this.afAuth.auth.createUserWithEmailAndPassword(this.user.email, this.user.password).catch(error => console.log(error));
+      await this.login(this.user.email, this.user.password);
+      this.router.navigateByUrl('/tabs/map');
     }
   }
 
@@ -86,7 +101,9 @@ export class AuthenticationService {
     this.user.adress = user.adress === undefined ? this.user.adress : user.adress;
     this.user.zip = user.zip === undefined ? this.user.zip : user.zip;
     this.user.city = user.city === undefined ? this.user.city : user.city;
-    console.log(this.user);
+    this.user.lat = user.lat === undefined ? this.user.lat : user.lat;
+    this.user.lng = user.lng === undefined ? this.user.lng : user.lng;
+    this.user.opening = user.opening === undefined ? this.user.opening : user.opening;
   }
 
   initUserData(kategory) {
@@ -97,10 +114,10 @@ export class AuthenticationService {
 
       user.updateProfile({
         displayName: this.user.displayName
-      }).then(() => {
-        console.log(user);
-      }).catch((error) => {
-        console.log('Update des Profiles nicht erfolgreich.');
+      });
+
+      this.afDB.collection('roles').doc(user.uid).set({
+        role: kategory
       });
 
       if (kategory === 'customer') {
@@ -108,44 +125,44 @@ export class AuthenticationService {
         this.afDB.collection('customer').doc(user.uid).set({
             discoveredStores: [''],
             favStores: [''],
-            history: ['']
-          })
-          .then(() => {
-            console.log('Document successfully written!');
-          })
-          .catch((error) => {
-            console.error('Error writing document: ', error);
+            history: [''],
+            points: 0
           });
 
       } else if (kategory === 'salesperson') {
 
         this.afDB.collection('salesperson').doc(user.uid).set({
-            storeName: this.user.storeName,
-            adress: this.user.adress,
-            zip: this.user.zip,
-            city: this.user.city,
-            owner: '',
-            verified: false,
-            categoryId: '',
-            adId: [''],
-            buyingUsers24: [''],
-            walkbyUsers24: [''],
-            givenPoints: 0,
-            imgUrl: '',
-            qrCode: '',
-            toGoodToGoActive: [''],
-            toGoodToGoHistory: ['']
-          })
-          .then(() => {
-            console.log('Document successfully written!');
-          })
-          .catch((error) => {
-            console.error('Error writing document: ', error);
-          });
+          storeName: this.user.storeName,
+          adress: this.user.adress,
+          zip: this.user.zip,
+          city: this.user.city,
+          owner: '',
+          verified: false,
+          categoryId: '',
+          adId: [''],
+          buyingUsers24: [''],
+          walkbyUsers24: [''],
+          givenPoints: 0,
+          imgUrl: '',
+          qrCode: '',
+          toGoodToGoActive: [''],
+          toGoodToGoHistory: [''],
+          lat: this.user.lat,
+          lng: this.user.lng,
+          uid: this.afAuth.auth.currentUser.uid,
+          opening: this.user.opening
+        })
+        .then(() => {
+          console.log('Document successfully written!');
+        })
+        .catch((error) => {
+          console.error('Error writing document: ', error);
+        });
 
       } else {
         console.log('Die Kategory hat nicht überein gestimmt.');
       }
+      console.log('Added new User');
     }
   }
 }

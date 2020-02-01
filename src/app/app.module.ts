@@ -22,10 +22,15 @@ import { AngularFireMessaging } from '@angular/fire/messaging';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { QRCodeModule } from 'angularx-qrcode';
+import { AngularFireStorageModule, AngularFireStorage } from '@angular/fire/storage';
+import { IOSFilePicker } from '@ionic-native/file-picker/ngx';
+
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -50,8 +55,12 @@ import { QRCodeModule } from 'angularx-qrcode';
     AngularFireMessaging,
     AngularFirestore,
     AngularFireAuth,
+    IOSFilePicker,
+    ImagePicker,
+    AngularFireStorage,
     AngularFireFunctions,
     AngularFireAuthGuard,
+    AngularFireStorageModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]

@@ -91,4 +91,39 @@ ion-grid {
   }
 }
 
+ion-header {
+  background: white;
+  padding: 0;
+  height: 100px;
+}
 
+.ion-activatable {
+  position: relative;
+  overflow: hidden;
+}
+.map-container1 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 30%;
+  margin-bottom: 30%;
+}
+
+.map-frame1 {
+  height: 100%;
+}
+
+#map1 {
+  height: 100%;
+}
+
+#setPosition {
+  z-index: 40000;
+}
+
+.m5 {
+  margin-top: 40%;
+}

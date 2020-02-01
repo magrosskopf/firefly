@@ -15,7 +15,23 @@ export class SellerPersonalPage implements OnInit {
     displayName: '',
     email: '',
     password: '',
-    confirm: ''
+    confirm: '',
+    photoURL: '',
+    storeName: '',
+    adress: '',
+    zip: '',
+    city: '',
+    lat: null,
+    lng: null,
+    opening: {
+        mo: [null, null],
+        di: [null, null],
+        mi: [null, null],
+        do: [null, null],
+        fr: [null, null],
+        sa: [null, null],
+        so: [null, null]
+    }
   };
 
   constructor( public authentication: AuthenticationService ) { }
@@ -31,7 +47,6 @@ export class SellerPersonalPage implements OnInit {
     this.user.confirm = infos.confirm;
     this.user.displayName = infos.firstName + ' ' + infos.lastName;
 
-    console.log(this.user);
     this.authentication.setLocalUser(this.user);
   }
 

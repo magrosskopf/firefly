@@ -1,9 +1,13 @@
 export interface Deal {
-    userId: string;
+    uid: string;
     title: string;
     description: string;
     active: boolean;
     picture?: string;
     location: string;
-    price: number;
+    afterPrice: number;
+    beforePrice: number;
+    id?: string;
+    storeName: string;
+    imgUrl?: any;
 }

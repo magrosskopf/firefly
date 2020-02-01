@@ -7,6 +7,7 @@ import { PersonalInfo } from '../_interfaces/personal-info';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EarthService } from '../_services/earth.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({
   selector: 'app-map',
@@ -17,12 +18,12 @@ export class MapPage {
 
   latitude = 54;
   longitude = 9;
-
-
+  user = this.authentication.afAuth.auth.currentUser;
+  role = '';
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Access-Control-Allow-Origin':  'localhost:8100',
+      'Access-Control-Allow-Origin': 'localhost:8100',
       'Access-Control-Allow-Methods': 'POST',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Content-Type': 'application/json'
@@ -36,12 +37,20 @@ export class MapPage {
   uid;
   discoveredStoresApi = 'https://us-central1-firefly-5af90.cloudfunctions.net/getDiscoveredStores';
 
-  constructor(public afAuth: AngularFireAuth,
-              public router: Router,
-              private earth: EarthService,
-              public http: HttpClient,
-              public geodata: GeodataService,
-              public userInfo: UserInfoService) {
+  constructor(
+    public afAuth: AngularFireAuth,
+    public router: Router,
+    private earth: EarthService,
+    public http: HttpClient,
+    public geodata: GeodataService,
+    public authentication: AuthenticationService,
+    public userService: UserInfoService
+  ) {
+    this.userService.getRoleFromFirestore(this.user.uid)
+    .subscribe(data => {
+      console.log(data.role);
+      this.role = data.role;
+    });
 
     this.geodata.getGeolocation();
     this.latitude = this.geodata.lat;
@@ -50,115 +59,86 @@ export class MapPage {
     this.favs = [];
     this.afAuth.user.subscribe(user => {
       this.uid = user.uid;
-      this.getDiscoveredStores(this.userInfo.getPersonalDataFromFirestore(this.uid, 'customer'));
+      this.getDiscoveredStores(this.userService.getPersonalDataFromFirestore(this.uid, 'customer'));
 
     });
-
-    /* this.userInfo.getPersonalDataFromFirestore(afAuth.auth.currentUser.uid)
-    this.userInfo.personalInfo.subscribe(data => {
-      this.personalInfo = data;
-      console.log(data);
-
-    }) */
 
     this.afAuth.user.subscribe(user => {
       this.uid = user.uid;
     });
   }
 
-  ionViewDidEnter() {
-  }
-
   setPosition() {
-
     this.earth.setPosition(this.geodata.lat, this.geodata.long);
   }
 
   openShop(id) {
-    console.log(id);
-
-    this.router.navigateByUrl('/shop-detail');
+    this.router.navigateByUrl('/tabs/shop');
   }
 
-
-
-  getDiscoveredStores(userObs: Observable<PersonalInfo>) {
+  getDiscoveredStores(userObs: Observable < PersonalInfo > ) {
     userObs.subscribe(data => {
 
       this.personalInfo = data;
-      // this.getStoreData();
-      this.list = [
-        {
-          adId: ['',
-            'KlupshZuIxtQ5dfqf3AG',
-            'NFZV3JOzWcC3rbUNpctd',
-            'cfmde9Oezwms9Y9oQkRu',
-            '8MrtrXGfTOsEpuMHv0Yk',
-            'fcd9YbIAOsoialx56QAh',
-            'XK8NVOrIjiaiYRfnNkaY',
-            'nbZffS1zBfsEuRzChT3L',
-            'Kb8LMrue7acSkrvIFmye',
-            '7FjFoXSxo8aR6jKi9d0x',
-            'p7cngRHytryAdHRvcd9M',
-            'HnppUZ0w7P3kLFie9jLs',
-            'Y8yp2TMMLCLLqMDQY6Vg',
-            'pA63Tzs4pFMWpQZnuA2w',
-            'TY1GEN1XWHk1pZBxC1qg',
-            'cx6kXSoNUQMi2FuCCZ6y',
-            'CRI4gRAJrW8wCGfRi50V',
-            'KIEQTo0BCzl0wTnRnEvp',
-            '048rnuQhtrZTFHi8215B',
-            'OLc2eUbdX5YRiEpLYZFm',
-            'q7BiOJnOXafvvgz6XNyP',
-            'Uru8sCRQnY8Y7SBimLXj',
-            'NImT9rCMfwXP8ewpAvTm',
-            'kpNkGITCLeokQgFdM8gc',
-            'q1WbZ5zZTOZQtqPc2E0Q'],
-          adress: 'Lütt-Moor 8',
-          buyingUsers24: ['XAbffjv83Qca96mro0RXRYSlnys1'],
-          categoryId: '',
-          city: 'Wismar',
-          givenPoints: 0,
-          // tslint:disable-next-line:max-line-length
-          imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Rostock_asv2018-05_img42_aerial_view.jpg/1200px-Rostock_asv2018-05_img42_aerial_view.jpg',
-          owner: 'Henningsvater Löwe',
-          qrCode: '',
-          storeName: 'FSD',
-          toGoodToGoActive: [''],
-          toGoodToGoHistory: [''],
-          verified: false,
-          walkbyUsers24: [''],
-          zip: '23970',
-          lat: 49,
-          long: 9
-        }
-      ];
-      this.earth.initMap(this.list, this.favs, this.geodata.lat, this.geodata.long);
-
+      this.getStoreData();
+      // this.list = [
+      //   {
+      //     adId: ['',
+      //       'KlupshZuIxtQ5dfqf3AG',
+      //       'NFZV3JOzWcC3rbUNpctd',
+      //       'cfmde9Oezwms9Y9oQkRu',
+      //       '8MrtrXGfTOsEpuMHv0Yk',
+      //       'fcd9YbIAOsoialx56QAh',
+      //       'XK8NVOrIjiaiYRfnNkaY',
+      //       'nbZffS1zBfsEuRzChT3L',
+      //       'Kb8LMrue7acSkrvIFmye',
+      //       '7FjFoXSxo8aR6jKi9d0x',
+      //       'p7cngRHytryAdHRvcd9M',
+      //       'HnppUZ0w7P3kLFie9jLs',
+      //       'Y8yp2TMMLCLLqMDQY6Vg',
+      //       'pA63Tzs4pFMWpQZnuA2w',
+      //       'TY1GEN1XWHk1pZBxC1qg',
+      //       'cx6kXSoNUQMi2FuCCZ6y',
+      //       'CRI4gRAJrW8wCGfRi50V',
+      //       'KIEQTo0BCzl0wTnRnEvp',
+      //       '048rnuQhtrZTFHi8215B',
+      //       'OLc2eUbdX5YRiEpLYZFm',
+      //       'q7BiOJnOXafvvgz6XNyP',
+      //       'Uru8sCRQnY8Y7SBimLXj',
+      //       'NImT9rCMfwXP8ewpAvTm',
+      //       'kpNkGITCLeokQgFdM8gc',
+      //       'q1WbZ5zZTOZQtqPc2E0Q'],
+      //     adress: 'Schwanengasse 2',
+      //     buyingUsers24: ['XAbffjv83Qca96mro0RXRYSlnys1'],
+      //     categoryId: '',
+      //     city: 'Mosbach',
+      //     givenPoints: 0,
+      //     imgUrl: '../../assets/annas.jpg',
+      //     owner: 'Anna Seeber',
+      //     qrCode: '',
+      //     storeName: 'Annas',
+      //     toGoodToGoActive: [''],
+      //     toGoodToGoHistory: [''],
+      //     verified: false,
+      //     walkbyUsers24: [''],
+      //     zip: '74821 ',
+      //     lat: 49,
+      //     long: 9
+      //   }
+      // ];
     });
-
   }
 
   getStoreData() {
-    this.personalInfo.discoveredStores.forEach(element => {
-      this.userInfo.getSellerDataFromFirestore(element).subscribe(data => {
-        if (data !== undefined) {
-          console.log(data);
-
-          this.list.push(data);
-        }
-
-
-      });
-    });
-    this.personalInfo.favStores.forEach(element => {
-      this.userInfo.getSellerDataFromFirestore(element).subscribe(data => {
-        if (data !== undefined) {
-          this.favs.push(data);
+    this.userService.getAllSellerFromFirestore().subscribe(data => {
+      data.forEach(element => {
+        if (element !== undefined) {
+          // this.list = data;
+          this.list.push(element);
         }
       });
+      this.earth.initMap(this.list, this.geodata.lat, this.geodata.long, 'map');
     });
   }
-
 }
 

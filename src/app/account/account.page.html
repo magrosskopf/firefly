@@ -20,9 +20,19 @@
         <ion-item lines="none">
           <ion-label position="floating" for="name"><b>{{ user.displayName }}</b></ion-label>
         </ion-item>
-        <p>Mitglied seit September 2019</p>
-        <p>Punktestand: <b> {{ this.personalInfo.points }}</b></p>
-        <ion-badge (click)="usePoints()">Punkte einlösen</ion-badge>
+
+        <!-- Käufer -->
+        <div *ngIf="role === 'customer'">
+          <p>Punktestand: <b> {{ this.personalInfo.points }}</b></p>
+          <ion-badge (click)="usePoints()">Punkte einlösen</ion-badge>
+        </div>
+
+        <!-- Verkäufer -->
+        <div *ngIf="role === 'salesperson' && seller != null">
+          <p>Vorbeigelaufene Nutzer / 24h: <b>{{ this.seller.walkbyUsers24.length }}</b></p>
+          <p>Verteilte Punkte: <b>{{ this.seller.givenPoints }}</b></p>
+        </div>
+
       </ion-col>
     </ion-row>
     <div class="store-wrapper">
@@ -44,9 +54,8 @@
         <h3>Eingestellte Angebote</h3>
         <ion-row class="favourite-stores horizontal-scroll-wrapper">
           <div *ngFor="let deal of sellerDeals">
-            <ion-card routerLink="/tabs/deals/{{ deal.uid }}">
-              <!-- <ion-img src="{{ deal.imgUrl }}"></ion-img> -->
-              <ion-img src="../../assets/img/alnatura.jpg"></ion-img>
+            <ion-card routerLink="/tabs/deals/{{ deal.id }}">
+              <ion-img src="{{ deal.imgUrl }}"></ion-img>
               <ion-card-subtitle>
                 <p>{{ deal.title }}</p>
                 <p>{{ deal.afterPrice.toFixed(2) }}€ statt <s>{{ deal.beforePrice.toFixed(2) }}€</s></p>

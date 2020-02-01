@@ -31,8 +31,12 @@ ion-fab-button {
 
 #map {
   height: 100%;
+  h2 {
+    text-align: left;
+
+  }
 }
 
-#setPosition {
-  z-index: 40000;
+.setPosition {
+  z-index: 999;
 }

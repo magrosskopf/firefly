@@ -116,11 +116,9 @@ ion-card {
   }
 
   ion-card-subtitle {
-    p {
-      text-align: center;
-      font-size: 11px;
-      margin: 0 0 5px;
-    }
+    display: flex;
+    justify-content: center;
+    margin-top: 13px;
   }
 
   ion-card-content {
@@ -128,5 +126,10 @@ ion-card {
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 0 10px 10px 10px;
+  }
+
+  ion-img {
+    height: 113px;
+    object-fit: cover;
   }
 }

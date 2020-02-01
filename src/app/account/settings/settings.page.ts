@@ -10,7 +10,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class SettingsPage implements OnInit {
 
-  constructor(public authentication: AuthenticationService, private imguploader: ImguploaderService, public afAuth: AngularFireAuth) { }
+  constructor(public authentication: AuthenticationService,
+              private imguploader: ImguploaderService,
+              public afAuth: AngularFireAuth) {}
 
   ngOnInit() {
   }

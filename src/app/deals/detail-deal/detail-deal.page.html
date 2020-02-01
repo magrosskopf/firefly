@@ -8,7 +8,7 @@
 </ion-header>
   
 <ion-content>
-  <ion-img src="../../assets/avocado.jpg"></ion-img>
+  <ion-img src="{{ deal.imgUrl }}"></ion-img>
   <div class="angebot_beschreibung">
     <ion-row>
       <ion-col size="9"><h2><b>{{ deal.title }}</b></h2></ion-col>
@@ -32,5 +32,7 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+  <ion-button *ngIf="deal.uid === user.uid" routerLink="/tabs/deals" (click)="deleteDeal()">Löschen</ion-button>
 
 </ion-content>

@@ -49,6 +49,10 @@ export class DealService {
 
   deleteDealFromFirestore(dealId: string) {
     this.afDB.doc<Deal>('deals/' + dealId ).delete();
+    this.afDB.doc<any>('salesperson/' + this.user.uid)
+      .update({
+        adId: firebase.firestore.FieldValue.arrayRemove(dealId)
+      });
   }
 
   getAllDealsFromFirestore(): Observable<Deal[]> {

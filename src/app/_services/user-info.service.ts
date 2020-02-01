@@ -25,6 +25,8 @@ export class UserInfoService {
   }
 
   updateNameAndPhoto(name, url) {
+      this.user = this.authentication.afAuth.auth.currentUser;
+
     if (this.user) {
       this.user.updateProfile({
         displayName: name,

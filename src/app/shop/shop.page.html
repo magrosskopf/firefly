@@ -10,34 +10,20 @@
   <ion-img src="../../assets/img/annas.jpeg"></ion-img>
   <div class="shop_beschreibung">
     <ion-row>
-        <ion-col size="9"><h2><b>{{ store.storeName }}</b></h2></ion-col>
-        <ion-col size="3">
-          <ion-icon *ngIf="!favStore" (click)="changeFavStore()" name="heart-empty"></ion-icon>
-          <ion-icon *ngIf="favStore" (click)="changeFavStore()" name="heart"></ion-icon>
-        </ion-col>
+      <ion-col class="store-name" size="9"><h2><b>{{ store.storeName }}</b></h2></ion-col>
+      <ion-col size="3" class="heart">
+        <ion-icon *ngIf="!favStore" (click)="changeFavStore()" name="heart-empty"></ion-icon>
+        <ion-icon *ngIf="favStore" (click)="changeFavStore()" name="heart"></ion-icon>
+      </ion-col>
     </ion-row>
     <p>
       {{ store.description }}
     </p>
 
-    <ion-row>
-      <ion-col size="2">
-        <ion-icon class="time_location" name="pin"></ion-icon>
-      </ion-col>
-      <ion-col size="8">{{ store.adress }}, {{ store.zip}},  {{ store.city }}</ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="2">
-        <ion-icon class="time_location" name="time"></ion-icon>
-      </ion-col>
-      <ion-col size="8">Öffnungszeiten: Montag bis Freitag von 08:00 bis 17:30 Uhr</ion-col>
-    </ion-row>
-
-    <div *ngIf="dealsLoaded">
+    <div *ngIf="dealsLoaded" class="deals-loaded">
       <h3>Angebote</h3>
-  
-      <ion-row class="stores horizontal-scroll-wrapper" >
+
+      <ion-row class="stores horizontal-scroll-wrapper">
         <ion-col size="12">
           <div *ngFor="let deal of allDeals">
             <ion-card routerLink="{{ deal.id }}">
@@ -51,6 +37,29 @@
         </ion-col>
       </ion-row>
     </div>
+
+    <ion-row>
+      <ion-col size="2">
+        <ion-icon class="time_location" name="pin"></ion-icon>
+      </ion-col>
+      <ion-col size="10">{{ store.adress }}, {{ store.zip}},  {{ store.city }}</ion-col>
+    </ion-row>
+    <br>
+
+    <ion-row>
+      <ion-col size="2">
+        <ion-icon class="time_location" name="time"></ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <p>Montag 09:00–18:00</p>
+        <p>Dienstag 09:00–18:00</p>
+        <p>Mittwoch 09:00–18:00</p>
+        <p>Donnerstag 09:00–18:00</p>
+        <p>Freitag 09:00–18:00</p>
+        <p>Samstag 09:00–12:00</p>
+        <p>Sonntag Geschlossen</p>
+      </ion-col>
+    </ion-row>
   </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

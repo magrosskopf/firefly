@@ -74,18 +74,18 @@ export class EarthService {
           '<img src="' + element.imgUrl + '" width="100%" alt="shop_image" />' +
           '<a href="/tabs/map/shop-detail/0WfSKft5onQ44wlYWlBqAisk2KJ2">' +
           '<ion-row>' +
-          '<ion-col size=8>' +
-          '<h2>' +
+          '<ion-col size=10>' +
+          '<p>' +
           element.storeName +
-          '</h2>' +
+          '</p>' +
           '</ion-col>' +
-          '<ion-col class="text-left" size=4>' +
-          '<ion-icon size="large" name="arrow-dropright"></ion-icon>' +
+          '<ion-col class="text-left" size=2>' +
+          '<ion-icon size="large" name="arrow-forward"></ion-icon>' +
           '</ion-col>' +
           '</ion-row>' +
           '</a>' +
           // tslint:disable-next-line:max-line-length
-          '<style> #map .leaflet-popup-content-wrapper { background:#FFA462; color:#fff !important; font-size:16px; line-height:24px;} #map h2 { color: #fff; text-align: right;} #map ion-icon {margin-top: 8px; color: white;} </style>'
+          '<style> #map .leaflet-popup-content-wrapper { background:linear-gradient(to right, #FFA462 , #FFB762); color:#fff !important; font-size:13px; font-weight: bold;} #map p { color: #fff; text-align: left; margin: 5px 0 0 15px;} #map ion-icon {height: 25px; color: white; margin: 2px 0 0 -10px;} .leaflet-popup-tip { background: #FFA462 } </style>'
       );
     });
   }

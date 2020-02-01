@@ -45,7 +45,7 @@
           <div *ngFor="let deal of allDeals">
             <ion-card routerLink="{{ deal.id }}">
               <ion-card-header>{{ deal.storeName }}</ion-card-header>
-            <ion-img src="{{ deal.imgUrl }}"></ion-img>
+              <ion-img src="{{ deal.imgUrl }}"></ion-img>
               <ion-card-subtitle>
                 <p>{{ deal.title }}</p>
                 <p>{{ deal.afterPrice.toFixed(2) }}€ statt <s>{{ deal.beforePrice.toFixed(2) }}€</s></p>

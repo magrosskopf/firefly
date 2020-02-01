@@ -14,13 +14,18 @@ export class DealService {
 
   user = this.afAuth.auth.currentUser;
 
-  constructor(public afAuth: AngularFireAuth, public afDB: AngularFirestore, public userService: UserInfoService, private imgupload: ImguploaderService) { }
+  constructor(
+    public afAuth: AngularFireAuth,
+    public afDB: AngularFirestore,
+    public userService: UserInfoService,
+    private imgupload: ImguploaderService
+  ) { }
 
   addDealtoFirestore(deal: Deal) {
     console.log(deal);
-    
+
     this.afDB.collection<Deal>('deals').add({
-      userId: deal.userId,
+      uid: deal.uid,
       title: deal.title,
       description: deal.description,
       active: deal.active,
@@ -35,7 +40,6 @@ export class DealService {
       this.afDB.collection('deals').doc(docRef.id).update({
         id: docRef.id
       });
-      
 
       this.getDealsFromKategory('salesperson', this.user.uid)
       .then((userDeals) => {
@@ -56,6 +60,10 @@ export class DealService {
 
   getDealFromFirestore(dealId: string): Observable<Deal> {
     return this.afDB.doc<Deal>('deals/' + dealId ).valueChanges();
+  }
+
+  getUserDealsFromFirestore() {
+    return this.afDB.collection('deals', ref => ref.where('uid', '==', this.user.uid)).valueChanges();
   }
 
   getDealsFromKategory(kategory: string, userId: string) {

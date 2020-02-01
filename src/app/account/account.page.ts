@@ -115,10 +115,12 @@ export class AccountPage implements OnInit {
   }
 
   usePoints() {
-    const num: number = Math.floor(this.personalInfo.points / 10);
-
-    this.personalInfo.points = this.personalInfo.points - (num * 10);
-    this.userService.updatePersonalDataFromFirestore(this.afAuth.auth.currentUser.uid, this.personalInfo);
-    this.userService.presentToast('Punkte wurden eingelöst');
+    if (this.personalInfo.points >= 10) {
+      this.personalInfo.points = this.personalInfo.points - 10;
+      this.userService.updatePersonalDataFromFirestore(this.afAuth.auth.currentUser.uid, this.personalInfo);
+      this.userService.presentToast('10 Punkte wurden eingelöst.');
+    } else {
+      this.userService.presentToast('Mindestens 10 Punkte zum Einlösen benötigt.');
+    }
   }
 }

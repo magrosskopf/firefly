@@ -34,8 +34,8 @@ export class NotificationService {
   ) {
     afAuth.user.subscribe(data => {
       this.uid = data.uid;
-    this.requestPermission(data.uid);
-    //this.userinfo.getPermissonTokenFirestore(data.uid);
+    // this.requestPermission(data.uid);
+    // this.userinfo.getPermissonTokenFirestore(data.uid);
       this.listen();
     });
   }

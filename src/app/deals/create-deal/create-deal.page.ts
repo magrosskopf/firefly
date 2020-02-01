@@ -14,7 +14,7 @@ import { ImguploaderService } from 'src/app/_services/imguploader.service';
 export class CreateDealPage implements OnInit {
 
   deal: Deal = {
-    userId: '',
+    uid: '',
     title: '',
     description: '',
     active: true,
@@ -49,7 +49,7 @@ export class CreateDealPage implements OnInit {
   onSubmit(form: NgForm) {
     const infos = form.value;
 
-    this.deal.userId = this.userId;
+    this.deal.uid = this.userId;
     this.deal.title = infos.title;
     this.deal.description = infos.description;
     this.deal.afterPrice = infos.afterPrice;

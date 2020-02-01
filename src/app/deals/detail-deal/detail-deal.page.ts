@@ -11,7 +11,7 @@ import { Deal } from '../../_interfaces/deal';
 export class DetailDealPage implements OnInit {
 
   deal: Deal = {
-    userId: '',
+    uid: '',
     title: '',
     description: '',
     active: true,

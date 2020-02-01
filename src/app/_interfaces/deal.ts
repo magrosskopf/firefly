@@ -9,4 +9,5 @@ export interface Deal {
     beforePrice: number;
     id?: string;
     storeName: string;
+    imgUrl?: any;
 }

@@ -31,8 +31,9 @@
             </ion-item>
             <ion-item>
               <ion-label position="stacked">Bild</ion-label>
-              <ion-input name="picture" type="text" ngModel></ion-input>
+              <ion-input name="picture" type="file" (change)="uploadFile($event)" ngModel></ion-input>
             </ion-item>
+            
           </div>
           <div class="ion-padding">
             <ion-button routerLink="/tabs/deals" type="submit" [disabled]="form.invalid" expand="block">Erstellen</ion-button>

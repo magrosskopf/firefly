@@ -5,6 +5,7 @@ import { Deal } from '../_interfaces/deal';
 import { Seller } from '../_interfaces/seller';
 import { Observable } from 'rxjs';
 import { UserInfoService } from './user-info.service';
+import { ImguploaderService } from './imguploader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,11 @@ export class DealService {
 
   user = this.afAuth.auth.currentUser;
 
-  constructor(public afAuth: AngularFireAuth, public afDB: AngularFirestore, public userService: UserInfoService) { }
+  constructor(public afAuth: AngularFireAuth, public afDB: AngularFirestore, public userService: UserInfoService, private imgupload: ImguploaderService) { }
 
   addDealtoFirestore(deal: Deal) {
+    console.log(deal);
+    
     this.afDB.collection<Deal>('deals').add({
       userId: deal.userId,
       title: deal.title,
@@ -24,13 +27,15 @@ export class DealService {
       location: deal.location,
       afterPrice: deal.afterPrice,
       beforePrice: deal.beforePrice,
-      storeName: deal.storeName
+      storeName: deal.storeName,
+      imgUrl: deal.imgUrl
     })
     .then((docRef) => {
 
       this.afDB.collection('deals').doc(docRef.id).update({
         id: docRef.id
       });
+      
 
       this.getDealsFromKategory('salesperson', this.user.uid)
       .then((userDeals) => {

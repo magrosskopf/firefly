@@ -6,6 +6,8 @@ import { finalize } from 'rxjs/operators';
 import { UserInfoService } from './user-info.service';
 import { IOSFilePicker } from '@ionic-native/file-picker/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Deal } from '../_interfaces/deal';
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +21,8 @@ export class ImguploaderService {
     private storage: AngularFireStorage,
     private afAuth: AngularFireAuth,
     private userinfo: UserInfoService,
-    private filePicker: IOSFilePicker,
-    private imagePicker: ImagePicker) {
+    private afDB: AngularFirestore) {
    }
-
-  pick() {
-    // this.filePicker.pickFile()
-    //   .then(uri => {
-    //     this.uploadFile(uri)
-    //   })
-    //   .catch(err => console.log('Error', err));
-  }
 
   uploadFile(event, path: string, name: string) {
     const file = event.target.files[0];
@@ -44,7 +37,10 @@ export class ImguploaderService {
       finalize(() => {
         this.downloadURL = fileRef.getDownloadURL();
         this.downloadURL.subscribe(data => {
-          this.userinfo.updateNameAndPhoto(this.afAuth.auth.currentUser.displayName, data);
+          if (path === 'profilimg') {
+            this.userinfo.updateNameAndPhoto(this.afAuth.auth.currentUser.displayName, data);
+          }
+          
         });
       })
     )

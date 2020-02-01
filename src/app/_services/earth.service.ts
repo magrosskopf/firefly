@@ -54,7 +54,9 @@ export class EarthService {
       this.lng = data.coords.longitude;
       const newLatLng = new L.LatLng(this.lat, this.lng);
       marker.setLatLng(newLatLng);
-      this.circle.setLatLng(newLatLng);
+      if (map !== 'map') {
+        this.circle.setLatLng(newLatLng);
+      }
     });
     this.addMarker(list);
     tiles.addTo(this.map);

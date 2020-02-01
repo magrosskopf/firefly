@@ -4,6 +4,7 @@ import { UserInfoService } from './user-info.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
+import { PersonalInfo } from '../_interfaces/personal-info';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class GeodataService {
   passedGeofence: boolean;
   passedShop;
   cUser;
+  personalInfo: PersonalInfo;
   locationIqToken = '94dd6196217fed';
 
   constructor(
@@ -35,6 +37,9 @@ export class GeodataService {
     });
     this.afAuth.user.subscribe(user => {
       this.cUser = user;
+      this.userinfo.getPersonalDataFromFirestore(this.cUser.uid, 'customer').subscribe(personal => {
+        this.personalInfo = personal;
+      })
     });
   }
 
@@ -53,7 +58,6 @@ export class GeodataService {
       this.lat = data.coords.latitude;
       this.long = data.coords.longitude;
       console.log('sub: ' + data.coords.latitude, data.coords.longitude);
-
       this.compareCoords();
     });
   }
@@ -74,9 +78,10 @@ export class GeodataService {
 
         if (this.passedShop.walkbyUsers24.indexOf(this.cUser.uid) < 0) {
           this.passedShop.walkbyUsers24.push(this.cUser.uid);
-          this.cUser.points += 5;
+          this.personalInfo.points += 5;
+          console.log(this.passedShop, this.personalInfo);
           this.presentToast('You got 5 vegan points!');
-          this.userinfo.updatePersonalDataFromFirestore(this.cUser.uid, this.cUser);
+          this.userinfo.updatePersonalDataFromFirestore(this.cUser.uid, this.personalInfo);
           this.userinfo.updateSellerDataFromFirestore(this.passedShop.uid, this.passedShop)
         }
         // Todo: Check if User already passed this fence and if not, give him some points

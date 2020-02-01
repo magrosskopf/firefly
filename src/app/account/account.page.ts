@@ -47,30 +47,30 @@ export class AccountPage implements OnInit {
     this.userService.getRoleFromFirestore(this.user.uid)
       .subscribe(data => {
         this.role = data.role;
-        console.log('Role', this.role);
-      });
-
-    this.userService.getPersonalDataFromFirestore(this.user.uid, 'customer')
-      .subscribe( data => {
-        this.personalInfo = data;
-        this.favStores = [];
-        this.favLoaded = false;
-        this.personalInfo.favStores.forEach(element => {
-          this.userService.getSellerDataFromFirestore(element)
-          .subscribe( sellerData => {
-            this.favStores.push(sellerData);
-            this.favLoaded = true;
+        if (this.role === 'customer') {
+          this.userService.getPersonalDataFromFirestore(this.user.uid, 'customer')
+            .subscribe( personalData => {
+              this.personalInfo = personalData;
+              this.favStores = [];
+              this.favLoaded = false;
+              this.personalInfo.favStores.forEach(element => {
+                this.userService.getSellerDataFromFirestore(element)
+                .subscribe( sellerData => {
+                  this.favStores.push(sellerData);
+                  this.favLoaded = true;
+                });
+              });
+            });
+        } else if (this.role === 'salesperson') {
+          this.dealService.getUserDealsFromFirestore().subscribe( deals => {
+            this.sellerDeals = deals;
+            this.dealsLoaded = true;
           });
-        });
+        }
       });
-
-    this.dealService.getUserDealsFromFirestore().subscribe( data => {
-      this.sellerDeals = data;
-      this.dealsLoaded = true;
-    });
   }
 
-  async ngOnInit() {
+  ngOnInit() {
   }
 
   saveEmail(email) {

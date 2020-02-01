@@ -94,4 +94,12 @@ export class AccountPage implements OnInit {
   sendNotification() {
     this.notification.enterFence();
   }
+
+  usePoints() {
+    const num: number = Math.floor(this.personalInfo.points / 10);
+    
+    this.personalInfo.points = this.personalInfo.points - (num * 10);
+    this.userService.updatePersonalDataFromFirestore(this.afAuth.auth.currentUser.uid, this.personalInfo);
+    this.userService.presentToast('Punkte wurden eingelöst');
+  }
 }

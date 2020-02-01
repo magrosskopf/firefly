@@ -20,7 +20,8 @@
           <ion-label position="floating" for="name"><b>{{ user.displayName }}</b></ion-label>
         </ion-item>
         <p>Mitglied seit September 2019</p>
-        <p>Punktestand: <b>72 Punkte</b></p>
+        <p>Punktestand: <b> {{ this.personalInfo.points }}</b></p>
+        <ion-badge (click)="usePoints()">Punkte einlösen</ion-badge>
       </ion-col>
     </ion-row>
     <div class="store-wrapper">

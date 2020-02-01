@@ -76,6 +76,8 @@ export class GeodataService {
           this.passedShop.walkbyUsers24.push(this.cUser.uid);
           this.cUser.points += 5;
           this.presentToast('You got 5 vegan points!');
+          this.userinfo.updatePersonalDataFromFirestore(this.cUser.uid, this.cUser);
+          this.userinfo.updateSellerDataFromFirestore(this.passedShop.uid, this.passedShop)
         }
         // Todo: Check if User already passed this fence and if not, give him some points
       } else if (num > 0.001 && stop) {

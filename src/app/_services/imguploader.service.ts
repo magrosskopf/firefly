@@ -8,6 +8,8 @@ import { IOSFilePicker } from '@ionic-native/file-picker/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Deal } from '../_interfaces/deal';
+import { User } from 'firebase';
+import { Seller } from '../_interfaces/seller';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +18,22 @@ export class ImguploaderService {
 
   uploadPercentage: Observable<number>;
   downloadURL: Observable<string>;
+  user: User;
+  sellerData: Seller;
 
   constructor(
     private storage: AngularFireStorage,
     private afAuth: AngularFireAuth,
     private userinfo: UserInfoService,
     private afDB: AngularFirestore) {
+      this.user = this.afAuth.auth.currentUser;
+      this.userinfo.getRoleFromFirestore(this.user.uid).subscribe(role => {
+        if (role.role === 'salesperson') {
+          this.userinfo.getSellerDataFromFirestore(this.user.uid).subscribe(sellerData => {
+            this.sellerData = sellerData;
+          });
+        }
+      });
    }
 
   uploadFile(event, path: string, name: string) {
@@ -37,7 +49,13 @@ export class ImguploaderService {
         this.downloadURL = fileRef.getDownloadURL();
         this.downloadURL.subscribe(data => {
           if (path === 'profilimg') {
-            this.userinfo.updateNameAndPhoto(this.afAuth.auth.currentUser.displayName, data);
+            this.userinfo.updateNameAndPhoto(this.user.displayName, data);
+            this.userinfo.getRoleFromFirestore(this.user.uid).subscribe(role => {
+              if (role.role === 'salesperson') {
+                this.sellerData.imgUrl = data;
+                this.userinfo.updateSellerDataFromFirestore(this.user.uid, this.sellerData);
+              }
+            });
           }
         });
       })

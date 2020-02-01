@@ -41,12 +41,8 @@ export class DealService {
       this.afDB.collection('deals').doc(docRef.id).update({
         id: docRef.id
       });
-
-      this.getDealsFromKategory('salesperson', this.user.uid)
-      .then((userDeals) => {
-        this.afDB.collection('salesperson').doc(this.user.uid).update({
-          adId: [...userDeals, docRef.id]
-        });
+      this.afDB.collection('salesperson').doc(this.user.uid).update({
+        adId: firebase.firestore.FieldValue.arrayUnion(docRef.id)
       });
     });
   }

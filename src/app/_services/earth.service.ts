@@ -72,7 +72,7 @@ export class EarthService {
       .addTo(this.map)
       .bindPopup(
           '<img src="' + element.imgUrl + '" width="100%" alt="shop_image" />' +
-          '<a href="/tabs/map/shop-detail/0WfSKft5onQ44wlYWlBqAisk2KJ2">' +
+          '<a href="/tabs/shop/' + element.uid + '">' +
           '<ion-row>' +
           '<ion-col size=10>' +
           '<p>' +

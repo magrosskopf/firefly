@@ -88,7 +88,7 @@ export class UserInfoService {
     return this.afDB.collection<Seller>('salesperson/').valueChanges();
   }
 
-  updateSellerDataFromFirestore(uid: string, seller: any) {
+  updateSellerDataFromFirestore(uid: string, seller: Seller) {
     this.afDB.doc<any>('salesperson/' + uid ).update(seller);
   }
 

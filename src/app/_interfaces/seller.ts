@@ -10,5 +10,6 @@ export interface Seller {
     storeName: string;
     owner: string;
     description: string;
+    imgUrl: string;
     // TODO: fertig machen
 }

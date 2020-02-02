@@ -33,6 +33,8 @@ export class DetailDealPage implements OnInit {
     this.dealService.getDealFromFirestore(pathId)
       .subscribe(data => {
         this.deal = data;
+        console.log(data);
+        
       });
   }
 

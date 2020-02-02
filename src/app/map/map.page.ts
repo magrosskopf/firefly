@@ -48,7 +48,6 @@ export class MapPage {
   ) {
     this.userService.getRoleFromFirestore(this.user.uid)
     .subscribe(data => {
-      console.log(data.role);
       this.role = data.role;
     });
 
@@ -60,7 +59,6 @@ export class MapPage {
     this.afAuth.user.subscribe(user => {
       this.uid = user.uid;
       this.getDiscoveredStores(this.userService.getPersonalDataFromFirestore(this.uid, 'customer'));
-
     });
 
     this.afAuth.user.subscribe(user => {
@@ -133,7 +131,6 @@ export class MapPage {
     this.userService.getAllSellerFromFirestore().subscribe(data => {
       data.forEach(element => {
         if (element !== undefined) {
-          // this.list = data;
           this.list.push(element);
         }
       });

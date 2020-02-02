@@ -40,7 +40,7 @@ export class EarthService {
   }
 
   initMap(list: any[], lat, long, map: string): void {
-    this.map = L.map(map).setView([lat, long], 8);
+    this.map = L.map(map).setView([lat, long], 13);
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19
     });

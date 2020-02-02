@@ -49,6 +49,8 @@ export class DealsPage implements OnInit {
   ngOnInit() {
   }
 
+
+  // Für die Präsentation! 
   enterFence() {
     console.log('enter');
     

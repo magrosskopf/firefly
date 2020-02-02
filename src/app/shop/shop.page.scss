@@ -5,6 +5,7 @@
 p {
   font-weight: 200;
   font-size: 14px;
+  line-height: 1.5;
 }
 
 ion-header{
@@ -123,3 +124,6 @@ ion-content{
   transform:rotate(90deg)
 }
 
+.info-text {
+  padding-top: 5px !important;
+}

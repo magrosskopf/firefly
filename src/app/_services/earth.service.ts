@@ -85,7 +85,7 @@ export class EarthService {
           '</ion-row>' +
           '</a>' +
           // tslint:disable-next-line:max-line-length
-          '<style> #map .leaflet-popup-content-wrapper { background:linear-gradient(to right, #FFA462 , #FFB762); color:#fff !important; font-size:13px; font-weight: bold;} #map p { color: #fff; text-align: left; margin: 5px 0 0 15px;} #map ion-icon {height: 25px; color: white; margin: 2px 0 0 -10px;} .leaflet-popup-tip { background: #FFA462 } </style>'
+          '<style> #map .leaflet-popup-content-wrapper { background:linear-gradient(to right, #FFA462 , #FFB762); color:#fff !important; font-size:13px; font-weight: bold;} #map p { color: #fff; text-align: left; margin: 5px 0 0 15px;} #map ion-icon {height: 25px; color: white; margin: 2px 0 0 -10px;} .leaflet-popup-tip { background: #FFA462 } .leaflet-popup-content img { background: white; }</style>'
       );
     });
   }

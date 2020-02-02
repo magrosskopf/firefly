@@ -17,9 +17,20 @@ ion-header{
     }
 }
 
+.price span {
+    font-weight: 200;
+}
+
 p {
     line-height: 1.5;
     font-size: 14px;
+    font-weight: 200;
+}
+
+.info-text {
+    font-size: 14px;
+    font-weight: 200;
+    padding-top: 10px;
 }
 
 ion-content{

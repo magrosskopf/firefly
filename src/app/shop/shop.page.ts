@@ -49,11 +49,9 @@ export class ShopPage implements OnInit {
       this.store = data;
       this.allDeals = [];
       this.store.adId.forEach(element => {
-        console.log('Element', element);
         this.dealService.getDealFromFirestore(element)
         .subscribe(deal => {
           this.allDeals.push(deal);
-          console.log('Deal', deal);
           this.dealsLoaded = true;
         });
       });

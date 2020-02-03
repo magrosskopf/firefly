@@ -37,6 +37,7 @@ export class GeodataService {
     });
     this.afAuth.user.subscribe(user => {
       this.cUser = user;
+      console.log(user);
       this.userinfo.getPersonalDataFromFirestore(this.cUser.uid, 'customer').subscribe(personal => {
         this.personalInfo = personal;
       })
@@ -76,15 +77,15 @@ export class GeodataService {
         this.passedGeofence = true;
         stop = false;
 
-        if (this.passedShop.walkbyUsers24.indexOf(this.cUser.uid) < 0) {
-          this.passedShop.walkbyUsers24.push(this.cUser.uid);
-          this.passedShop.givenPoints += 5;
-          this.personalInfo.points += 5;
-          console.log(this.passedShop, this.personalInfo);
-          this.presentToast('You got 5 vegan points!');
-          this.userinfo.updatePersonalDataFromFirestore(this.cUser.uid, this.personalInfo);
-          this.userinfo.updateSellerDataFromFirestore(this.passedShop.uid, this.passedShop)
-        }
+       // if (this.passedShop.walkbyUsers24.indexOf(this.cUser.uid) < 0) {
+        this.passedShop.walkbyUsers24.push(this.cUser.uid);
+        this.passedShop.givenPoints += 5;
+        this.personalInfo.points += 5;
+        console.log(this.passedShop, this.personalInfo);
+        this.presentToast('You got 5 vegan points!');
+        this.userinfo.updatePersonalDataFromFirestore(this.cUser.uid, this.personalInfo);
+        this.userinfo.updateSellerDataFromFirestore(this.passedShop.uid, this.passedShop)
+      //  }
         // Todo: Check if User already passed this fence and if not, give him some points
       } else if (num > 0.001 && stop) {
         this.passedShop = {};
@@ -104,7 +105,7 @@ export class GeodataService {
   async presentToast(msg) {
     const toast = await this.toastController.create({
       message: msg,
-      duration: 2000
+      duration: 4000
     });
     toast.present();
   }

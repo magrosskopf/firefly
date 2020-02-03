@@ -53,7 +53,7 @@ export class QrCodePage implements OnInit {
       this.cUser = user;
     })
     // this.geodata.getGeolocation();
-
+    this.qrScanner.hide();
   }
 
   ngOnInit() {
@@ -101,7 +101,7 @@ export class QrCodePage implements OnInit {
 
   checkQRCode(code: string) {
 
-    if (this.geodata.passedGeofence && this.geodata.passedShop['shopId'].indexOf(code) === 0) {
+    // if (this.geodata.passedGeofence && this.geodata.passedShop['uid'].indexOf(code) === 0) {
       console.log('passed');
 
 
@@ -109,8 +109,8 @@ export class QrCodePage implements OnInit {
       this.userinfo.getPersonalDataFromFirestore(this.cUser.uid, 'customer').subscribe(user => {
         u = user;
       });
-      this.userinfo.getSellerDataFromFirestore(code).subscribe(seller => {
-        if (seller.buyingUsers24.indexOf(this.cUser.uid) < 0) {
+      this.userinfo.getSellerDataFromFirestore('0WfSKft5onQ44wlYWlBqAisk2KJ2').subscribe(seller => {
+       // if (seller.buyingUsers24.indexOf(this.cUser.uid) < 0) {
           console.log('nicht drin');
           u.points += 5;
           u.history.push(code);
@@ -120,17 +120,19 @@ export class QrCodePage implements OnInit {
           this.userinfo.updatePersonalDataFromFirestore(this.cUser.uid, u);
           seller.buyingUsers24.push(this.cUser.uid);
           this.userinfo.updateSellerDataFromFirestore(code, seller);
-          this.presentToast('Du hast 5 Punkte bekommen!');
-        }
+          setTimeout(() => {
+            this.presentToast('Du hast 5 Punkte bekommen!');
+          }, 1000);
+       // }
       });
-    }
+    // }
 
   }
 
   async presentToast(msg) {
     const toast = await this.toastController.create({
       message: msg,
-      duration: 2000
+      duration: 4000
     });
     toast.present();
   }

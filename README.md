@@ -9,13 +9,13 @@
 
 
 ## Run on Development
-1. Im Terminal ins Verzeichnis `unverpacketewahrheit` navigieren.
+1. Im Terminal ins Verzeichnis `firefly` navigieren.
 1. `npm install`im Terminal ausführen.
 1. `ionic serve`im Terminal ausführen.
 1. Danach sollte sich der Standardbrowser öffnen und die Adresse `localhost:8100` öffnen. Damit gewährleistet ist, dass alle Features der App funktionieren, sollte der [Chrome-Browser](https://www.google.com/intl/de/chrome/) verwendet werde.
 
 ## Run on IOS
-1. Im Terminal ins Verzeichnis `unverpacketewahrheit` navigieren.
+1. Im Terminal ins Verzeichnis `firefly` navigieren.
 1. `npm install` im Terminal ausführen.
 1. Cordova einrichten: `npm install -g ios-sim` und `npm install -g ios-deploy`
 1. Danach `ionic cordova perpare ios` und `ionic cordova build ios` ausführen. Eventuell muss vorher noch die Plattform IOS mit `ionic cordova add 

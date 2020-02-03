@@ -26,6 +26,11 @@
 1. Danach sollte sich der Simulator öffnen bzw. die App auf dem angeschlossenen iPhone geöffnet werden. Eventuell muss am eigenen iPhone noch unter **Einstellungen > Allgemein > Geräteverwaltung** die App zugelassen werden.
 
 
+## Test Accounts
+### Käufer
+E-Mail: marylou@posteo.de - PW: 123456
 
+### Verkäufer
+E-Mail: info@fsd-wismar.de - PW: peter123
 
 

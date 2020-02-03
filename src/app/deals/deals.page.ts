@@ -49,13 +49,4 @@ export class DealsPage implements OnInit {
   ngOnInit() {
   }
 
-
-  // Für die Präsentation! 
-  enterFence() {
-    console.log('enter');
-    
-    this.geodata.lat = 49.3528191;
-    this.geodata.long = 9.1470383;
-    this.geodata.compareCoords();
-  }
 }

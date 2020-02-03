@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
     public router: Router
   ) {
     this.pwd = '123456';
-    this.email = 'magrosskopf@web.de';
+    this.email = 'marylou@posteo.de';
 
     if (this.afAuth.auth.currentUser) {
       setTimeout(() => {

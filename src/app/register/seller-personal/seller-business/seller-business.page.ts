@@ -40,8 +40,8 @@ export class SellerBusinessPage implements OnInit {
     this.user.adress = infos.adress;
     this.user.zip = infos.zip;
     this.user.city = infos.city;
-    this.user.lat = locationIq[0].lat;
-    this.user.lng = locationIq[0].lon;
+    this.user.lat = parseFloat(locationIq[0].lat);
+    this.user.lng = parseFloat(locationIq[0].lon);
     this.user.opening = {
       mo: [infos.mo, infos.mo_end],
       di: [infos.di, infos.di_end],

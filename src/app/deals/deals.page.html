@@ -15,7 +15,7 @@
   
   <ion-fab *ngIf="role === 'salesperson'" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="create">
-      <ion-icon id="add-icon" name="add"></ion-icon>
+      <ion-icon class="add-icon" name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
@@ -30,12 +30,6 @@
       </div>
     </ion-col>
   </ion-row>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="create">
-      <ion-icon id="add-icon" name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 
   <div *ngIf="dealsLoaded === true && storesLoaded === true">
     <div>
@@ -61,8 +55,8 @@
         <ion-col size="12">
           <div *ngFor="let store of allStores">
             <ion-card routerLink="/tabs/shop/{{ store.uid }}">
-              <ion-img src="../../assets/angebote/nudeln_angebot.jpg"></ion-img>
-              <ion-card-header>{{ store.storeName }}</ion-card-header>
+              <ion-img src="{{ store.imgUrl }}"></ion-img>
+              <ion-card-header><p>{{ store.storeName }}</p></ion-card-header>
             </ion-card>
           </div>
         </ion-col>

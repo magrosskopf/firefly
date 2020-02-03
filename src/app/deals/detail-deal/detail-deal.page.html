@@ -3,16 +3,17 @@
     <ion-buttons slot="start">
       <ion-back-button text="Zurück" defaultHref="/tabs/deals"></ion-back-button>
     </ion-buttons>
+    <ion-icon *ngIf="deal.uid === user.uid" routerLink="/tabs/deals" (click)="deleteDeal()" name="trash" slot="end" class="icon-trash"></ion-icon>
   </ion-toolbar>
   
 </ion-header>
   
 <ion-content>
-  <ion-img src="../../assets/avocado.jpg"></ion-img>
+  <ion-img src=" {{ deal.imgUrl }} "></ion-img>
   <div class="angebot_beschreibung">
     <ion-row>
-      <ion-col size="9"><h2><b>{{ deal.title }}</b></h2></ion-col>
-      <ion-col size="3"><h2 class="price"><b>{{ deal.afterPrice.toFixed(2) }} € statt <s>{{ deal.beforePrice.toFixed(2) }} €</s></b></h2></ion-col>
+      <ion-col size="7"><h2><b>{{ deal.title }}</b></h2></ion-col>
+      <ion-col size="5"><h2 class="price"><b>{{ deal.afterPrice.toFixed(2) }}€ </b><span style="font-size: 12px;">statt <s>{{ deal.beforePrice.toFixed(2) }}€</s></span></h2></ion-col>
       <p>{{ deal.description }}</p>
     </ion-row>
 
@@ -21,9 +22,13 @@
       <ion-col size="8">Angebot gültig: 02.02 – 10.02</ion-col>
     </ion-row> -->
 
-    <ion-row>
+    <ion-row class="info">
       <ion-col size="2"><ion-icon name="pin"></ion-icon></ion-col>
-      <ion-col size="8">annas, Schwanengasse 2, 74821 Mosbach</ion-col>
+      <ion-col size="10" class="info-text">annas, Schwanengasse 2, 74821 Mosbach</ion-col>
+    </ion-row>
+    <ion-row class="info">
+      <ion-col size="2"><ion-icon name="time"></ion-icon></ion-col>
+      <ion-col size="10" class="info-text">Gültig: 03.02. - 09.02.2020</ion-col>
     </ion-row>
   </div>
 

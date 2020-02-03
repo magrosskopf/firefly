@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Deal } from '../_interfaces/deal';
+import { Seller } from '../_interfaces/seller';
 import { Observable } from 'rxjs';
+import { UserInfoService } from './user-info.service';
+import { ImguploaderService } from './imguploader.service';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +17,9 @@ export class DealService {
 
   constructor(
     public afAuth: AngularFireAuth,
-    public afDB: AngularFirestore
+    public afDB: AngularFirestore,
+    public userService: UserInfoService,
+    private imgupload: ImguploaderService
   ) { }
 
   addDealtoFirestore(deal: Deal) {
@@ -35,18 +41,18 @@ export class DealService {
       this.afDB.collection('deals').doc(docRef.id).update({
         id: docRef.id
       });
-
-      this.getDealsFromKategory('salesperson', this.user.uid)
-      .then((userDeals) => {
-        this.afDB.collection('salesperson').doc(this.user.uid).update({
-          adId: [...userDeals, docRef.id]
-        });
+      this.afDB.collection('salesperson').doc(this.user.uid).update({
+        adId: firebase.firestore.FieldValue.arrayUnion(docRef.id)
       });
     });
   }
 
   deleteDealFromFirestore(dealId: string) {
     this.afDB.doc<Deal>('deals/' + dealId ).delete();
+    this.afDB.doc<any>('salesperson/' + this.user.uid)
+      .update({
+        adId: firebase.firestore.FieldValue.arrayRemove(dealId)
+      });
   }
 
   getAllDealsFromFirestore(): Observable<Deal[]> {

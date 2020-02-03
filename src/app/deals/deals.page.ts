@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthenticationService } from '../_services/authentication.service';
 import { UserInfoService } from '../_services/user-info.service';
+import { GeodataService } from '../_services/geodata.service';
 
 @Component({
   selector: 'app-deals',
@@ -25,6 +26,7 @@ export class DealsPage implements OnInit {
     public authentication: AuthenticationService,
     public userService: UserInfoService,
     public dealService: DealService,
+    private geodata: GeodataService
   ) {
     this.userService.getRoleFromFirestore(this.user.uid)
     .subscribe(data => {
@@ -46,4 +48,5 @@ export class DealsPage implements OnInit {
 
   ngOnInit() {
   }
+
 }

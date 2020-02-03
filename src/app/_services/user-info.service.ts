@@ -8,6 +8,7 @@ import { Seller } from '../_interfaces/seller';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -80,32 +81,31 @@ export class UserInfoService {
   }
 
   getSellerDataFromFirestore(uid: string): Observable<Seller> {
-
-    return this.afDB.doc<any>('salesperson/' + uid).valueChanges();
+   return this.afDB.doc<any>('salesperson/' + uid ).valueChanges();
   }
 
   getAllSellerFromFirestore(): Observable<Seller[]> {
     return this.afDB.collection<Seller>('salesperson/').valueChanges();
   }
 
-  updateSellerDataFromFirestore(uid: string, seller: any) {
-    this.afDB.doc<any>('salesperson/' + uid).update(seller);
+  updateSellerDataFromFirestore(uid: string, seller: Seller) {
+    this.afDB.doc<any>('salesperson/' + uid ).update(seller);
   }
 
   updatePermissonTokenFirestore(token: string, uid: string) {
     const itemRef = this.afDB.doc('customer/' + uid);
-    itemRef.update({notificationsToken: token});
+    itemRef.update({ notificationsToken: token});
   }
 
   deletePermissonTokenFirestore(uid: string) {
     const itemRef = this.afDB.doc('customer/' + uid);
-    itemRef.update({notificationsToken: null});
+    itemRef.update({ notificationsToken: null});
   }
 
   getPermissonTokenFirestore(uid: string): any {
     const item = this.afDB.doc<any>('customer/' + uid);
     item.valueChanges().subscribe(data => {
-      this.nfToken = data.notificationsToken;
+       this.nfToken = data.notificationsToken;
     });
   }
 

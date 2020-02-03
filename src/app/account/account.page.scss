@@ -6,10 +6,35 @@ ion-header {
   height: auto !important;
 }
 
-ion-fab-button {
-  overflow: visible !important;
+ion-col {
+  padding: 0;
 }
 
+.store-wrapper {
+  height: 60vh !important;
+}
+
+p {
+  text-align: center;
+  font-size: 11px;
+  margin: 0 0 5px;
+}
+
+// Horizontal Scroll
+.horizontal-scroll-wrapper {
+  transform: rotate(-90deg) translateY(-150px);
+  transform-origin: right top;
+  width: 150px;
+  height: 358px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sc-ion-card-ios-h {
+  transform: rotate(90deg)
+}
+
+// Icons + Buttons
 ion-icon {
   font-size: 30px;
   color: $primary;
@@ -22,6 +47,65 @@ ion-icon {
 #qr-icon {
   color: white;
 }
+
+ion-fab-button {
+  overflow: visible !important;
+}
+
+// Card-Section
+.store-wrapper {
+  width: 100vw;
+  height: auto;
+  background-color: white;
+  position: absolute;
+  margin-top: 50px;
+  border-radius: 20px 20px 0 0;
+  left: 0;
+  padding: 0 40px;
+
+  h3 {
+    margin-top: 45px;
+  }
+
+  .favourite-stores {
+    margin-left: -15px !important;
+    margin-bottom: -70px;
+
+    ion-card {
+      background-color: white;
+      width: 150px;
+      height: 150px;
+      margin: 0 0 10px 0;
+      top: 15px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px 0;
+
+      ion-card-subtitle {
+        padding: 5px;
+        text-align: center;
+        height: auto;
+        text-transform: uppercase;
+        font-size: 11px;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+
+      ion-img {
+        height: 115px;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .salesperson p {
+    margin: 3px 10px 3px 10px;
+  }
+}
+
+// TODO shadow element main class in ion-content braucht 100vh
+ion-content {
+  height: 100vh !important;
+}
+
 
 ion-grid {
   padding: 0 40px;
@@ -52,81 +136,14 @@ ion-grid {
   }
 }
 
-ion-col {
-  padding: 0;
-
-  p {
-    text-align: center;
-    font-size: 11px;
-    margin: 0 0 5px;
-  }
-}
-
-.stores {
-  margin-top: 40px;
-  height: 50px;
-}
-
-.horizontal-scroll-wrapper {
-  transform: rotate(-90deg) translateY(-150px);
-  transform-origin: right top;
-  width: 150px;
-  height: 358px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-  ion-list-header {
-    padding: 0 !important;
-  }
-
-.sc-ion-card-ios-h {
-  transform: rotate(90deg)
+ion-badge {
+  margin: 0 30%;
 }
 
 
-.store-wrapper {
-  width: 100vw;
-  height: 100%;
-  background-color: white;
-  position: absolute;
-  margin-top: 50px;
-  border-radius: 20px 20px 0 0;
-  left: 0;
-  padding: 0 40px;
 
-  .favourite-stores {
-    margin-left: -15px !important;
-    margin-bottom: -70px;
-  }
-}
 
-ion-card {
-  background: white;
-  width: 150px;
-  height: 150px;
-  margin: 0 0 10px 0;
-  top: 15px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px 0;
 
-  ion-card-header {
-    padding: 5px;
-    text-align: center;
-    height: auto;
-  }
 
-  ion-card-subtitle {
-    p {
-      text-align: center;
-      font-size: 11px;
-      margin: 0 0 5px;
-    }
-  }
 
-  ion-card-content {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 0 10px 10px 10px;
-  }
-}
+

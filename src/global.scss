@@ -57,10 +57,6 @@ ion-header {
   padding: 40px 0;
   height: 160px;
 
-  ion-title {
-
-  }
-
   ion-toolbar {
     height: 100%;
     //STYLE IONIC SHADOW DOM ELEMENTS
@@ -150,9 +146,11 @@ hr {
   border: 0.5px solid rgba(0, 0, 0, 0.1);
 }
 
+
+
 .leaflet-popup {
   bottom: -10px !important;
-  left: -113px !important;
+  left: -93px !important;
 }
 
 .leaflet-popup-content-wrapper {
@@ -161,20 +159,22 @@ hr {
 
 .leaflet-popup-content {
   margin: 0 0 13px 0 !important;
-  width: 240px;
-  height: 215px;
+  width: 200px;
+  height: 170px;
 
   img {
     border-radius: 20px 20px 0 0;
-  }
-
-  h2 {
-    margin: 10px;
+    height: 80%;
   }
 }
 
 .leaflet-popup-close-button {
-  color: #EA7724 !important;
+  color: $primary !important;
   top: 8px !important;
   right: 8px !important;
+  height: 30px;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  font-size: 22px !important;
 }

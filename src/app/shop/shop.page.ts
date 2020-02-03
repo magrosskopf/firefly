@@ -23,15 +23,17 @@ export class ShopPage implements OnInit {
     storeName: '',
     owner: '',
     zip: '',
-    description: ''
+    description: '',
+    imgUrl: ''
   };
 
   allDeals = [];
   dealsLoaded = false;
 
-  userId: string;
   favStore = false;
   storeId: string;
+  role = '';
+  user = this.afAuth.auth.currentUser;
 
   constructor(
     private router: Router,
@@ -39,14 +41,13 @@ export class ShopPage implements OnInit {
     public afAuth: AngularFireAuth,
     public dealService: DealService
   ) {
-    this.userId = this.afAuth.auth.currentUser.uid;
-
     const pathArray = this.router.url.split('/');
     const pathId = pathArray[pathArray.length - 1];
 
     this.userService.getSellerDataFromFirestore(pathId)
     .subscribe(data => {
       this.store = data;
+      this.allDeals = [];
       this.store.adId.forEach(element => {
         this.dealService.getDealFromFirestore(element)
         .subscribe(deal => {
@@ -54,26 +55,30 @@ export class ShopPage implements OnInit {
           this.dealsLoaded = true;
         });
       });
-      console.log('Seller Data:', this.store);
-      console.log('allDeals:', this.allDeals);
     });
 
-    this.userService.getPersonalDataFromFirestore(this.userId, 'customer')
-    .subscribe(data => {
-      data.favStores.forEach(element => {
-        if (pathId === element) {
-          this.favStore = true;
+    this.userService.getRoleFromFirestore(this.user.uid)
+      .subscribe(user => {
+        this.role = user.role;
+        if (this.role === 'customer') {
+          this.userService.getPersonalDataFromFirestore(this.user.uid, 'customer')
+            .subscribe(data => {
+              data.favStores.forEach(element => {
+                if (pathId === element) {
+                  this.favStore = true;
+                }
+              });
+            });
         }
       });
-    });
-  }
+}
 
   ngOnInit() {
   }
 
   changeFavStore() {
     this.favStore = !this.favStore;
-    this.userService.changePersonalFavStore(this.userId, this.store.uid, this.favStore);
+    this.userService.changePersonalFavStore(this.user.uid, this.store.uid, this.favStore);
   }
 
 }

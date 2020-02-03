@@ -9,8 +9,29 @@ ion-header{
     .logo{
         margin: 0 auto 0 !important;
     }
+
+    .icon-trash {
+        height: 30px;
+        width: 30px;
+        fill: $primary;
+    }
 }
 
+.price span {
+    font-weight: 200;
+}
+
+p {
+    line-height: 1.5;
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.info-text {
+    font-size: 14px;
+    font-weight: 200;
+    padding-top: 10px;
+}
 
 ion-content{
     background: white;
@@ -35,10 +56,6 @@ ion-content{
     }
 
     ion-row{
-
-        p{
-            height: 140px;
-        }
 
         ion-col{
             .price{
